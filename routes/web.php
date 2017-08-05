@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('layout');
 });
+
+Route::get('/profilatlet', function () {
+    return view('atlet/profilatlet');
+});
+
+Route::get('/profilatlet/tambah', function () {
+    return view('atlet/inputatlet');
+});
