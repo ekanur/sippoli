@@ -106,7 +106,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
-						</button><!-- 
+						</button><!--
 						<a class="navbar-brand" href="#">Program Latihan</a> -->
 						<div class="col-md-3">
 							{{-- <button type="button" class="btn btn-success">Buat Program Latihan<div class="ripple-container"></div></button> --}}
@@ -204,7 +204,7 @@
 	{{-- <script src="{{ asset('path') }}js/chartist.min.js"></script> --}}
 
 	<!--  Notifications Plugin    -->
-	<script src="{{ asset('path') }}js/bootstrap-notify.js"></script>
+	<script src="{{ asset('js/bootstrap-notify.js') }}"></script>
 
 	<!--  Google Maps Plugin    -->
 	{{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> --}}

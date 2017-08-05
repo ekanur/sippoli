@@ -22,3 +22,6 @@ Route::get('/profilatlet', function () {
 Route::get('/profilatlet/tambah', function () {
     return view('atlet/inputatlet');
 });
+Route::get('/olahraga', 'CaborController@index');
+
+Route::get('/pelatih', 'PelatihController@index');
