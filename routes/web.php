@@ -26,3 +26,4 @@ Route::get('/pelatih', 'PelatihController@index');
 Route::get('/list_makanan','ListMakananController@index');
 Route::get('/latihan', 'LatihanController@index');
 Route::get('/latihan/id', 'LatihanController@detail');
+Route::get('/evaluasi', 'EvaluasiController@index');

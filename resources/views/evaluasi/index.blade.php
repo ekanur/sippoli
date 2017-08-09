@@ -4,14 +4,14 @@
 <div class="container-fluid">
   <div class="row">
       <div class="col-md-12">
-        <h4><b>INPUT PROFIL ATLET</b></h4>
+        <h4><b>EVALUASI ATLET</b></h4>
     </div>
   </div>
   <div class="row">
       <div class="col-md-8">
         <div class="card">
           <div class="card-header" data-background-color="purple">
-            <h4 class="title">Edit Data Atlet</h4>
+            <h4 class="title">Data Atlet</h4>
             <!-- <p class="category">Complete your profile</p> -->
           </div>
           <div class="card-content">
@@ -85,7 +85,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header" data-background-color="purple">
-              <h4 class="title">Kondisi Awal Atlet</h4>
+              <h4 class="title">Kondisi Akhir Atlet</h4>
               <!-- <p class="category">Complete your profile</p> -->
             </div>
             <div class="card-content">
