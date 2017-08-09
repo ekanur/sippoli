@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layout');
-});
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@login');
+Route::post('/register', 'RegistrationController@register');
+
+Route::get('/', 'PageController@index');
+
+Route::get('/program', 'ProgramController@index');
+Route::get('/program/tambah', 'ProgramController@add');
+Route::post('/program/tambah', 'ProgramController@store');
 
 Route::get('/profilatlet', function () {
     return view('atlet/profilatlet');
