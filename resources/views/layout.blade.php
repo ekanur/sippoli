@@ -51,48 +51,24 @@
 	                        <p>Dashboard</p>
 	                    </a>
 	                </li>
-{{-- 	                <li>
-	                    <a href="{{ url('/') }}">
+ 	               <li>
+	                    <a href="{{ url('/profilatlet') }}">
 	                        <i class="material-icons">person</i>
 	                        <p>Atlet</p>
 	                    </a>
 	                </li>
 	                <li>
-	                    <a href="{{ url('/') }}">
+	                    <a href="{{ url('/program') }}">
 	                        <i class="material-icons">content_paste</i>
-	                        <p>Menu Makan</p>
+	                        <p>Program</p>
 	                    </a>
 	                </li>
 	                <li>
-	                    <a href="{{ url('/') }}">
+	                    <a href="{{ url('/evaluasi') }}">
 	                        <i class="material-icons">library_books</i>
-	                        <p>Menu Latihan</p>
+	                        <p>Evaluasi</p>
 	                    </a>
 	                </li>
-	                <li class="active">
-	                    <a href="{{ url('/') }}">
-	                        <i class="material-icons">bubble_chart</i>
-	                        <p>Program Latihan</p>
-	                    </a>
-	                </li> --}}
-	                <!-- <li>
-	                    <a href="{{ url('/') }}">
-	                        <i class="material-icons">location_on</i>
-	                        <p>Maps</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="{{ url('/') }}">
-	                        <i class="material-icons text-gray">notifications</i>
-	                        <p>Notifications</p>
-	                    </a>
-	                </li>
-					<li class="active-pro">
-	                    <a href="{{ url('/') }}">
-	                        <i class="material-icons">unarchive</i>
-	                        <p>Upgrade to PRO</p>
-	                    </a>
-	                </li> -->
 	            </ul>
 	    	</div>
 		</div>
