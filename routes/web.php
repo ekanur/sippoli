@@ -14,25 +14,14 @@
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
 Route::post('/register', 'RegistrationController@register');
-
 Route::get('/', 'PageController@index');
-
 Route::get('/program', 'ProgramController@index');
 Route::get('/program/tambah', 'ProgramController@add');
 Route::post('/program/tambah', 'ProgramController@store');
-
-Route::get('/profilatlet', function () {
-    return view('atlet/profilatlet');
-});
-
-Route::get('/profilatlet/tambah', function () {
-    return view('atlet/inputatlet');
-});
-Route::get('/program', function () {
-    return view('program/index');
-});
+Route::get('/profilatlet', 'AtletController@index');
+Route::get('/profilatlet/tambah', 'AtletController@create');
+Route::get('/program', 'ProgramController@index');
 Route::get('/olahraga', 'CaborController@index');
-
 Route::get('/pelatih', 'PelatihController@index');
 Route::get('/list_makanan','ListMakananController@index');
 Route::get('/latihan', 'LatihanController@index');
