@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <div class="row">
       <div class="col-md-12">
-        <h4><b>INPUT PROFIL ATLET</b></h4>
+        <h4><b>EVALUASI</b></h4>
     </div>
   </div>
   <div class="row">
@@ -175,13 +175,16 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">WBR (audio)</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-6">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">WBR (visual)</label>
                       <input type="text" class="form-control" >
@@ -190,25 +193,34 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Speed Anticipation</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-3">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Agility</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-3">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Flexibility</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-3">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Vertical Jump</label>
                       <input type="text" class="form-control" >
@@ -216,23 +228,17 @@
                   </div>
                 </div>
 
-
                 <div class="row">
-
-                </div>
-
-                <div class="row">
-
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Back Strength</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-6">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Leg Strength</label>
                       <input type="text" class="form-control" >
@@ -268,41 +274,49 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <div class="form-group label-floating">
                       <label class="control-label">Push</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <div class="form-group label-floating">
                       <label class="control-label">Pull</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-4">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Speed</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-
                 </div>
 
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Sit Up</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-4">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Push Up</label>
                       <input type="text" class="form-control" >
                     </div>
                   </div>
-                  <div class="col-md-4">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group label-floating">
                       <label class="control-label">Balanced Beam</label>
                       <input type="text" class="form-control" >
@@ -358,18 +372,17 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-2">
-                    <button type="submit" class="btn btn-info">Simpan</button>
-                  </div>
-                </div>
-
                 <!-- <button type="submit" class="btn btn-primary pull-right">Tam</button> -->
                 <div class="clearfix"></div>
               </form>
             </div>
           </div>
         </div>
+
+
+
+            </div>
+          </div>
       </div>
-    </div>
+      </div>
 @endsection
