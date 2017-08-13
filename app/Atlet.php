@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Atlet extends Model
 {
+  protected $table="atlet";
     public function program(){
     	// return $this->belongsToMany("App\Program", "program_atlet", "atlet_id", "program_id");
     	return $this->belongsToMany("App\Program")->using("App\Program_atlet");

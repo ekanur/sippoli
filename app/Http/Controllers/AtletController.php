@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Atlet;
 
 class AtletController extends Controller
 {
@@ -44,6 +45,35 @@ class AtletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     public function save(Request $masuk){
+
+       $namaAtlet = $masuk->nama_atlet;
+       $genderAtlet = $masuk->jenis_kelamin;
+
+
+       $tanggallahir_atlet=$masuk->tglLahirAtlet;
+       $caborAtlet = $masuk->cabor_Atlet;
+
+
+
+
+       $tambahAtlet = new Atlet;
+       $tambahAtlet ->nama =$namaAtlet;
+       $tambahAtlet ->gender=  $genderAtlet;
+       $tambahAtlet ->tgl_lahir =$tanggallahir_atlet ;
+       $tambahAtlet ->status ='1';
+       $tambahAtlet ->cabor_id= $caborAtlet;
+       $tambahAtlet ->pelatih_id='1';
+       $tambahAtlet->save();
+
+       return redirect()->back();
+
+       //return ("proses simpan");
+      //  $tambahAtlet->nama =$masuk->namaAtlet;
+
+
+     }
+
     public function show($id)
     {
         //

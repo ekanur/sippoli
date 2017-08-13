@@ -16,8 +16,8 @@ class TableAtlet extends Migration
         Schema::create('atlet', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',45);
-            $table->string('gender',45);
-            $table->dateTime('tgl_lahir');
+            $table->string('gender',2);
+            $table->date('tgl_lahir');
             $table->string('status',45);
             $table->integer('cabor_id');
             $table->integer('pelatih_id');

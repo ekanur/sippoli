@@ -20,6 +20,8 @@ Route::get('/program/tambah', 'ProgramController@add');
 Route::post('/program/tambah', 'ProgramController@store');
 Route::get('/profilatlet', 'AtletController@index');
 Route::get('/profilatlet/tambah', 'AtletController@create');
+Route::post('/profilatlet/tambah/save', 'AtletController@save');
+
 Route::get('/program', 'ProgramController@index');
 Route::get('/olahraga', 'CaborController@index');
 Route::get('/pelatih', 'PelatihController@index');

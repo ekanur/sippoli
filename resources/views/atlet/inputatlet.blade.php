@@ -11,25 +11,27 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header" data-background-color="purple">
-            <h4 class="title">Edit Data Atlet</h4>
+            <h4 class="title">Edit/Tambah Data Atlet</h4>
             <!-- <p class="category">Complete your profile</p> -->
           </div>
           <div class="card-content">
-            <form>
+            <form action="save" method="post">
+              {{csrf_field()}}
+
               <div class="row">
                 <div class="col-md-6">
-              		<div class="form-group label-floating">
+              		<div class="form-group">
               			<label class="control-label">Name</label>
-              			<input type="text" class="form-control" >
+              			<input type="text" class="form-control" name="nama_atlet" required="" >
               		</div>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group label-floating">
+                  <div class="form-group">
               			<label class="control-label">Gender</label>
-              			<select class="form-control" name="gender">
-                      <option value="0">Pilih</option>
-              			  <option value="l">Laki-laki</option>
-                      <option value="p">Perempuan</option>
+              			<select class="form-control" name="jenis_kelamin" required="">
+                      <option value="">Pilih</option>
+              			  <option value="L">Laki-laki</option>
+                      <option value="P">Perempuan</option>
               			</select>
               		</div>
                 </div>
@@ -37,23 +39,23 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="control-label">Tanggal Lahir</label>
-                    <input type="date" class="form-control" >
+                  <div class="form-group" name="tglLahirAtlet">
+                    <label class="control-label">Tanggal Lahir(YYYY-MM-DD)</label>
+                    <input type="date" class="form-control" name="tglLahirAtlet" required="" >
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group" >
                     <label class="control-label">Cabor</label>
-                    <select class="form-control" name="cabor">
-                        <option value="0">Pilih</option>
-                      <option value="l">Voli</option>
-                      <option value="p">Bulutangkis</option>
+                    <select class="form-control" name="cabor_Atlet" required="">
+                      <option value="">Pilih</option>
+                      <option value="0">Voli</option>
+                      <option value="1">Bulutangkis</option>
                     </select>
                   </div>
                 </div>
               </div>
-              <!-- <button type="submit" class="btn btn-primary pull-right">Tam</button> -->
+              <button type="submit" class="btn btn-primary pull-right">Simpan</button>
               <div class="clearfix"></div>
             </form>
           </div>
