@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program_makanan extends Model
 {
+	protected $table="program_makanan";
     public function program(){
     	return $this->belongsTo("App\Program");
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pelatih extends Model
 {
+    protected $table="pelatih";
     public function program(){
     	return $this->hasMany("App\Program");
     }

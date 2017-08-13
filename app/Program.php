@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
+    protected $table="program";
     public function program_makanan(){
     	return $this->hasMany("App\Program_makanan");
     }
