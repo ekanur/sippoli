@@ -55,7 +55,7 @@
                         <div class="col-md-4">
                           <div class="form-group label-floating">
                             <label class="control-label">Nama Program</label>
-                            <input class="form-control" type="text" name="nama" value="" required="">
+                            <input class="form-control" type="text" name="nama" value="@isset ($program) {{ $program->nama }} @endisset" required="">
                             <span class="material-input"></span>
                           </div>
                         </div>
@@ -63,9 +63,9 @@
                           <div class="form-group label-floating">
                             <label class="control-label">Jangka Program</label>
                             <select class="form-control" name="jangka_durasi" required="" id="jangka_durasi">
-                              <option value="3">Pendek (3 bulan)</option>
-                              <option value="6">Menengah (6 bulan)</option>
-                              <option value="12">Panjang (12 bulan)</option>
+                              <option value="3" @isset ($program) @if ($program->jangka_durasi == 3) selected="" @endif @endisset>Pendek (3 bulan)</option>
+                              <option value="6" @isset ($program) @if ($program->jangka_durasi == 6) selected="" @endif @endisset>Menengah (6 bulan)</option>
+                              <option value="12" @isset ($program) @if ($program->jangka_durasi == 12) selected="" @endif @endisset>Panjang (12 bulan)</option>
                             </select>
                           </div>
                         </div>
@@ -73,7 +73,7 @@
                           <div class="form-group label-floating">
                             <label class="control-label">Mulai</label>
                             <div class="input-group date" data-provide="datepicker">
-                                <input type="text" class="form-control" id="mulai" name="mulai_program" required="">
+                                <input type="text" class="form-control" id="mulai" name="mulai_program" required="" value="@isset ($program) {{ date("m/d/Y", strtotime($program->mulai_program)) }} @endisset">
                                 <div class="input-group-addon">
                                     <i class="material-icons">date_range</i>
                                 </div>
@@ -83,7 +83,7 @@
                         <div class="col-md-2">
                           <div class="form-group label-floating" id="container_berakhir">
                             <label class="control-label" required="">Berakhir</label>
-                                <input type="text" class="form-control" id="berakhir" readonly="" name="berakhir_program">
+                                <input type="text" class="form-control" id="berakhir" readonly="" name="berakhir_program" value="@isset ($program) {{ date("m/d/Y", strtotime($program->berakhir_program)) }} @endisset">
                           </div>
                         </div>
                       </div>
@@ -98,36 +98,36 @@
                       <div class="row">
                           <div class="col-md-2">
                               <div class="form-group label-floating">
-                                  <label class="control-label">Persiapan Umum</label>
-                                  <input class="form-control" name="persiapan_umum" type="number" min="1"  required=""/>
+                                  <label class="control-label">Persiapan Umum (Pekan)</label>
+                                  <input class="form-control" name="persiapan_umum" type="number" min="1"  required=""  @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_umum }}" @endisset />
                                   <small class="help-block">persiapan umum dalam satuan pekan</small>
                               </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
-                                  <label class="control-label">Persiapan Khusus</label>
-                                  <input class="form-control" name="persiapan_umum" type="number" required="" min="1"/>
+                                  <label class="control-label">Persiapan Khusus (Pekan)</label>
+                                  <input class="form-control" name="persiapan_khusus" type="number" required="" min="1" @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_khusus }}" @endisset />
                                   <small class="help-block">persiapan khusus dalam satuan pekan</small>
                               </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
-                                  <label class="control-label">Pra Kompetisi</label>
-                                  <input class="form-control" required="" name="pra_kompetisi" type="number" min="1"/>
+                                  <label class="control-label">Pra Kompetisi (Pekan)</label>
+                                  <input class="form-control" required="" name="pra_kompetisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->pra_kompetisi }}" @endisset/>
                                   <small class="help-block">Pra kompetisi dalam satuan pekan</small>
                               </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
-                                  <label class="control-label">Kompetisi</label>
-                                  <input class="form-control" required="" name="kompetisi" type="number" min="1"/>
+                                  <label class="control-label">Kompetisi (Pekan)</label>
+                                  <input class="form-control" required="" name="kompetisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->kompetisi }}" @endisset/>
                                   <small class="help-block">Kompetisi dalam satuan pekan</small>
                               </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
-                                  <label class="control-label">Transisi</label>
-                                  <input class="form-control" required="" name="transisi" type="number" min="1"/>
+                                  <label class="control-label">Transisi (Pekan)</label>
+                                  <input class="form-control" required="" name="transisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->transisi }}" @endisset/>
                                   <small class="help-block">transisi dalam satuan pekan</small>
                               </div>
                           </div>
@@ -237,9 +237,10 @@
 
             $("#jangka_durasi").change(function(){
               var bulan = $(this).val();
-              var tanggal_berakhir = $("#berakhir").val();
+              var mulai = $("#mulai").val();
+              var tanggal_berakhir = Date.parse(mulai).add(+bulan).month();
                 if (tanggal_berakhir !== null) {
-                  
+                  $("#berakhir").val(new Date(tanggal_berakhir).toString('MM/dd/yyyy'));
                 }
             });
         });

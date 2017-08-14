@@ -56,7 +56,7 @@
                         <div class="col-sm-12">
                             <div class="panel panel-success">
                                 <div class="panel-body">
-                                    <form action="{{ url('program/mikro/save') }}" method="post">
+                                    
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
@@ -118,6 +118,8 @@
                                             </div>
                                             <div class="col-xs-12"><hr></div>
                                         </div>
+                                        <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/simpan/') }}" method="post">
+                                        {{ csrf_field() }}
                                         <div class="row">
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group label-floating">
@@ -125,6 +127,7 @@
                                                     <strong>Persiapan Umum</strong>
                                                 </div>
                                             </div> --}}
+                                            
                                             <div class="col-md-4">
                                                         <div class="form-group label-floating">
                                                           <label class="control-label">Tanggal</label>
@@ -142,13 +145,13 @@
                                                             <label class="control-label">Kriteria</label>
                                                         <div class="radio">
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Rendah
+                                                                <input type="radio" name="kriteria_v_i" value="rendah"><span class="circle"></span><span class="check"></span> Rendah
                                                             </label>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Sedang
+                                                                <input type="radio" name="kriteria_v_i" value="sedang"><span class="circle"></span><span class="check"></span> Sedang
                                                             </label>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Berat
+                                                                <input type="radio" name="kriteria_v_i" value="berat"><span class="circle"></span><span class="check"></span> Berat
                                                             </label>
                                                         </div>
                                                     </div>
@@ -176,9 +179,14 @@
                                                     <p class="help-block">Gunakan koma(,) untuk pemisah</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12"><hr></div>
-                                    </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-info">Simpan</button>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    </form>
                                     <div class="row">
+                                    <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/tambah_program_latihan/') }}">
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Waktu</label>
@@ -228,7 +236,7 @@
                                                         </div>
                                         </div>
                                         <div class="col-md-1">
-                                                <button class="btn btn-info">Save</button>
+                                                <button class="btn btn-info" disabled="">Tambah</button>
                                         </div>
                                     </div>
 
