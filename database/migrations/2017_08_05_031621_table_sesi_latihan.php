@@ -20,7 +20,7 @@ class TableSesiLatihan extends Migration
             $table->string('json_materi_latihan',555);
             $table->string('json_intesitas_max',45);
             $table->string('json_volume_max',45);
-            $table->enum('kriteria_volume_intesitas', array('rendah','sedang','berat'));
+            $table->enum('kriteria_volume_intensitas', array('rendah','sedang','berat'));
             $table->date("tanggal");
             $table->timestamps();
             $table->softDeletes();

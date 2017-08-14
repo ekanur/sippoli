@@ -72,122 +72,55 @@
                                             </div>    
                                         </div>
                                         <div class="row">
-                                            {{-- <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Bulan</label>
-                                                    <select name="bulan" class="form-control">
-                                                        <option value="8">Agustus</option>
-                                                        <option value="9">September</option>
-                                                        <option value="10">Oktober</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pekan</label>
-                                                    <strong>Agustus/1</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Intensitas</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="intensitas" type="number" min="1" value="35" disabled="" />
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div> 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Volume</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="volume" type="number" min="1" value="50" disabled="" />
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div> 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Fase</label>
-                                                    <strong>Persiapan Umum</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12"><hr></div>
-                                        </div>
-                                        <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/simpan/') }}" method="post">
-                                        {{ csrf_field() }}
-                                        <div class="row">
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Fase</label>
-                                                    <strong>Persiapan Umum</strong>
-                                                </div>
-                                            </div> --}}
-                                            
-                                            <div class="col-md-4">
+                                             <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                           <label class="control-label">Tanggal</label>
-                                                          <input class="form-control" name="tanggal" type="text"  data-provide="datepicker"/>
+                                                          <strong>{{ date('D m-d-Y', strtotime('05/13/2017')) }}</strong>
                                                         </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Tahapan</label>
-                                                    <input type="text" name="tahapan" class="form-control">
+                                                    <strong>TPU</strong>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-1">
                                                 <div class="form-group label-floating">
                                                             <label class="control-label">Kriteria</label>
-                                                        <div class="radio">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i" value="rendah"><span class="circle"></span><span class="check"></span> Rendah
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i" value="sedang"><span class="circle"></span><span class="check"></span> Sedang
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i" value="berat"><span class="circle"></span><span class="check"></span> Berat
-                                                            </label>
-                                                        </div>
+                                                        <span class="label label-success">Rendah</span>
                                                     </div>
+                                            </div>
+                                            <div class="col-md-5">  
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Materi Latihan</label>
+                                                    <strong>Materi 1, materi 3</strong>
+                                                </div>                                             
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">  
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Materi Latihan</label>
-                                                    <textarea class="form-control" name="materi_latihan" rows="2" cols="10"></textarea>
-                                                    <p class="help-block">Gunakan koma(,) untuk pemisah</p>
-                                                </div>                                             
-                                            </div>
-                                            <div class="col-md-4">
+                                            
+                                            <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas Max</label>
-                                                    <textarea class="form-control" name="intensitas_max" rows="2" cols="10"></textarea>
-                                                    <p class="help-block">Gunakan koma(,) untuk pemisah</p>
+                                                    <strong>Intesitas 1, Max Intesitas 2</strong>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume Max</label>
-                                                    <textarea class="form-control" name="volume_max" rows="2" cols="10"></textarea>
-                                                    <p class="help-block">Gunakan koma(,) untuk pemisah</p>
+                                                    <strong>Volume Max1, Volume Max2</strong>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 text-center">
-                                                <button type="submit" class="btn btn-info">Simpan</button>
-                                                {{-- <hr> --}}
-                                            </div>
                                         </div>
-                                    </form>
-                                    {{-- <div class="row">
-                                    <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/tambah_program_latihan/') }}">
+                                        
+                                    <div class="row">
+                                        <form action="{{ url('/program/sesi-latihan/'.$id_sesi_latihan.'/simpan') }}">
+                                        <div class="col-md-12">
+                                        <hr>
+                                        </div>
+                                        
                                         <div class="col-md-2">
+
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Waktu</label>
                                                           <select class="form-control">
@@ -210,7 +143,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Latihan</label>
-                                                          <select class="form-control">
+                                                        <select class="form-control">
                                                           <optgroup label="Latihan Fisik">
                                                               <option value="pemanasan">CIRCUIT TRAINING</option>
                                                               <option value="inti">INTERVAL TRAINING</option>
@@ -220,6 +153,7 @@
                                                               <option value="pemanasan">LATIHAN TEHNIK</option>
                                                               <option value="inti">LATIHAN TAKTIK</option>
                                                           </optgroup>
+                                                        </select>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -235,22 +169,21 @@
                                                         </div>
                                         </div>
                                         <div class="col-md-1">
-                                                <button class="btn btn-info" disabled="">Tambah</button>
+                                                <button class="btn btn-info">Tambah</button>
                                         </div>
                                     </form>
-                                    </div> --}}
+                                    </div>
 
                                 </div>
                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Tangal</th>
-                                            <th>Tahapan</th>
-                                            <th>Materi Latihan</th>
-                                            <th>Intesitas Max</th>
-                                            <th>Volume Max</th>
+                                            <th>Sesi</th>
+                                            <th>Jenis</th>
+                                            <th>Latihan</th>
+                                            <th>Vol</th>
                                             {{-- <th>Sesi Latihan</th> --}}
-                                            <th>Kriteria Latihan</th>
+                                            <th>Intensitas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -259,12 +192,12 @@
                                            {{--  <td colspan="7">
                                                 <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
                                             </td> --}}
-                                            <td><a href="{{ url('/program/sesi-latihan/1') }}">{{ date('D m-d-Y', strtotime('05/13/2017')) }}</a></td>
-                                            <td>TPU</td>
-                                            <td>Mat1, mat2, mat5</td>
-                                            <td>In3, in2, in 2</td>
-                                            <td>v3</td>
-                                            <td>Sedang</td>
+                                            <td>Pagi (05.00-08.00)</td>
+                                            <td>Pemanasan</td>
+                                            <td>BENCH STEPPING</td>
+                                            <td></td>
+                                            <td></td>
+                                            {{-- <td><a href="">Lihat</a></td> --}}
                                             <td>
                                                 <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
                                                 <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
