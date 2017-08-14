@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Program;
-<<<<<<< HEAD
 use App\Siklus_mikro;
-=======
 use App\Sesi_latihan;
->>>>>>> 7d4d773458d6ca984b9bc247d940914a4cd1576d
 
 class ProgramController extends Controller
 {
