@@ -16,9 +16,11 @@ class TableProgram extends Migration
         Schema::create('program', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',45);
-            $table->string('deskripsi',45);
+            $table->string('deskripsi',200)->nullable();
             $table->integer('jangka_durasi');
             $table->integer('pelatih_id');
+            $table->date('mulai_program');
+            $table->date('berakhir_program');
             $table->softDeletes();
             $table->timestamps();
         });

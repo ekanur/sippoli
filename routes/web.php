@@ -24,6 +24,7 @@ Route::post('/profilatlet/tambah/save', 'AtletController@save');
 
 Route::get('/program', 'ProgramController@index');
 Route::prefix("program")->group(function(){
+	Route::post("/simpan", "ProgramController@simpan");
 	Route::get('/baru', 'ProgramController@index');
 	Route::get('/{id_program}', 'ProgramController@edit');
 	Route::get('/{id_program}/atlet', 'ProgramController@pilihAtlet');

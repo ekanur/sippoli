@@ -49,23 +49,23 @@
                         <p class="category">Isi form di bawah ini untuk menambahkan program</p>
                     </div>
                     <div class="card-content">
-                    <form action="" method="post">
+                    <form action="{{ url('/program/simpan') }}" method="post">
                       {{ csrf_field() }}
                       <div class="row">
                         <div class="col-md-4">
                           <div class="form-group label-floating">
                             <label class="control-label">Nama Program</label>
-                            <input class="form-control" type="text" name="nama" value="">
+                            <input class="form-control" type="text" name="nama" value="" required="">
                             <span class="material-input"></span>
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group label-floating">
                             <label class="control-label">Jangka Program</label>
-                            <select class="form-control" name="jangka">
-                              <option value="pendek">Pendek (3 bulan)</option>
-                              <option value="menengah">Menengah (6 bulan)</option>
-                              <option value="panjang">Panjang (12 bulan)</option>
+                            <select class="form-control" name="jangka_durasi" required="" id="jangka_durasi">
+                              <option value="3">Pendek (3 bulan)</option>
+                              <option value="6">Menengah (6 bulan)</option>
+                              <option value="12">Panjang (12 bulan)</option>
                             </select>
                           </div>
                         </div>
@@ -73,7 +73,7 @@
                           <div class="form-group label-floating">
                             <label class="control-label">Mulai</label>
                             <div class="input-group date" data-provide="datepicker">
-                                <input type="text" class="form-control" id="mulai">
+                                <input type="text" class="form-control" id="mulai" name="mulai_program" required="">
                                 <div class="input-group-addon">
                                     <i class="material-icons">date_range</i>
                                 </div>
@@ -81,9 +81,9 @@
                           </div>
                         </div>
                         <div class="col-md-2">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Berakhir</label>
-                                <input type="text" class="form-control" id="mulai" disabled>
+                          <div class="form-group label-floating" id="container_berakhir">
+                            <label class="control-label" required="">Berakhir</label>
+                                <input type="text" class="form-control" id="berakhir" readonly="" name="berakhir_program">
                           </div>
                         </div>
                       </div>
@@ -96,24 +96,45 @@
                         </div>
                       </div> --}}
                       <div class="row">
-                          <div class="col-md-3">
+                          <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Umum</label>
-                                  <input class="form-control" name="persiapan_umum" type="number" min="1"/>
-                                  <small class="help-block">Lama persiapan umum dalam satuan pekan</small>
+                                  <input class="form-control" name="persiapan_umum" type="number" min="1"  required=""/>
+                                  <small class="help-block">persiapan umum dalam satuan pekan</small>
                               </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Khusus</label>
-                                  <input class="form-control" name="persiapan_umum" type="number" min="1"/>
-                                  <small class="help-block">Lama persiapan khusus dalam satuan pekan</small>
+                                  <input class="form-control" name="persiapan_umum" type="number" required="" min="1"/>
+                                  <small class="help-block">persiapan khusus dalam satuan pekan</small>
                               </div>
                           </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Pra Kompetisi</label>
+                                  <input class="form-control" required="" name="pra_kompetisi" type="number" min="1"/>
+                                  <small class="help-block">Pra kompetisi dalam satuan pekan</small>
+                              </div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Kompetisi</label>
+                                  <input class="form-control" required="" name="kompetisi" type="number" min="1"/>
+                                  <small class="help-block">Kompetisi dalam satuan pekan</small>
+                              </div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Transisi</label>
+                                  <input class="form-control" required="" name="transisi" type="number" min="1"/>
+                                  <small class="help-block">transisi dalam satuan pekan</small>
+                              </div>
+                          </div>
+                          <div class="col-md-2">
+                              <button type="submit" class="btn btn-info">Simpan</button>
+                          </div>
                       </div>
-                      <center>
-                        <button type="submit" class="btn btn-info">Tambah</button>
-                      </center>
                     </form>
                   </div>
                 </div>
@@ -197,9 +218,30 @@
 
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ asset('/js/date.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('#mulai').datepicker();
+
+            $("#mulai").change(function(){
+              // var tanggal_mulai = Date.parse($(this).val());
+              var jangka_durasi = $("#jangka_durasi").val();
+              var tanggal_berakhir = Date.parse($(this).val()).add(+jangka_durasi).month();
+              $("#container_berakhir").addClass("is-focused");
+              $("#container_berakhir input-group").addClass("input-group-focus");
+              $("#berakhir").val(new Date(tanggal_berakhir).toString('MM/dd/yyyy'));
+              console.log(tanggal_berakhir);
+              // console.log(jangka_durasi);
+              // console.log(tanggal_berakhir);
+            });
+
+            $("#jangka_durasi").change(function(){
+              var bulan = $(this).val();
+              var tanggal_berakhir = $("#berakhir").val();
+                if (tanggal_berakhir !== null) {
+                  
+                }
+            });
         });
     </script>
 @endpush

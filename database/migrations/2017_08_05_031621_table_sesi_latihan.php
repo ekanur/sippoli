@@ -15,15 +15,13 @@ class TableSesiLatihan extends Migration
     {
         Schema::create('sesi_latihan', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('program_id');
-            $table->integer('pekan_ke');
+            $table->integer('siklus_mikro_id');
             $table->string('tahapan',45);
-            $table->string('materi_latihan',555);
-            $table->integer('volume');
-            $table->integer('intensitas');
-            $table->string('intesitas_max',45);
-            $table->string('volume_max',45);
+            $table->string('json_materi_latihan',555);
+            $table->string('json_intesitas_max',45);
+            $table->string('json_volume_max',45);
             $table->enum('kriteria_volume_intesitas', array('rendah','sedang','berat'));
+            $table->date("tanggal");
             $table->timestamps();
             $table->softDeletes();
         });

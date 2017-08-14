@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableProgramAtlet extends Migration
+class SiklusMikro extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class TableProgramAtlet extends Migration
      */
     public function up()
     {
-        Schema::create('program_atlet', function (Blueprint $table) {
+        Schema::create('siklus_mikro', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('program_id');
-            $table->integer('atlet_id');
+            $table->string('json_volume_intensitas');
+            $table->integer('bulan');
+            $table->integer('pekan_ke');
             $table->timestamps();
             $table->softDeletes();
+            //
         });
     }
 
@@ -29,6 +32,6 @@ class TableProgramAtlet extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_programAtlet');
+        Schema::dropIfExists('siklus_mikro');
     }
 }
