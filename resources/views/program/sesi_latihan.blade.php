@@ -176,12 +176,99 @@
                                                     <p class="help-block">Gunakan koma(,) untuk pemisah</p>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12"><hr></div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group label-floating">
+                                                          <label class="control-label">Waktu</label>
+                                                          <select class="form-control">
+                                                              <option value="pagi">Pagi (05.00-08.00)</option>
+                                                              <option value="siang">Siang (13.00-14.00)</option>
+                                                              <option value="sore">Sore (16.00-18.00)</option>
+                                                          </select>
+                                                        </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group label-floating">
+                                                          <label class="control-label">Jenis Latihan</label>
+                                                          <select class="form-control">
+                                                              <option value="pemanasan">Pemanasan</option>
+                                                              <option value="inti">Inti</option>
+                                                              <option value="pendinginan">Pendinginan</option>
+                                                          </select>
+                                                        </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group label-floating">
+                                                          <label class="control-label">Latihan</label>
+                                                          <select class="form-control">
+                                                          <optgroup label="Latihan Fisik">
+                                                              <option value="pemanasan">CIRCUIT TRAINING</option>
+                                                              <option value="inti">INTERVAL TRAINING</option>
+                                                              <option value="pendinginan">SISTEM AEROBIC</option>
+                                                          </optgroup>
+                                                          <optgroup label="Latihan Cabor">
+                                                              <option value="pemanasan">LATIHAN TEHNIK</option>
+                                                              <option value="inti">LATIHAN TAKTIK</option>
+                                                          </optgroup>
+                                                                                                                        </select>
+                                                        </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group label-floating">
+                                                          <label class="control-label">Volume</label>
+                                                          <input type="text" name="volume" class="form-control">
+                                                        </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group label-floating">
+                                                          <label class="control-label">Intensitas</label>
+                                                          <input type="text" name="intensitas" class="form-control">
+                                                        </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                                <button class="btn btn-info">Save</button>
+                                        </div>
+                                    </div>
+
                                     </form>
                                 </div>
-                               
+                               <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sesi</th>
+                                            <th>Jenis</th>
+                                            <th>Latihan</th>
+                                            <th>Vol</th>
+                                            {{-- <th>Sesi Latihan</th> --}}
+                                            <th>Intensitas</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                           {{--  <td colspan="7">
+                                                <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
+                                            </td> --}}
+                                            <td>Pagi (05.00-08.00)</td>
+                                            <td>Pemanasan</td>
+                                            <td>BENCH STEPPING</td>
+                                            <td></td>
+                                            <td></td>
+                                            {{-- <td><a href="">Lihat</a></td> --}}
+                                            <td>
+                                                <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
+                                                <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
+                                                <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                            
                         </div>
+
                     </div>
 {{--                       <div class="col-md-3">
                         Nama atlet
@@ -224,6 +311,7 @@
                           <button type="submit" class="btn btn-info">Tambah</button>
                         </div> --}}
                     </div>
+                    
                 </div>
             </div>
         </div>
