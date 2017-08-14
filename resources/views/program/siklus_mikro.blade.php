@@ -45,7 +45,7 @@
             <div class="tab-pane active" id="prolat">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                            <h4 class="card-title">Rancangan Program Latihan</h4> 
+                            <h4 class="card-title">Rancangan Program Latihan</h4>
                             <p class="category">
                                 Penyusunan siklus mikro dan sesi latihan tiap hari.
                             </p>
@@ -56,6 +56,8 @@
                             <div class="panel panel-success">
                                 <div class="panel-body">
                                     <form action="{{ url('program/mikro/save') }}" method="post">
+                                        {{csrf_field()}}
+
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
@@ -109,7 +111,7 @@
                                                         </div>
                                                     </li>
                                                 </ul>
-                                                
+
                                             </div>
                                             <div class="col-md-4">
                                                 <ul class="list-unstyled">
@@ -134,7 +136,7 @@
                                                                 <i>%</i>
                                                             </div>
                                                         </div>
-                                                          
+
                                                         </div>
                                                     </li>
                                                     <li>
@@ -146,7 +148,7 @@
                                                                 <i>%</i>
                                                             </div>
                                                         </div>
-                                                          
+
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -211,7 +213,7 @@
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option>
-                                                            <option value="4">4</option> 
+                                                            <option value="4">4</option>
                                                         </optgroup>
                                                         <optgroup label="September">
                                                             <option value="5">5</option>
@@ -236,7 +238,7 @@
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -247,7 +249,7 @@
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -268,20 +270,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($dataMikro as $dataMikro)
                                         <tr>
                                            {{--  <td colspan="7">
                                                 <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
                                             </td> --}}
-                                            <td><a href="{{ url('program/1/mikro/1') }}">Agustus/1</a></td>
+                                            <td><a href="{{ url('program/1/mikro/1') }}">{{$dataMikro->bulan}}/{{$dataMikro->pekan_ke}}</a></td>
                                             <td>35%</td>
                                             <td>50%</td>
                                             <td>Persiapan Umum</td>
                                             {{-- <td><a href="">Lihat</a></td> --}}
                                             <td>
-                                                <a href="{{ url('program/1/mikro/1') }}"><i class="material-icons">mode_edit</i></a> 
+                                                <a href="{{ url('program/1/mikro/1') }}"><i class="material-icons">mode_edit</i></a>
                                                 <a href="{{ url('program/1/mikro/1/hapus') }}"><i class="material-icons">delete</i></a>
                                             </td>
+
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

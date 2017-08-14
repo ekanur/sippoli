@@ -49,8 +49,6 @@ class AtletController extends Controller
 
        $namaAtlet = $masuk->nama_atlet;
        $genderAtlet = $masuk->jenis_kelamin;
-
-
        $tanggallahir_atlet=$masuk->tglLahirAtlet;
        $caborAtlet = $masuk->cabor_Atlet;
 

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Program;
+use App\Siklus_mikro;
 
 class ProgramController extends Controller
 {
     public function index(){
+
       return view('program.index');
     }
 
@@ -42,8 +44,43 @@ class ProgramController extends Controller
     }
 
     public function siklusMikro($id_program){
-    	return view("program.siklus_mikro");
+        $dataMikro=Siklus_mikro::all();
+    	return view("program.siklus_mikro" ,compact('dataMikro'));
     }
+
+    public function savesiklusMikro(Request $masuk){
+// dd("masuk ke savesiklusMikro (proses simpan)");
+        $pekanLatihan = $masuk->pekan;
+        $intensitasLatihan = $masuk->intensitas;
+        $volumeLatihan = $masuk->volume;
+
+
+        if (  $pekanLatihan>=1 &&   $pekanLatihan<= 4){
+              $bulan=8;
+        }
+        else if (  $pekanLatihan>=5 &&   $pekanLatihan<=8){
+              $bulan=9;
+        }
+
+        else if($pekanLatihan>=9 &&   $pekanLatihan<=12){
+              $bulan=10;
+        }
+
+
+      $RencanaLatihan = new Siklus_mikro;
+      $RencanaLatihan ->program_id='1';
+      $RencanaLatihan ->json_volume_intensitas="$volumeLatihan%, $intensitasLatihan%";
+      $RencanaLatihan ->bulan=$bulan;
+      $RencanaLatihan ->pekan_ke=$pekanLatihan;
+      $RencanaLatihan ->save();
+        return redirect()->back();
+      // return ("proses simpan");
+
+    }
+
+
+
+
 
     public function sesiLatihan($id_program, $id_siklus_mikro){
     	return view("program.sesi_latihan");

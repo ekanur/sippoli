@@ -32,6 +32,8 @@ Route::prefix("program")->group(function(){
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}', 'ProgramController@sesiLatihan');
 	Route::get('/{id_program}/makanan', 'ProgramController@programMakanan');
 });
+	Route::post('/program/mikro/save', 'ProgramController@savesiklusMikro');
+
 Route::get('/olahraga', 'CaborController@index');
 Route::get('/pelatih', 'PelatihController@index');
 Route::get('/list_makanan','ListMakananController@index');
