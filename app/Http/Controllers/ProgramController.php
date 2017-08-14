@@ -44,7 +44,7 @@ class ProgramController extends Controller
     }
 
     public function siklusMikro($id_program){
-        $dataMikro=Siklus_mikro::all();
+      $dataMikro=Siklus_mikro::where('program_id','1')->get();
     	return view("program.siklus_mikro" ,compact('dataMikro'));
     }
 
