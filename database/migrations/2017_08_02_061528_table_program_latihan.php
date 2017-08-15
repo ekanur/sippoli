@@ -18,7 +18,7 @@ class TableProgramLatihan extends Migration
             $table->integer('sesi_latihan_id');
             $table->integer('list_latihan_id');
             $table->string('volume',45);
-            $table->string('intesitas',45);
+            $table->string('intensitas',45);
             $table->string('waktu',15);
             $table->enum('jenis_latihan',array('pemanasan','inti','pendinginan'));
             $table->softDeletes();

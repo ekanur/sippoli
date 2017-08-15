@@ -56,32 +56,7 @@
                         <div class="col-sm-12">
                             <div class="panel panel-success">
                                 <div class="panel-body">
-                                    
                                         <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pelatih</label>
-                                                    <strong>Rene Albert</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Atlet</label>
-                                                    <strong>Taufik, Lin Dan, Kim Jeffry</strong>
-                                                </div>
-                                            </div>    
-                                        </div>
-                                        <div class="row">
-                                            {{-- <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Bulan</label>
-                                                    <select name="bulan" class="form-control">
-                                                        <option value="8">Agustus</option>
-                                                        <option value="9">September</option>
-                                                        <option value="10">Oktober</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Pekan</label>
@@ -255,22 +230,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                           {{--  <td colspan="7">
-                                                <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
-                                            </td> --}}
-                                            <td><a href="{{ url('/program/sesi-latihan/1') }}">{{ date('D m-d-Y', strtotime('05/13/2017')) }}</a></td>
-                                            <td>TPU</td>
-                                            <td>Mat1, mat2, mat5</td>
-                                            <td>In3, in2, in 2</td>
-                                            <td>v3</td>
-                                            <td>Sedang</td>
-                                            <td>
-                                                <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
-                                                <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
-                                                <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
-                                            </td>
-                                        </tr>
+                                        @if (null == sizeof($sesi_latihan))
+                                            <tr>
+                                                <td colspan="7">
+                                                    <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
+                                                </td>
+                                            </tr>
+                                        @endif
+
+                                        @foreach ($sesi_latihan as $sesi_latihan)
+                                            <tr>
+                                                <td><a href="{{ url('/program/sesi-latihan/1') }}">{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</a></td>
+                                                <td>{{$sesi_latihan->tahapan}}</td>
+                                                <td>{{implode(',', json_decode($sesi_latihan->json_materi_latihan))}}</td>
+                                                <td>{{implode(',', json_decode($sesi_latihan->json_intensitas_max))}}</td>
+                                                <td>{{implode(',', json_decode($sesi_latihan->json_volume_max))}}</td>
+                                                <td><span class="label label-info">{{$sesi_latihan->kriteria_volume_intensitas}}</span></td>
+                                                <td>
+                                                    <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
+                                                    <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
+                                                    <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

@@ -96,14 +96,14 @@
                         </div>
                       </div> --}}
                       <div class="row">
-                          <div class="col-md-2">
+                          <div class="col-md-3">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Umum (Pekan)</label>
                                   <input class="form-control" name="persiapan_umum" type="number" min="1"  required=""  @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_umum }}" @endisset />
                                   <small class="help-block">persiapan umum dalam satuan pekan</small>
                               </div>
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-3">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Khusus (Pekan)</label>
                                   <input class="form-control" name="persiapan_khusus" type="number" required="" min="1" @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_khusus }}" @endisset />
@@ -131,9 +131,17 @@
                                   <small class="help-block">transisi dalam satuan pekan</small>
                               </div>
                           </div>
-                          <div class="col-md-2">
-                              <button type="submit" class="btn btn-info">Simpan</button>
+                      </div>
+                      <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group label-floating">
+                                  <label class="control-label">Deskripsi *Opsional</label>
+                                  <textarea class="form-control" name="deskripsi" rows="4" cols="10"></textarea>
                           </div>
+                      </div>
+                       <div class="col-md-12 text-center">
+                              <button type="submit" class="btn btn-info">Simpan</button>
+                      </div>
                       </div>
                     </form>
                   </div>

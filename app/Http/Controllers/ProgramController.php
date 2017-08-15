@@ -55,16 +55,17 @@ class ProgramController extends Controller
     }
 
     public function siklusMikro($id_program){
-      $dataMikro=Siklus_mikro::where('program_id','1')->get();
+      $dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
+      // dd($dataMikro);
     	return view("program.siklus_mikro" ,compact('dataMikro'));
     }
 
     public function savesiklusMikro(Request $masuk){
 // dd("masuk ke savesiklusMikro (proses simpan)");
         $pekanLatihan = $masuk->pekan;
-        $intensitasLatihan = $masuk->intensitas;
-        $volumeLatihan = $masuk->volume;
-
+        $json_volume_intensitas = array("volume"=>$masuk->volume,"intensitas"=>$masuk->intensitas);
+        // $intensitasLatihan = $masuk->intensitas;
+        // $volumeLatihan = $masuk->volume;
 
         if (  $pekanLatihan>=1 &&   $pekanLatihan<= 4){
               $bulan=8;
@@ -80,7 +81,7 @@ class ProgramController extends Controller
 
       $RencanaLatihan = new Siklus_mikro;
       $RencanaLatihan ->program_id='1';
-      $RencanaLatihan ->json_volume_intensitas="$volumeLatihan%, $intensitasLatihan%";
+      $RencanaLatihan ->json_volume_intensitas=json_encode($json_volume_intensitas);
       $RencanaLatihan ->bulan=$bulan;
       $RencanaLatihan ->pekan_ke=$pekanLatihan;
       $RencanaLatihan ->save();
@@ -94,7 +95,9 @@ class ProgramController extends Controller
 
 
     public function sesiLatihan($id_program, $id_siklus_mikro){
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro'));
+        $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
+        // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
+    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
     }
 
     public function programMakanan($id_program){

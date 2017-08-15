@@ -7,6 +7,13 @@
         #menu_program >li{
             float: none; display: inline-block;
         }
+
+        .breadcrumb{
+            padding:0px;
+            margin-bottom: 0px;
+            background-color: transparent;
+            border-radius: 0px;
+        }
     </style>
 @endpush
 @section("content")
@@ -53,158 +60,58 @@
                     <div class="card-content">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="panel panel-success">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <ol class="breadcrumb">
+                                      <li><a href="#">Persiapan Sea Games</a></li>
+                                      <li>Siklus Mikro</li>
+                                    </ol>
+                                </div>
                                 <div class="panel-body">
-                                    <form action="{{ url('program/mikro/save') }}" method="post">
+                                    <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Bulan/Pekan</th>
+                                            <th>Intensitas</th>
+                                            <th>Volume</th>
+                                            <th>Fase</th>
+                                            {{-- <th>Sesi Latihan</th> --}}
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if (null == sizeof($dataMikro))
+                                        <tr>
+                                             <td colspan="7">
+                                                <h4 class="text-muted text-center">Siklus Mikro Belum Tersedia</h4>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                        @foreach ($dataMikro as $dataMikro)
+                                        <tr>
+                                           
+                                            <td><a href="{{ url('program/1/mikro/1') }}">{{$dataMikro->bulan}}/{{$dataMikro->pekan_ke}}</a></td>
+                                            <td>{{ json_decode($dataMikro->json_volume_intensitas)->intensitas }}%</td>
+                                            <td>{{ json_decode($dataMikro->json_volume_intensitas)->volume }}%</td>
+                                            <td>Persiapan Umum</td>
+                                            {{-- <td><a href="">Lihat</a></td> --}}
+                                            <td>
+                                                <a href="{{ url('program/1/mikro/1') }}"><i class="material-icons">mode_edit</i></a>
+                                                <a href="{{ url('program/1/mikro/1/hapus') }}"><i class="material-icons">delete</i></a>
+                                            </td>
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <form action="{{ url('program/mikro/save') }}" method="post">
                                         {{csrf_field()}}
-
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pelatih</label>
-                                                    <strong>Rene Albert</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Atlet</label>
-                                                    <strong>Taufik, Lin Dan, Kim Jeffry</strong>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Fase</label>
-                                                    <strong>Persiapan Umum</strong>
-                                                </div>
-                                            </div> --}}
-                                            {{-- <div class="col-md-4">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Bulan</label>
-                                                            <strong>Agustus</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Minggu</label>
-                                                          <strong>1</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Tanggal</label>
-                                                          <input class="form-control" name="tanggal" type="text"  data-provide="datepicker"/>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Tahapan</label>
-                                                            <input type="text" name="tahapan" class="form-control">
-                                                      </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Materi Latihan</label>
-                                                            <textarea class="form-control" name="materi_latihan" rows="2" cols="10"></textarea>
-                                                            <p class="help-block">Gunakan koma(,) untuk pemisah</p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                            <div class="col-md-4">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Pelatih</label>
-                                                          <strong>Rene Albert</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Atlet</label>
-                                                            <strong>Taufik, Lin Dan, Kim Jeffry</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Intensitas</label>
-                                                          <div class="input-group">
-                                                            <input class="form-control" name="intensitas" type="number" min="1"/>
-                                                            <div class="input-group-addon">
-                                                                <i>%</i>
-                                                            </div>
-                                                        </div>
-
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Volume</label>
-                                                          <div class="input-group">
-                                                            <input class="form-control" name="volume" type="number" min="1"/>
-                                                            <div class="input-group-addon">
-                                                                <i>%</i>
-                                                            </div>
-                                                        </div>
-
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <ul class="list-unstyled">
-                                                    <li>&nbsp;</li>
-                                                    <li>&nbsp;</li>
-                                                    <li>&nbsp;</li>
-                                                    <li>&nbsp;</li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Intensitas Max</label>
-                                                            <textarea class="form-control" name="intensitas_max" rows="2" cols="10"></textarea>
-                                                            <p class="help-block">Gunakan koma(,) untuk pemisah</p>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Volume Max</label>
-                                                            <textarea class="form-control" name="volume_max" rows="2" cols="10"></textarea>
-                                                            <p class="help-block">Gunakan koma(,) untuk pemisah</p>
-                                                        </div>
-                                                    </li>
-                                                    <li>&nbsp;</li>
-                                                    <li>
-                                                    <div class="form-group label-floating">
-                                                            <label class="control-label">Kriteria</label>
-                                                        <div class="radio">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Rendah
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Sedang
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Berat
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    </li>
-
-                                                </ul>
-                                            </div> --}}
-                                        </div>
-                                        <div class="row">
-                                            {{-- <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Bulan</label>
-                                                    <select name="bulan" class="form-control">
-                                                        <option value="8">Agustus</option>
-                                                        <option value="9">September</option>
-                                                        <option value="10">Oktober</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
                                             <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Pekan</label>
@@ -234,7 +141,7 @@
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" name="intensitas" type="number" min="1"/>
+                                                        <input class="form-control" name="intensitas" type="number" min="1" required="" />
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>
@@ -245,7 +152,7 @@
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" name="volume" type="number" min="1"/>
+                                                        <input class="form-control" name="volume" type="number" min="1" required="" />
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>
@@ -257,87 +164,19 @@
                                             </div>
                                         </div>
                                     </form>
+                                    </div>
                                 </div>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Bulan/Pekan</th>
-                                            <th>Intensitas</th>
-                                            <th>Volume</th>
-                                            <th>Fase</th>
-                                            {{-- <th>Sesi Latihan</th> --}}
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($dataMikro as $dataMikro)
-                                        <tr>
-                                           {{--  <td colspan="7">
-                                                <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
-                                            </td> --}}
-                                            <td><a href="{{ url('program/1/mikro/1') }}">{{$dataMikro->bulan}}/{{$dataMikro->pekan_ke}}</a></td>
-                                            <td>35%</td>
-                                            <td>50%</td>
-                                            <td>Persiapan Umum</td>
-                                            {{-- <td><a href="">Lihat</a></td> --}}
-                                            <td>
-                                                <a href="{{ url('program/1/mikro/1') }}"><i class="material-icons">mode_edit</i></a>
-                                                <a href="{{ url('program/1/mikro/1/hapus') }}"><i class="material-icons">delete</i></a>
-                                            </td>
 
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                
                             </div>
                         </div>
                     </div>
-{{--                       <div class="col-md-3">
-                        Nama atlet
-                      </div> --}}
-{{--                         <div class="row col-md-2">
-                          <label for="hari">HARI</label> <br>
-                          <select name="Hari">
-                            <option value="">Pilih</option>
-                            <option value="senin">Senin</option>
-                            <option value="selasa">Selasa</option>
-                            <option value="rabu">Rabu</option>
-                            <option value="kamis">Kamis</option>
-                            <option value="jumat">Jumat</option>
-                            <option value="sabtu">Sabtu</option>
-                            <option value="minggu">Minggu</option>
-                          </select>
-                        </div> --}}
-
-                        {{-- <div class="row col-md-2">
-                          <label for="hari">SESI</label> <br>
-                          <select name="sesi">
-                            <option value="">Pilih</option>
-                            <option value="senin">Pagi</option>
-                            <option value="selasa">Siang</option>
-                            <option value="rabu">Sore</option>
-                          </select>
-                        </div>
-
-                        <div class="row col-md-2">
-                          <label for="hari">ITEM LATIHAN </label> <br>
-                          <select name="itemlatihan">
-                            <option value="">Pilih</option>
-                            <option value="senin">Lari</option>
-                            <option value="selasa">Sit Up</option>
-                            <option value="rabu">Back Up</option>
-                          </select>
-                        </div> --}}
-
-                        {{-- <div class="row">
-                          <button type="submit" class="btn btn-info">Tambah</button>
-                        </div> --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 @endsection
 
 @push('style')

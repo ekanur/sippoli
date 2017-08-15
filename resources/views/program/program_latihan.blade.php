@@ -56,21 +56,6 @@
                         <div class="col-sm-12">
                             <div class="panel panel-success">
                                 <div class="panel-body">
-                                    
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pelatih</label>
-                                                    <strong>Rene Albert</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Atlet</label>
-                                                    <strong>Taufik, Lin Dan, Kim Jeffry</strong>
-                                                </div>
-                                            </div>    
-                                        </div>
                                         <div class="row">
                                              <div class="col-md-3">
                                                         <div class="form-group label-floating">
@@ -114,7 +99,8 @@
                                         </div>
                                         
                                     <div class="row">
-                                        <form action="{{ url('/program/sesi-latihan/'.$id_sesi_latihan.'/simpan') }}">
+                                        <form action="{{ url('/program/sesi-latihan/'.$id_sesi_latihan.'/simpan') }}" method="post">
+                                        {{csrf_field()}}
                                         <div class="col-md-12">
                                         <hr>
                                         </div>
@@ -123,7 +109,7 @@
 
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Waktu</label>
-                                                          <select class="form-control">
+                                                          <select class="form-control" name="waktu">
                                                               <option value="pagi">Pagi (05.00-08.00)</option>
                                                               <option value="siang">Siang (13.00-14.00)</option>
                                                               <option value="sore">Sore (16.00-18.00)</option>
@@ -133,7 +119,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Jenis Latihan</label>
-                                                          <select class="form-control">
+                                                          <select class="form-control" name="jenis_latihan">
                                                               <option value="pemanasan">Pemanasan</option>
                                                               <option value="inti">Inti</option>
                                                               <option value="pendinginan">Pendinginan</option>
@@ -143,15 +129,15 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Latihan</label>
-                                                        <select class="form-control">
+                                                        <select class="form-control" name="list_latihan" >
                                                           <optgroup label="Latihan Fisik">
-                                                              <option value="pemanasan">CIRCUIT TRAINING</option>
-                                                              <option value="inti">INTERVAL TRAINING</option>
-                                                              <option value="pendinginan">SISTEM AEROBIC</option>
+                                                              <option value="1">CIRCUIT TRAINING</option>
+                                                              <option value="2">INTERVAL TRAINING</option>
+                                                              <option value="3">SISTEM AEROBIC</option>
                                                           </optgroup>
                                                           <optgroup label="Latihan Cabor">
-                                                              <option value="pemanasan">LATIHAN TEHNIK</option>
-                                                              <option value="inti">LATIHAN TAKTIK</option>
+                                                              <option value="4">LATIHAN TEKNIK</option>
+                                                              <option value="5">LATIHAN TAKTIK</option>
                                                           </optgroup>
                                                         </select>
                                             </div>
@@ -188,22 +174,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                           {{--  <td colspan="7">
+                                        @if (null == sizeof($program_latihan))
+                                            <tr>
+                                                 <td colspan="6">
                                                 <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
-                                            </td> --}}
-                                            <td>Pagi (05.00-08.00)</td>
-                                            <td>Pemanasan</td>
-                                            <td>BENCH STEPPING</td>
-                                            <td></td>
-                                            <td></td>
-                                            {{-- <td><a href="">Lihat</a></td> --}}
-                                            <td>
-                                                <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
-                                                <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
-                                                <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
                                             </td>
-                                        </tr>
+                                            </tr>
+                                        @endif
+
+                                        @isset ($program_latihan)
+                                            @foreach ($program_latihan as $list_latihan)
+                                            <tr>
+                                                <td>{{ $list_latihan->waktu }}</td>
+                                                <td>{{$list_latihan->jenis_latihan}}</td>
+                                                {{-- <td>{{$list_latihan->list_latihan_id}}</td> --}}
+                                                <td>SISTEM AEROBIC</td>
+                                                <td>{{$list_latihan->volume}}</td>
+                                                <td>{{$list_latihan->intensitas}}</td>
+                                                {{-- <td><a href="">Lihat</a></td> --}}
+                                                <td>
+                                                    <a href="{{ url('') }}"><small class="material-icons">mode_edit</small></a> 
+                                                    <a href="{{ url('') }}"><small class="material-icons">delete</small></a>
+                                                    <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        @endisset
+
                                     </tbody>
                                 </table>
                             </div>

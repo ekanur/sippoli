@@ -18,7 +18,7 @@ class TableSesiLatihan extends Migration
             $table->integer('siklus_mikro_id');
             $table->string('tahapan',45);
             $table->string('json_materi_latihan',555);
-            $table->string('json_intesitas_max',45);
+            $table->string('json_intensitas_max',45);
             $table->string('json_volume_max',45);
             $table->enum('kriteria_volume_intensitas', array('rendah','sedang','berat'));
             $table->date("tanggal");
