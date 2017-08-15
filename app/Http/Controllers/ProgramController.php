@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Program;
-use App\Siklus_mikro;
+use App\Siklus_mikro ;
 use App\Sesi_latihan;
 
 class ProgramController extends Controller
@@ -60,6 +61,13 @@ class ProgramController extends Controller
     	return view("program.siklus_mikro" ,compact('dataMikro'));
     }
 
+
+    public function deleteSiklusMikro($id){
+        $id_mikro =Siklus_mikro::find($id);
+        $id_mikro->delete();
+        return redirect()->back();
+    }
+
     public function savesiklusMikro(Request $masuk){
 // dd("masuk ke savesiklusMikro (proses simpan)");
         $pekanLatihan = $masuk->pekan;
@@ -78,7 +86,6 @@ class ProgramController extends Controller
               $bulan=10;
         }
 
-
       $RencanaLatihan = new Siklus_mikro;
       $RencanaLatihan ->program_id='1';
       $RencanaLatihan ->json_volume_intensitas=json_encode($json_volume_intensitas);
@@ -94,11 +101,16 @@ class ProgramController extends Controller
 
 
 
+
     public function sesiLatihan($id_program, $id_siklus_mikro){
-        $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
-        // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
+      dd("masuk sesi latihan");
+      //   $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
+      //   // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
+    	// return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
     }
+
+
+
 
     public function programMakanan($id_program){
     	return view("program.makanan");
@@ -109,6 +121,7 @@ class ProgramController extends Controller
         $json_materi_latihan = explode(",", $request->materi_latihan);
         $json_intensitas_max = explode(",", $request->intensitas_max);
         $json_volume_max = explode(",", $request->volume_max);
+        // $json_materi_latihan =
         $sesi_latihan = new Sesi_latihan;
         $sesi_latihan->siklus_mikro_id = $siklus_mikro_id;
         $sesi_latihan->tahapan = $request->tahapan;
@@ -120,6 +133,6 @@ class ProgramController extends Controller
 
         $sesi_latihan->save();
 
-        return redirect()->back();	
+        return redirect()->back();
     }
 }
