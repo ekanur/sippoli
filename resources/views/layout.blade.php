@@ -28,6 +28,13 @@
     	.content{
     		margin-top: 0px !important;
     	}
+
+    	.panel-heading .breadcrumb{
+            padding:0px;
+            margin-bottom: 0px;
+            background-color: transparent;
+            border-radius: 0px;
+        }
     </style>
     @stack("style")
 </head>
@@ -50,25 +57,25 @@
 
 	    	<div class="sidebar-wrapper">
 					            <ul class="nav">
-	                <li>
+	                <li @if (Request::is("/")) class="active" @endif>
 	                    <a href="{{ url('/') }}">
 	                        <i class="material-icons">dashboard</i>
 	                        <p>Dashboard</p>
 	                    </a>
 	                </li>
- 	               <li>
-	                    <a href="{{ url('/profilatlet') }}">
+ 	               <li @if (Request::is("atlet") || Request::is("atlet/*")) class="active" @endif>
+	                    <a href="{{ url('/atlet') }}">
 	                        <i class="material-icons">person</i>
 	                        <p>Atlet</p>
 	                    </a>
 	                </li>
-	                <li>
+	                <li @if (Request::is("program") || Request::is("program/*")) class="active" @endif>
 	                    <a href="{{ url('/program') }}">
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Program</p>
 	                    </a>
 	                </li>
-	                <li>
+	                <li @if (Request::is("evaluasi") || Request::is("evaluasi/*")) class="active" @endif>
 	                    <a href="{{ url('/evaluasi') }}">
 	                        <i class="material-icons">library_books</i>
 	                        <p>Evaluasi</p>
@@ -79,7 +86,18 @@
 		</div>
 
 	    <div class="main-panel">
-			
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+				</div>
+			</nav>
 
 	        <div class="content">
 				@yield("content")

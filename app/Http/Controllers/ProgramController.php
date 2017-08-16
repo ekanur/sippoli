@@ -11,8 +11,14 @@ use App\Sesi_latihan;
 class ProgramController extends Controller
 {
     public function index(){
+        $program = Program::where("pelatih_id", 1)->get();
+        // dd($program);
+        return view("program.index", compact('program'));
+    }
 
-      return view('program.index');
+    public function baru(){
+
+      return view('program.add');
     }
 
     public function simpan(Request $request){
@@ -47,8 +53,8 @@ class ProgramController extends Controller
 
     public function edit($id_program){
         $program = Program::findOrFail($id_program);
-        // dd(intval(json_decode($program->siklus_makro)->persiapan_khusus));
-    	return view("program.index", compact('program'));
+        // dd($program);
+    	return view("program.add", compact('program'));
     }
 
     public function pilihAtlet($id_program){

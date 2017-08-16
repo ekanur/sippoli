@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <div class="row">
       <div class="col-md-12">
-        <a href="/profilatlet/tambah/" class="btn btn-primary btn-round" style="margin-bottom: 50px">Tambah Atlet</a>
+        <a href="/atlet/tambah/" class="btn btn-primary btn-round" style="margin-bottom: 50px">Tambah Atlet</a>
     </div>
   </div>
 

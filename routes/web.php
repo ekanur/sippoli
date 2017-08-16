@@ -15,17 +15,17 @@ Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
 Route::post('/register', 'RegistrationController@register');
 Route::get('/', 'PageController@index');
-Route::get('/program', 'ProgramController@index');
-Route::get('/program/tambah', 'ProgramController@add');
-Route::post('/program/tambah', 'ProgramController@store');
-Route::get('/profilatlet', 'AtletController@index');
-Route::get('/profilatlet/tambah', 'AtletController@create');
-Route::post('/profilatlet/tambah/save', 'AtletController@save');
+// Route::get('/program', 'ProgramController@index');
+// Route::get('/program/tambah', 'ProgramController@add');
+// Route::post('/program/tambah', 'ProgramController@store');
+Route::get('/atlet', 'AtletController@index');
+Route::get('/atlet/tambah', 'AtletController@create');
+Route::post('/atlet/tambah/save', 'AtletController@save');
 
 Route::get('/program', 'ProgramController@index');
 Route::prefix("program")->group(function(){
 	Route::post("/simpan", "ProgramController@simpan");
-	Route::get('/baru', 'ProgramController@index');
+	Route::get('/baru', 'ProgramController@baru');
 	Route::get('/{id_program}', 'ProgramController@edit');
 	Route::get('/{id_program}/atlet', 'ProgramController@pilihAtlet');
 	Route::get('/{id_program}/mikro', 'ProgramController@siklusMikro');

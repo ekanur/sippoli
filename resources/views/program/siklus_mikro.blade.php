@@ -7,13 +7,6 @@
         #menu_program >li{
             float: none; display: inline-block;
         }
-
-        .breadcrumb{
-            padding:0px;
-            margin-bottom: 0px;
-            background-color: transparent;
-            border-radius: 0px;
-        }
     </style>
 @endpush
 @section("content")
@@ -63,7 +56,6 @@
                             <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <ol class="breadcrumb">
-                                      <li><a href="#">Persiapan Sea Games</a></li>
                                       <li>Siklus Mikro</li>
                                     </ol>
                                 </div>
@@ -161,7 +153,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-2 text-center">
                                                 <button class="text-center btn btn-info" type="submit">Simpan</button>
                                             </div>
                                         </div>

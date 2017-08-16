@@ -9,7 +9,7 @@
             <p class="category">Berikut adalah daftar Program anda yang sedang berlangsung</p>
           </div>
           <div class="pull-right">
-            <a href="/program"><i class="material-icons">add_circle</i></a>
+            <a href="/program/baru"><i class="material-icons">add_circle</i></a>
           </div>
           <div class="clearfix"></div>
         </div>

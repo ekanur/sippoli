@@ -54,46 +54,89 @@
                     <div class="card-content">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="panel panel-success">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <ol class="breadcrumb">
+                                      <li><a href="#">Siklus Mikro</a></li>
+                                      <li>Agustus, pekan ke 1</li>
+                                    </ol>
+                                </div>
                                 <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pekan</label>
-                                                    <strong>Agustus/1</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-1 col-xs-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="intensitas" type="number" min="1" value="35" disabled="" />
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div> 
+                                                    <strong>45%</strong>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-1 col-xs-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="volume" type="number" min="1" value="50" disabled="" />
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div> 
+                                                        <strong>50%</strong>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2 col-xs-6">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Fase</label>
                                                     <strong>Persiapan Umum</strong>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12"><hr></div>
+                                            <div class="col-xs-12">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tangal</th>
+                                                            {{-- <th>Tahapan</th> --}}
+                                                            <th>Materi Latihan</th>
+                                                            <th>Intesitas Max</th>
+                                                            <th>Volume Max</th>
+                                                            {{-- <th>Sesi Latihan</th> --}}
+                                                            <th>Kriteria Latihan</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (null == sizeof($sesi_latihan))
+                                                            <tr>
+                                                                <td colspan="7">
+                                                                    <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+
+                                                        @foreach ($sesi_latihan as $sesi_latihan)
+                                                            <tr>
+                                                                <td><a href="{{ url('/program/sesi-latihan/1') }}">{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</a></td>
+                                                                {{-- <td>{{$sesi_latihan->tahapan}}</td> --}}
+                                                                <td>{{implode(',', json_decode($sesi_latihan->json_materi_latihan))}}</td>
+                                                                <td>{{implode(',', json_decode($sesi_latihan->json_intensitas_max))}}</td>
+                                                                <td>{{implode(',', json_decode($sesi_latihan->json_volume_max))}}</td>
+                                                                <td><span class="label label-info">{{$sesi_latihan->kriteria_volume_intensitas}}</span></td>
+                                                                <td>
+                                                                    <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
+                                                                    <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
+                                                                    <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/simpan/') }}" method="post">
+                                        
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/simpan/') }}" method="post">
                                         {{ csrf_field() }}
                                         <div class="row">
                                             {{-- <div class="col-md-4">
@@ -160,106 +203,9 @@
                                             </div>
                                         </div>
                                     </form>
-                                    {{-- <div class="row">
-                                    <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/tambah_program_latihan/') }}">
-                                        <div class="col-md-2">
-                                            <div class="form-group label-floating">
-                                                          <label class="control-label">Waktu</label>
-                                                          <select class="form-control">
-                                                              <option value="pagi">Pagi (05.00-08.00)</option>
-                                                              <option value="siang">Siang (13.00-14.00)</option>
-                                                              <option value="sore">Sore (16.00-18.00)</option>
-                                                          </select>
-                                                        </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group label-floating">
-                                                          <label class="control-label">Jenis Latihan</label>
-                                                          <select class="form-control">
-                                                              <option value="pemanasan">Pemanasan</option>
-                                                              <option value="inti">Inti</option>
-                                                              <option value="pendinginan">Pendinginan</option>
-                                                          </select>
-                                                        </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group label-floating">
-                                                          <label class="control-label">Latihan</label>
-                                                          <select class="form-control">
-                                                          <optgroup label="Latihan Fisik">
-                                                              <option value="pemanasan">CIRCUIT TRAINING</option>
-                                                              <option value="inti">INTERVAL TRAINING</option>
-                                                              <option value="pendinginan">SISTEM AEROBIC</option>
-                                                          </optgroup>
-                                                          <optgroup label="Latihan Cabor">
-                                                              <option value="pemanasan">LATIHAN TEHNIK</option>
-                                                              <option value="inti">LATIHAN TAKTIK</option>
-                                                          </optgroup>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group label-floating">
-                                                          <label class="control-label">Volume</label>
-                                                          <input type="text" name="volume" class="form-control">
-                                                        </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group label-floating">
-                                                          <label class="control-label">Intensitas</label>
-                                                          <input type="text" name="intensitas" class="form-control">
-                                                        </div>
-                                        </div>
-                                        <div class="col-md-1">
-                                                <button class="btn btn-info" disabled="">Tambah</button>
-                                        </div>
-                                    </form>
-                                    </div> --}}
-
                                 </div>
-                               <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Tangal</th>
-                                            <th>Tahapan</th>
-                                            <th>Materi Latihan</th>
-                                            <th>Intesitas Max</th>
-                                            <th>Volume Max</th>
-                                            {{-- <th>Sesi Latihan</th> --}}
-                                            <th>Kriteria Latihan</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (null == sizeof($sesi_latihan))
-                                            <tr>
-                                                <td colspan="7">
-                                                    <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
-                                                </td>
-                                            </tr>
-                                        @endif
-
-                                        @foreach ($sesi_latihan as $sesi_latihan)
-                                            <tr>
-                                                <td><a href="{{ url('/program/sesi-latihan/1') }}">{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</a></td>
-                                                <td>{{$sesi_latihan->tahapan}}</td>
-                                                <td>{{implode(',', json_decode($sesi_latihan->json_materi_latihan))}}</td>
-                                                <td>{{implode(',', json_decode($sesi_latihan->json_intensitas_max))}}</td>
-                                                <td>{{implode(',', json_decode($sesi_latihan->json_volume_max))}}</td>
-                                                <td><span class="label label-info">{{$sesi_latihan->kriteria_volume_intensitas}}</span></td>
-                                                <td>
-                                                    <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
-                                                    <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
-                                                    <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
                             </div>
-                            
                         </div>
-
                     </div>
 {{--                       <div class="col-md-3">
                         Nama atlet
