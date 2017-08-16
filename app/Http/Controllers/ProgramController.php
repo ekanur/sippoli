@@ -109,10 +109,10 @@ class ProgramController extends Controller
 
 
     public function sesiLatihan($id_program, $id_siklus_mikro){
-      dd("masuk sesi latihan");
-      //   $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
-      //   // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
-    	// return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
+      // dd("masuk sesi latihan");
+        $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
+        // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
+    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
     }
 
 
