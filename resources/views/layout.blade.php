@@ -26,7 +26,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <style>
     	.content{
-    		margin-top: 0px !important;
+    		margin-top: 30px !important;
     	}
 
     	.panel-heading .breadcrumb{
@@ -34,6 +34,13 @@
             margin-bottom: 0px;
             background-color: transparent;
             border-radius: 0px;
+        }
+        .navbar .navbar-form .form-group .form-control, .navbar .navbar-form .form-control, .navbar .navbar-form .form-group{
+        	width: 100%;
+        }
+        .navbar.navbar-transparent{
+        	box-shadow: 0px 1px 15px -5px  rgba(0,0,0,0.55);
+        	background-color: #F1F3F5; border-radius: 0px
         }
     </style>
     @stack("style")
@@ -56,7 +63,7 @@
 			</div>
 
 	    	<div class="sidebar-wrapper">
-					            <ul class="nav">
+				<ul class="nav">
 	                <li @if (Request::is("/")) class="active" @endif>
 	                    <a href="{{ url('/') }}">
 	                        <i class="material-icons">dashboard</i>
@@ -75,11 +82,17 @@
 	                        <p>Program</p>
 	                    </a>
 	                </li>
-	                <li @if (Request::is("evaluasi") || Request::is("evaluasi/*")) class="active" @endif>
+{{-- 	                <li @if (Request::is("evaluasi") || Request::is("evaluasi/*")) class="active" @endif>
 	                    <a href="{{ url('/evaluasi') }}">
 	                        <i class="material-icons">library_books</i>
 	                        <p>Evaluasi</p>
 	                    </a>
+	                </li> --}}
+	                <li @if (Request::is("latihan") || Request::is("latihan/*")) class="active" @endif>
+	                	<a href='{{ url('/latihan') }}'>
+	                			<i class="material-icons">directions_run</i>
+	                			<p>Latihan</p>
+	                	</a>
 	                </li>
 	            </ul>
 	    	</div>
@@ -95,6 +108,18 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<form class="navbar-form">
+							<div class="row">
+								<div class="col-md-6">
+						        		<input type="text" class="form-control" placeholder="Mencari atlet, latihan, dan program latihan">
+						          
+						        </div>
+							</div>
+
+					        {{-- <button type="submit" class="btn btn-default"><i class="material-icons">search</i></button> --}}
+					    </form>
 					</div>
 				</div>
 			</nav>

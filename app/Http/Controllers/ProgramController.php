@@ -134,7 +134,7 @@ class ProgramController extends Controller
         $sesi_latihan->tanggal = $request->tanggal;
         $sesi_latihan->kriteria_volume_intensitas = $request->kriteria_v_i;
         $sesi_latihan->json_materi_latihan = json_encode($json_materi_latihan);
-        $sesi_latihan->json_intesitas_max = json_encode($json_intensitas_max);
+        $sesi_latihan->json_intensitas_max = json_encode($json_intensitas_max);
         $sesi_latihan->json_volume_max = json_encode($json_volume_max);
 
         $sesi_latihan->save();
