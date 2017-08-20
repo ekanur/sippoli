@@ -21,6 +21,7 @@ class TableProgram extends Migration
             $table->integer('pelatih_id');
             $table->date('mulai_program');
             $table->date('berakhir_program');
+            $table->string('siklus_makro', 300);
             $table->softDeletes();
             $table->timestamps();
         });

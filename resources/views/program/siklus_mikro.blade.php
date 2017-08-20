@@ -63,7 +63,7 @@
                                     <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Bulan/Pekan</th>
+                                            <th>Bulan, Pekan</th>
                                             <th>Intensitas</th>
                                             <th>Volume</th>
                                             <th>Fase</th>
@@ -83,7 +83,7 @@
 
 
                                         <tr>
-                                            <td><a href="{{ url('program/1/mikro/1') }}">{{$dataMikro->bulan}}/{{$dataMikro->pekan_ke}}</a></td>
+                                            <td><a href="{{ url('program/1/mikro/1') }}">{{$dataMikro->bulan}}, pekan ke {{$dataMikro->pekan_ke}}</a></td>
                                             <td>{{ json_decode($dataMikro->json_volume_intensitas)->intensitas }}%</td>
                                             <td>{{ json_decode($dataMikro->json_volume_intensitas)->volume }}%</td>
                                             <td>Persiapan Umum</td>
