@@ -40,7 +40,7 @@
                       @foreach ($program as $key => $program)
                         <tr>
                           <td>{{ $key+1 }}</td>
-                          <td><a href="{{ url('/program/') }}/{{ $program->id }}">{{$program->nama}}</a></td>
+                          <td><a href="{{ url('/program/') }}/{{ $program->id }}/deskripsi">{{$program->nama}}</a></td>
                           <td><a href="{{ url('/atlet') }}"><strong>Septian David</strong></a>, <a href="{{ url('/atlet') }}"><strong>Lee Chong Wei</strong></a>, <a href="{{ url('/atlet') }}"><strong>Zulham Z</strong></a></td>
                           <td>{{ $program->jangka_durasi }} bulan</td>
                           <td>{{ $program->mulai_program }} s.d {{ $program->berakhir_program }}</td>

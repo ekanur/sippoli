@@ -26,7 +26,7 @@ Route::get('/program', 'ProgramController@index');
 Route::prefix("program")->group(function(){
 	Route::post("/simpan", "ProgramController@simpan");
 	Route::get('/baru', 'ProgramController@baru');
-	Route::get('/{id_program}', 'ProgramController@edit');
+	Route::get('/{id_program}/deskripsi', 'ProgramController@edit');
 	Route::get('/{id_program}/atlet', 'ProgramController@pilihAtlet');
 	Route::get('/{id_program}/mikro', 'ProgramController@siklusMikro');
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}', 'ProgramController@sesiLatihan');

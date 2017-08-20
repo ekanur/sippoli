@@ -1,35 +1,21 @@
 @extends("layout")
+@push('style')
+    <style type="text/css">
+        #menu_program{
+            margin:auto;margin-bottom:20px;
+        }
+        #menu_program >li{
+            float: none; display: inline-block;
+        }
+    </style>
+@endpush
 @section("content")
 <div class="row-center">
     <div class="col-md-12 col-md-offset-0">
 {{--         <h3 class="title text-center">PROGRAM LATIHAN DAN PROGRAM MAKAN</h3>
         <br> --}}
-        <div class="nav-center" style="margin-left:300px">
-            <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist" >
-                <!--
-    color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
--->
-                <li class="active">
-                    <a href="{{ url('/program/baru') }}" role="tab" data-toggle="tab" style="margin-bottom:20px">
-                        <i class="material-icons">info</i>Deskripsi
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/program/atlet') }}" role="tab" data-toggle="tab">
-                        <i class="material-icons">search</i>Pilih Atlet
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/program/mikro') }}" role="tab" data-toggle="tab">
-                        <i class="material-icons">directions_run</i>Program Latihan
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/program/makanan') }}" role="tab" data-toggle="tab">
-                        <i class="material-icons">restaurant</i>Program Makan
-                    </a>
-                </li>
-            </ul>
+        <div class="nav-center">
+          @include("components.program_menu");
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="deskripsi">
