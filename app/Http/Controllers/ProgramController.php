@@ -58,18 +58,20 @@ class ProgramController extends Controller
     }
 
     public function pilihAtlet($id_program){
-    	return view("program.pilih_atlet");
+    	$program = Program::findOrFail($id_program);
+    	return view("program.pilih_atlet", compact('program'));
     }
 
     public function siklusMikro($id_program){
-      $dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
-      // dd($dataMikro);
-    	return view("program.siklus_mikro" ,compact('dataMikro'));
+    	$program = Program::findOrFail($id_program);
+    	$dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
+    	// dd($dataMikro);
+    	return view("program.siklus_mikro" ,compact('dataMikro', 'program'));
     }
 
 
     public function deleteSiklusMikro($id){
-        $id_mikro =Siklus_mikro::find($id);
+        $id_mikro =Siklus_mikro::findOrFail($id);
         $id_mikro->delete();
         return redirect()->back();
     }
@@ -103,23 +105,20 @@ class ProgramController extends Controller
 
     }
 
-
-
-
-
-
     public function sesiLatihan($id_program, $id_siklus_mikro){
+    	$program = Program::findOrFail($id_program);
       // dd("masuk sesi latihan");
         $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
         // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
+    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
     }
 
 
 
 
     public function programMakanan($id_program){
-    	return view("program.makanan");
+    	$program = Program::findOrFail($id_program);
+    	return view("program.makanan", compact('program'));
     }
 
     public function simpanSesiLatihan($siklus_mikro_id, Request $request){

@@ -15,31 +15,7 @@
 {{--         <h3 class="title text-center">PROGRAM LATIHAN DAN PROGRAM MAKAN</h3>
         <br> --}}
         <div class="nav-center">
-            <ul class="nav nav-pills nav-pills-warning nav-pills-icons text-center" role="tablist"   id="menu_program">
-                <!--
-    color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
--->
-                <li  class="active">
-                    <a href="{{ url('/program/baru') }}" role="tab">
-                        <i class="material-icons">info</i>Deskripsi
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/program/1/atlet') }}" role="tab">
-                        <i class="material-icons">search</i>Pilih Atlet
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/program/1/mikro') }}" role="tab">
-                        <i class="material-icons">directions_run</i>Program Latihan
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/program/1/makanan') }}" role="tab">
-                        <i class="material-icons">restaurant</i>Program Makan
-                    </a>
-                </li>
-            </ul>
+          @include("components.program_menu");
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="deskripsi">
