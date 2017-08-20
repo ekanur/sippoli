@@ -37,7 +37,15 @@
               <div class="tab-pane active" id="semua">
                 <table class="table">
                   <tbody>
-                    @for ($i=0; $i < 10; $i++)
+
+                      @foreach($daftarsemuaLatihan as $daftarsemuaLatihan)
+                      <tr>
+                        <td><a href="/latihan/id">{{$daftarsemuaLatihan->nama}}</a></td>
+                      </tr>
+                      @endforeach
+
+
+                    <!-- @for ($i=0; $i < 10; $i++)
                       <tr>
                         <td>
                           <a href="/latihan/id">{{Faker\Factory::create()->sentence(2, 4)}}</a><br>
@@ -55,14 +63,24 @@
                           </button>
                         </td> --}}
                       </tr>
-                    @endfor
+                    @endfor -->
                   </tbody>
                 </table>
               </div>
+
+
               <div class="tab-pane active" id="dari_saya">
                 <table class="table">
                   <tbody>
-                    @for ($i=0; $i < 3; $i++)
+
+                    @foreach($daftardariPelatih as $daftardariPelatih)
+                    <tr>
+                    <td><a href="/latihan/id">{{$daftardariPelatih->nama}}</a></td>
+                    </tr>
+                    @endforeach
+
+
+                    <!-- @for ($i=0; $i < 3; $i++)
                       <tr>
                         <td>
                           <a href="/latihan/id">{{Faker\Factory::create()->sentence(2, 4)}}</a><br>
@@ -80,12 +98,12 @@
                           </button>
                         </td> --}}
                       </tr>
-                    @endfor
+                    @endfor -->
                   </tbody>
                 </table>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -123,14 +141,17 @@
             </div>
             <div class="modal-body">
               <form action="/latihan/tambah" method="post">
+                  {{csrf_field()}}
+
+
                 <div class="row">
                   <div class="form-group label-floating col-md-6">
                     <label class="control-label">Nama Latihan</label>
-                    <input class="form-control" type="text" name="name" value="" required>
+                    <input class="form-control" type="text" name="nameLatihan" value="" required>
                   </div>
                   <div class="form-group label-floating col-md-3">
                     <label class="control-label">Kategori Latihan</label>
-                    <select class="form-control" name="cateogry">
+                    <select class="form-control" name="cateogryLatihan">
                       <option value="Metode Latihan Fisik">Latihan Fisik</option>
                       <option value="Metode Latihan Cabor Or">Latihan Cabor</option>
                     </select>
@@ -140,18 +161,18 @@
                     <select class="form-control" name="cabor_id">
                       <option value="1">Anggar</option>
                       <option value="2">Bisbol</option>
-                      <option value="2">Bola Voli</option>
-                      <option value="2">Boling</option>
+                      <option value="3">Bola Voli</option>
+                      <option value="4">Boling</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group label-floating">
                   <label class="control-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi" rows="6" cols="80"></textarea>
+                  <textarea class="form-control" name="deskripsi_Latihan" rows="6" cols="80"></textarea>
                 </div>
                 <div class="form-group label-floating">
                   <label class="control-label">Link Video Latihan</label>
-                  <input class="form-control" type="text" name="video" value="">
+                  <input class="form-control" type="text" name="video_Latihan" value="">
                 </div>
                 <div class="text-right">
                   <button class="btn btn-success btn-sm" type="submit">Tambah</button>

@@ -34,6 +34,6 @@ class TableEvaluasi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_evaluasi');
+        Schema::dropIfExists('evaluasi');
     }
 }

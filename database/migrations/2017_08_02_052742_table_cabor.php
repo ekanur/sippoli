@@ -30,6 +30,6 @@ class TableCabor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_cabor');
+        Schema::dropIfExists('cabor');
     }
 }

@@ -33,6 +33,6 @@ class TableAtlet extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_atlet');
+        Schema::dropIfExists('atlet');
     }
 }

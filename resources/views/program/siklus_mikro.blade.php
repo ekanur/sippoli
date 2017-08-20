@@ -80,8 +80,6 @@
                                         </tr>
                                     @endif
                                         @foreach ($dataMikro as $dataMikro)
-
-
                                         <tr>
                                             <td><a href="{{ url('program/1/mikro/1') }}">{{$dataMikro->bulan}}, pekan ke {{$dataMikro->pekan_ke}}</a></td>
                                             <td>{{ json_decode($dataMikro->json_volume_intensitas)->intensitas }}%</td>

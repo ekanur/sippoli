@@ -3,14 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\List_latihan;
 
 class LatihanController extends Controller
 {
     public function index(){
-      return view('latihan.index');
+      $daftardariPelatih=List_latihan::where('pelatih_id',1)->get();
+      $daftarsemuaLatihan=List_latihan::all();
+      return view('latihan.index', compact('daftarsemuaLatihan','daftardariPelatih'));
     }
 
     public function detail(){
       return view('latihan.detail');
     }
+
+    public function save(Request $masuk){
+       $namaLatihan =$masuk->nameLatihan ;
+       $kategoriLatihan=$masuk->cateogryLatihan;
+       $deskripsiLatihan=$masuk->deskripsi_Latihan;
+       $linkVideo=$masuk->video_Latihan;
+       $caborLatihan=$masuk->cabor_id;
+      // $caborLatihan=intval(round($caborLatihan));
+
+      $tambahLatihan = new List_latihan;
+      $tambahLatihan->nama=$namaLatihan;
+      $tambahLatihan->kategori=$kategoriLatihan;
+      $tambahLatihan->deskripsi=$deskripsiLatihan;
+      $tambahLatihan->video=$linkVideo;
+      $tambahLatihan->pelatih_id='1';
+      $tambahLatihan->cabor_id=$caborLatihan;
+      $tambahLatihan->save();
+
+
+      return redirect()->back();
+
+    }
+
+
 }

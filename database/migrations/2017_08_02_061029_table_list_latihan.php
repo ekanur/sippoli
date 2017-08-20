@@ -20,6 +20,7 @@ class TableListLatihan extends Migration
             $table->string('deskripsi',100);
             $table->string('video', 25);
             $table->integer('pelatih_id');
+            $table->integer('cabor_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class TableListLatihan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_list_latihan');
+        Schema::dropIfExists('list_latihan');
     }
 }

@@ -31,6 +31,6 @@ class TableListMakanan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_list_makanan');
+        Schema::dropIfExists('list_makanan');
     }
 }

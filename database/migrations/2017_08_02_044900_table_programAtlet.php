@@ -29,6 +29,6 @@ class TableProgramAtlet extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_programAtlet');
+        Schema::dropIfExists('programAtlet');
     }
 }

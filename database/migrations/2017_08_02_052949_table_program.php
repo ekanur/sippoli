@@ -34,6 +34,6 @@ class TableProgram extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_program');
+        Schema::dropIfExists('program');
     }
 }

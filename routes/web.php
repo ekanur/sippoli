@@ -30,10 +30,6 @@ Route::prefix("program")->group(function(){
 	Route::get('/{id_program}/atlet', 'ProgramController@pilihAtlet');
 	Route::get('/{id_program}/mikro', 'ProgramController@siklusMikro');
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}', 'ProgramController@sesiLatihan');
-
-
-
-
 	Route::post('/{id_program}/mikro/{id_siklus_mikro}/simpan', 'ProgramController@simpanSesiLatihan');
 	Route::post('/{id_program}/mikro/{id_siklus_mikro}/tambah_program_latihan', 'ProgramController@simpanProgramLatihan');
 	Route::get('/{id_program}/makanan', 'ProgramController@programMakanan');
@@ -43,9 +39,12 @@ Route::prefix("program")->group(function(){
 Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');
 Route::post('/program/mikro/save', 'ProgramController@savesiklusMikro');
 
+
 Route::get('/olahraga', 'CaborController@index');
 Route::get('/pelatih', 'PelatihController@index');
 Route::get('/list_makanan','ListMakananController@index');
 Route::get('/latihan', 'LatihanController@index');
+Route::post('/latihan/tambah','LatihanController@save');
+
 Route::get('/latihan/id', 'LatihanController@detail');
 Route::get('/evaluasi', 'EvaluasiController@index');

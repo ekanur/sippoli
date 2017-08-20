@@ -33,6 +33,6 @@ class TableProgramLatihan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_program_latihan');
+        Schema::dropIfExists('program_latihan');
     }
 }
