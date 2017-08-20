@@ -67,7 +67,6 @@ class ProgramController extends Controller
     	return view("program.siklus_mikro" ,compact('dataMikro'));
     }
 
-
     public function deleteSiklusMikro($id){
         $id_mikro =Siklus_mikro::find($id);
         $id_mikro->delete();
@@ -103,16 +102,14 @@ class ProgramController extends Controller
 
     }
 
-
-
-
-
-
     public function sesiLatihan($id_program, $id_siklus_mikro){
       // dd("masuk sesi latihan");
         $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
         // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
     	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
+        $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
+        // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
+    	 return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
     }
 
 
@@ -136,7 +133,6 @@ class ProgramController extends Controller
         $sesi_latihan->json_materi_latihan = json_encode($json_materi_latihan);
         $sesi_latihan->json_intesitas_max = json_encode($json_intensitas_max);
         $sesi_latihan->json_volume_max = json_encode($json_volume_max);
-
         $sesi_latihan->save();
 
         return redirect()->back();
