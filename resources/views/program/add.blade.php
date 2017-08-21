@@ -67,7 +67,9 @@
                         <div class="col-md-12">
                           <div class="form-group label-floating">
                             <label class="control-label">Deskripsi Program</label>
-                            <textarea class="form-control" name="deskripsi" rows="3" cols="20"></textarea>
+                            <textarea class="form-control" name="deskripsi" rows="3" cols="20">
+                              @isset ($program) {{ $program->deskripsi }} @endisset
+                            </textarea>
                           </div>
                         </div>
                       </div> --}}
@@ -186,11 +188,11 @@
                           </select>
                         </div>
 
-                        
+
                     </div>
                 </div>
             </div> --}}
-            
+
         </div>
     </div>
 </div>

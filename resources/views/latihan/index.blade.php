@@ -2,7 +2,9 @@
 
 @push('style')
   <style media="screen">
-
+  .tab-pane td a{
+    text-transform: capitalize;
+  }
   </style>
 @endpush
 
@@ -37,14 +39,11 @@
               <div class="tab-pane active" id="semua">
                 <table class="table">
                   <tbody>
-
                       @foreach($daftarsemuaLatihan as $daftarsemuaLatihan)
                       <tr>
                         <td><a href="/latihan/id">{{$daftarsemuaLatihan->nama}}</a></td>
                       </tr>
                       @endforeach
-
-
                     <!-- @for ($i=0; $i < 10; $i++)
                       <tr>
                         <td>
@@ -54,14 +53,6 @@
                             echo $kategori[array_rand($kategori)];
                           @endphp</i></small>&emsp;|&emsp;<small>oleh: <i>{{Faker\Factory::create()->name}}</i></small> &nbsp; |  --}}
                         </td>
-                        {{-- <td class="action-td">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs action-btn">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs action-btn">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td> --}}
                       </tr>
                     @endfor -->
                   </tbody>
@@ -69,13 +60,13 @@
               </div>
 
 
-              <div class="tab-pane active" id="dari_saya">
+              <div class="tab-pane" id="dari_saya">
                 <table class="table">
                   <tbody>
 
                     @foreach($daftardariPelatih as $daftardariPelatih)
                     <tr>
-                    <td><a href="/latihan/id">{{$daftardariPelatih->nama}}</a></td>
+                      <td><a href="/latihan/id">{{$daftardariPelatih->nama}}</a></td>
                     </tr>
                     @endforeach
 

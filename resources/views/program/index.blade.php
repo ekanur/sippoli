@@ -41,23 +41,23 @@
                         <tr>
                           <td>{{ $key+1 }}</td>
                           <td><a href="{{ url('/program/') }}/{{ $program->id }}/deskripsi">{{$program->nama}}</a></td>
-                          <td><a href="{{ url('/atlet') }}"><strong>Septian David</strong></a>, <a href="{{ url('/atlet') }}"><strong>Lee Chong Wei</strong></a>, <a href="{{ url('/atlet') }}"><strong>Zulham Z</strong></a></td>
+                          <td>@if(null == sizeof($program->atlet)) <p class="help-block">Kosong</p> @else <a href="#">Nama Atlet</a> @endif</td>
                           <td>{{ $program->jangka_durasi }} bulan</td>
                           <td>{{ $program->mulai_program }} s.d {{ $program->berakhir_program }}</td>
                           <td>
-                            <a href="{{ url('') }}"><i class="material-icons">print</i></a>                            
-                            <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
+                            <a href="{{ url('') }}"><i class="material-icons">print</i></a>
+                            <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a>
                             <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
                           </td>
                         </tr>
                       @endforeach
-                        
+
                       </tbody>
                     </table>
 
         </div>
     </div>
-      
+
     </div>
 </div>
 @endsection

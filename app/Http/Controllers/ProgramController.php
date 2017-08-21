@@ -11,7 +11,8 @@ use App\Sesi_latihan;
 class ProgramController extends Controller
 {
     public function index(){
-        $program = Program::where("pelatih_id", 1)->get();
+        $program = Program::with('atlet')->where("pelatih_id", 1)->get();
+        // dd($program[0]->atlet);
         // dd($program);
         return view("program.index", compact('program'));
     }
@@ -37,10 +38,11 @@ class ProgramController extends Controller
         $program->mulai_program = $request->mulai_program;
         $program->berakhir_program = $request->berakhir_program;
         $program->siklus_makro = json_encode($siklus_makro);
+        $program->deskripsi = $request->deskripsi;
 
         $program->save();
 
-        return redirect("/program"."/".$program->id);
+        return redirect("/program"."/".$program->id."/deskripsi");
     }
 
     public function add(){
@@ -106,17 +108,8 @@ class ProgramController extends Controller
 
     public function sesiLatihan($id_program, $id_siklus_mikro){
     	$program = Program::findOrFail($id_program);
-      // dd("masuk sesi latihan");
-        $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
-        // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
-<<<<<<< HEAD
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
-        $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
-        // dd(json_decode($sesi_latihan[0]->json_materi_latihan));
-    	 return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan'));
-=======
+      $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
     	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
->>>>>>> c26c560fe70bbb744a6e6820aba241b5a1570f95
     }
 
 

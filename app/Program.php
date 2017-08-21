@@ -12,7 +12,7 @@ class Program extends Model
     }
 
     public function atlet(){
-    	return $this->belongsToMany("App\Atlet")->using("App\Program_atlet");
+    	return $this->belongsToMany("App\Atlet", "program_atlet")->using("App\Program_atlet");
     }
 
     public function pelatih(){

@@ -1,4 +1,11 @@
 @extends('layout')
+@push('style')
+<style media="screen">
+  #profil_pelatih{
+    margin-top:60px;
+  }
+</style>
+@endpush
 @section('content')
   <div class="container-fluid">
     <div class="col-md-8">
@@ -37,7 +44,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card card-profile">
+      <div class="card card-profile" id="profil_pelatih">
         <div class="card-avatar">
           <a href="#pablo">
             <img class="img" src="/uploads/sample-{{random_int(1, 3)}}.jpg" style="min-height: 130px; min-width: 130px;"/>
