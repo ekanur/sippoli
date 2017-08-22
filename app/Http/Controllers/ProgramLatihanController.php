@@ -8,8 +8,8 @@ use App\Program_latihan;
 
 class ProgramLatihanController extends Controller
 {
-    public function index($id_sesi_latihan){
-
+    public function index($id_program, $id_sesi_latihan){
+        // dd($id_sesi_latihan);
     	$program_latihan = Program_latihan::where("sesi_latihan_id", $id_sesi_latihan)->get();
     	return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan'));
     }

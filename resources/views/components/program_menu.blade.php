@@ -21,7 +21,7 @@
                     </a>
                     @endif                    
                 </li>
-                <li @if (Request::is('program/*/mikro') || Request::is('program/*/mikro/*')) class="active"  @endif>
+                <li @if (Request::is('program/*/mikro') || Request::is('program/*/mikro/*') || Request::is('program/*/sesi-latihan/*')) class="active"  @endif>
                     @if (isset($program)) 
                       <a href="{{ url('/program/'.$program->id.'/mikro') }}" role="tab">
                         <i class="material-icons">directions_run</i>Program Latihan
