@@ -14,9 +14,9 @@ class ProgramLatihanController extends Controller
     	return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan'));
     }
 
-    public function simpan($id_sesi_latihan, Request $request){
+    public function simpan(Request $request){
     	$program_latihan = new Program_latihan;
-    	$program_latihan->sesi_latihan_id = $id_sesi_latihan;
+    	$program_latihan->sesi_latihan_id = $request->sesi_latihan_id;
     	$program_latihan->list_latihan_id = $request->list_latihan; 
     	$program_latihan->volume = $request->volume; 
     	$program_latihan->intensitas = $request->intensitas; 

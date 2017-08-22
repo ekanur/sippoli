@@ -82,7 +82,7 @@
 
                                                         @foreach ($sesi_latihan as $sesi_latihan)
                                                             <tr>
-                                                                <td><a href="{{ url('/program/sesi-latihan/1') }}">{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</a></td>
+                                                                <td><a href="{{ url('/program/'.$id_program.'/sesi-latihan/'.$sesi_latihan->id) }}">{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</a></td>
                                                                 {{-- <td>{{$sesi_latihan->tahapan}}</td> --}}
                                                                 <td>{{implode(',', json_decode($sesi_latihan->json_materi_latihan))}}</td>
                                                                 <td>{{implode(',', json_decode($sesi_latihan->json_intensitas_max))}}</td>
@@ -112,8 +112,9 @@
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/simpan/') }}" method="post">
+                                    <form action="{{ url('/program/sesi-latihan/simpan/') }}" method="post">
                                         {{ csrf_field() }}
+                                        <input type="hidden" name="siklus_mikro_id" value="{{ $sesi_latihan->siklus_mikro_id }}">
                                         <div class="row">
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group label-floating">
@@ -128,12 +129,12 @@
                                                           <input class="form-control" name="tanggal" type="text"  data-provide="datepicker"/>
                                                         </div>
                                             </div>
-                                            <div class="col-md-4">
+{{--                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Tahapan</label>
                                                     <input type="text" name="tahapan" class="form-control">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                             <label class="control-label">Kriteria</label>

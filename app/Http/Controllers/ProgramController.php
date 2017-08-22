@@ -64,12 +64,7 @@ class ProgramController extends Controller
     	return view("program.pilih_atlet", compact('program'));
     }
 
-    public function siklusMikro($id_program){
-    	$program = Program::findOrFail($id_program);
-    	$dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
-    	// dd($dataMikro);
-    	return view("program.siklus_mikro" ,compact('dataMikro', 'program'));
-    }
+
 
     public function deleteSiklusMikro($id){
         $id_mikro =Siklus_mikro::findOrFail($id);
@@ -106,36 +101,11 @@ class ProgramController extends Controller
 
     }
 
-    public function sesiLatihan($id_program, $id_siklus_mikro){
-    	$program = Program::findOrFail($id_program);
-      $sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
-    }
-
-
-
 
     public function programMakanan($id_program){
     	$program = Program::findOrFail($id_program);
     	return view("program.makanan", compact('program'));
     }
 
-    public function simpanSesiLatihan($siklus_mikro_id, Request $request){
-        $request->tanggal = date("Y-m-d", strtotime($request->tanggal));
-        $json_materi_latihan = explode(",", $request->materi_latihan);
-        $json_intensitas_max = explode(",", $request->intensitas_max);
-        $json_volume_max = explode(",", $request->volume_max);
-        // $json_materi_latihan =
-        $sesi_latihan = new Sesi_latihan;
-        $sesi_latihan->siklus_mikro_id = $siklus_mikro_id;
-        $sesi_latihan->tahapan = $request->tahapan;
-        $sesi_latihan->tanggal = $request->tanggal;
-        $sesi_latihan->kriteria_volume_intensitas = $request->kriteria_v_i;
-        $sesi_latihan->json_materi_latihan = json_encode($json_materi_latihan);
-        $sesi_latihan->json_intensitas_max = json_encode($json_intensitas_max);
-        $sesi_latihan->json_volume_max = json_encode($json_volume_max);
-        $sesi_latihan->save();
 
-        return redirect()->back();
-    }
 }

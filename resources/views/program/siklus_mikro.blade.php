@@ -57,7 +57,7 @@
                                     @endif
                                         @foreach ($dataMikro as $dataMikro)
                                         <tr>
-                                            <td><a href="{{ url('program/1/mikro/1') }}">{{$dataMikro->bulan}}, pekan ke {{$dataMikro->pekan_ke}}</a></td>
+                                            <td><a href="{{ url('program/'.$id_program.'/mikro/'.$dataMikro->id) }}">{{$dataMikro->bulan}}, pekan ke {{$dataMikro->pekan_ke}}</a></td>
                                             <td>{{ json_decode($dataMikro->json_volume_intensitas)->intensitas }}%</td>
                                             <td>{{ json_decode($dataMikro->json_volume_intensitas)->volume }}%</td>
                                             <td>Persiapan Umum</td>
@@ -76,7 +76,7 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form action="{{ url('program/mikro/save') }}" method="post">
+                                        <form action="{{ url('program/mikro/simpan') }}" method="post">
                                         {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-md-2">

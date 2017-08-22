@@ -132,8 +132,9 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form action="{{ url('/program/sesi-latihan/'.$id_sesi_latihan.'/simpan') }}" method="post">
-                                        {{csrf_field()}}                              
+                                    <form action="{{ url('/program/program-latihan/simpan') }}" method="post">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="sesi_latihan_id" value="{{ $id_sesi_latihan }}">                              
                                         <div class="col-md-2">
 
                                             <div class="form-group label-floating">
