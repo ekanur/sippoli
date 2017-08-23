@@ -41,7 +41,7 @@
                   <tbody>
                       @foreach($daftarsemuaLatihan as $daftarsemuaLatihan)
                       <tr>
-                        <td><a href="/latihan/id">{{$daftarsemuaLatihan->nama}}</a></td>
+                        <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftarsemuaLatihan->nama}}</a></td>
                       </tr>
                       @endforeach
                     <!-- @for ($i=0; $i < 10; $i++)
@@ -66,7 +66,7 @@
 
                     @foreach($daftardariPelatih as $daftardariPelatih)
                     <tr>
-                      <td><a href="/latihan/id">{{$daftardariPelatih->nama}}</a></td>
+                      <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftardariPelatih->nama}}</a></td>
                     </tr>
                     @endforeach
 

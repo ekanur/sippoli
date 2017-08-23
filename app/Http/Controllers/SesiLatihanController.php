@@ -8,7 +8,7 @@ use App\Sesi_latihan;
 
 class SesiLatihanController extends Controller
 {
-        public function simpanSesiLatihan(Request $request){
+    public function simpanSesiLatihan(Request $request){
         $request->tanggal = date("Y-m-d", strtotime($request->tanggal));
         $json_materi_latihan = explode(",", $request->materi_latihan);
         $json_intensitas_max = explode(",", $request->intensitas_max);

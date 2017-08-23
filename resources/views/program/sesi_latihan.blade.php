@@ -114,7 +114,7 @@
                                 <div class="panel-body">
                                     <form action="{{ url('/program/sesi-latihan/simpan/') }}" method="post">
                                         {{ csrf_field() }}
-                                        <input type="hidden" name="siklus_mikro_id" value="{{ $sesi_latihan->siklus_mikro_id }}">
+                                        <input type="hidden" name="siklus_mikro_id" value="@isset($sesi_latihan->siklus_mikro_id) {{ $sesi_latihan->siklus_mikro_id }} @endisset">
                                         <div class="row">
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group label-floating">

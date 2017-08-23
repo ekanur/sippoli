@@ -13,8 +13,10 @@ class LatihanController extends Controller
       return view('latihan.index', compact('daftarsemuaLatihan','daftardariPelatih'));
     }
 
-    public function detail(){
-      return view('latihan.detail');
+    public function detail($id){
+      $latihan=List_latihan::findOrFail($id);
+      dd($latihan);
+      return view('latihan.detail', compact('latihan'));
     }
 
     public function save(Request $masuk){
