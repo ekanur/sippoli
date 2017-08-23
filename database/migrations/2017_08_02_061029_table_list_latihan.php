@@ -18,7 +18,7 @@ class TableListLatihan extends Migration
             $table->string('nama',45);
             $table->string('kategori',45);
             $table->string('deskripsi',100);
-            $table->string('video', 25);
+            $table->string('video', 75);
             $table->integer('pelatih_id');
             $table->integer('cabor_id');
             $table->softDeletes();

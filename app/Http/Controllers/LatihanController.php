@@ -15,7 +15,7 @@ class LatihanController extends Controller
 
     public function detail($id){
       $latihan=List_latihan::findOrFail($id);
-      dd($latihan);
+      // dd($latihan);
       return view('latihan.detail', compact('latihan'));
     }
 

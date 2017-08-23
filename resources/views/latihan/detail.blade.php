@@ -2,7 +2,9 @@
 
 @push('style')
   <style media="screen">
-
+    h4.title{
+      text-transform: uppercase;
+    }
   </style>
 @endpush
 
@@ -13,20 +15,17 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header" data-background-color="purple">
-            <h4 class="title">{{Faker\Factory::create()->sentence(2, 4)}}</h4>
+            <h4 class="title">{{ $latihan->nama }}</h4>
             <p class="category">
-              @php
-                $kategori = array('Metode Latihan Fisik', 'Metode Latihan Cabor Or');
-                echo $kategori[array_rand($kategori)];
-              @endphp
+              {{ $latihan->kategori }}
             </p>
           </div>
           <div class="card-content">
             <center>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/TKEbws4QhEk?list=PLIkr8BShfBjm1JqAmPAq2SguhGIidgGk1&index={{random_int(1,200)}}" frameborder="0" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="{{ $latihan->video }}" frameborder="0" allowfullscreen></iframe>
             </center>
             <br>
-            <p>{{Faker\Factory::create()->paragraph(50, 75)}}</p>
+            <p>{{ $latihan->deskripsi }}</p>
             <br>
             <center>
               <a href="/latihan" type="button" class="btn btn-warning">Kembali</a>
