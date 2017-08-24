@@ -33,8 +33,8 @@
                             <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <ol class="breadcrumb">
-                                      <li><a href="#">Siklus Mikro</a></li>
-                                      <li>Agustus, pekan ke 1</li>
+                                      <li><a href="{{ url('/program/'.$id_program.'/mikro') }}">Siklus Mikro</a></li>
+                                      <li>{{ $sesi_latihan->namaBulan() }}, pekan ke {{ $sesi_latihan->pekan_ke }}</li>
                                     </ol>
                                 </div>
                                 <div class="panel-body">
@@ -42,19 +42,19 @@
                                             <div class="col-md-1 col-xs-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas</label>
-                                                    <strong>45%</strong>
+                                                    <strong>{{ json_decode($sesi_latihan->json_volume_intensitas)->intensitas }}%</strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-1 col-xs-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume</label>
-                                                        <strong>50%</strong>
+                                                        <strong>{{ json_decode($sesi_latihan->json_volume_intensitas)->volume }}%</strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-xs-6">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Fase</label>
-                                                    <strong>Persiapan Umum</strong>
+                                                    <strong>{{ $sesi_latihan->fase() }}</strong>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12">
@@ -72,7 +72,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if (null == sizeof($sesi_latihan))
+                                                        @if (null == sizeof($sesi_latihan->sesi_latihan))
                                                             <tr>
                                                                 <td colspan="7">
                                                                     <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
@@ -80,14 +80,14 @@
                                                             </tr>
                                                         @endif
 
-                                                        @foreach ($sesi_latihan as $sesi_latihan)
+                                                        @foreach ($sesi_latihan->sesi_latihan as $sesi_latihan)
                                                             <tr>
                                                                 <td><a href="{{ url('/program/'.$id_program.'/sesi-latihan/'.$sesi_latihan->id) }}">{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</a></td>
                                                                 {{-- <td>{{$sesi_latihan->tahapan}}</td> --}}
                                                                 <td>{{implode(',', json_decode($sesi_latihan->json_materi_latihan))}}</td>
                                                                 <td>{{implode(',', json_decode($sesi_latihan->json_intensitas_max))}}</td>
                                                                 <td>{{implode(',', json_decode($sesi_latihan->json_volume_max))}}</td>
-                                                                <td><span class="label label-info">{{$sesi_latihan->kriteria_volume_intensitas}}</span></td>
+                                                                <td><span class="label label-success">{{$sesi_latihan->kriteria_volume_intensitas}}</span></td>
                                                                 <td>
                                                                     <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
                                                                     <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
@@ -114,7 +114,7 @@
                                 <div class="panel-body">
                                     <form action="{{ url('/program/sesi-latihan/simpan/') }}" method="post">
                                         {{ csrf_field() }}
-                                        <input type="hidden" name="siklus_mikro_id" value="@isset($sesi_latihan->siklus_mikro_id) {{ $sesi_latihan->siklus_mikro_id }} @endisset">
+                                        <input type="hidden" name="siklus_mikro_id" value="@isset($sesi_latihan->id) {{ $sesi_latihan->id }} @endisset">
                                         <div class="row">
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group label-floating">

@@ -18,9 +18,30 @@ class SiklusMikroController extends Controller
 
     public function detail($id_program, $id_siklus_mikro){
     	$program = Program::findOrFail($id_program);
-      	$sesi_latihan = Sesi_latihan::where("siklus_mikro_id", $id_siklus_mikro)->get();
-      	// dd($sesi_latihan);
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
+      $sesi_latihan = Siklus_mikro::with('sesi_latihan')->findOrFail($id_siklus_mikro);
+      // $siklus_makro = json_decode($program->siklus_makro);
+      // dd($sesi_latihan->namaBulan());
+      // $siklus_makro = array(
+      //     "persiapan_umum" => $siklus_makro->persiapan_umum,
+      //     "persiapan_khusus" => $siklus_makro->persiapan_umum+$siklus_makro->persiapan_khusus,
+      //     "pra_kompetisi" => $siklus_makro->persiapan_khusus+$siklus_makro->pra_kompetisi,
+      //     "kompetisi" => $siklus_makro->pra_kompetisi+$siklus_makro->kompetisi,
+      //   );
+      // $detail_mikro = array(
+      //     "intensitas"=>json_decode($sesi_latihan[0]->siklus_mikro->json_volume_intensitas)->intensitas,
+      //     "volume"=>json_decode($sesi_latihan[0]->siklus_mikro->json_volume_intensitas)->volume,
+      // );
+      // if ($sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['persiapan_umum']) {
+      //   $detail_mikro["fase"] = "Persiapan Umum";
+      // } elseif($sesi_latihan[0]->siklus_mikro->pekan_ke > $siklus_makro['persiapan_umum'] && $sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['persiapan_khusus']) {
+      //   $detail_mikro["fase"] = "Persiapan Khusus";
+      // } elseif($sesi_latihan[0]->siklus_mikro->pekan_ke > $siklus_makro['persiapan_khusus'] && $sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['pra_kompetisi']) {
+      //   $detail_mikro["fase"] = "Pra Kompetisi";
+      // } elseif($sesi_latihan[0]->siklus_mikro->pekan_ke > $siklus_makro['pra_kompetisi'] && $sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['kompetisi']) {
+      //   $detail_mikro["fase"] = "Kompetisi";
+      // }
+      
+    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program', 'detail_mikro'));
     }
 
     public function savesiklusMikro(Request $masuk){
