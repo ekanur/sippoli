@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Program;
 use App\Siklus_mikro ;
 use App\Sesi_latihan;
+use DateTime;
 
 class ProgramController extends Controller
 {
@@ -63,7 +64,6 @@ class ProgramController extends Controller
     	// $program = Program::findOrFail($id_program);
     	return view("program.pilih_atlet", compact('program', "id_program"));
     }
-
 
 
     public function deleteSiklusMikro($id){

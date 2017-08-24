@@ -83,24 +83,11 @@
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Pekan</label>
                                                     <select name="pekan" class="form-control">
-                                                        <optgroup label="Agustus">
-                                                            <option value="1" @if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 1) selected="" @endif @endif>1</option>
-                                                            <option value="2"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 2) selected="" @endif @endif>2</option>
-                                                            <option value="3"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 3) selected="" @endif @endif>3</option>
-                                                            <option value="4"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 4) selected="" @endif @endif>4</option>
-                                                        </optgroup>
-                                                        <optgroup label="September">
-                                                            <option value="5"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 5) selected="" @endif @endif>5</option>
-                                                            <option value="6"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 6) selected="" @endif @endif>6</option>
-                                                            <option value="7"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 7) selected="" @endif @endif>7</option>
-                                                            <option value="8"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 8) selected="" @endif @endif>8</option>
-                                                        </optgroup>
-                                                        <optgroup label="Oktober">
-                                                            <option value="9"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 9) selected="" @endif @endif>9</option>
-                                                            <option value="10"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 10) selected="" @endif @endif>10</option>
-                                                            <option value="11"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 11) selected="" @endif @endif>11</option>
-                                                            <option value="12"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 12) selected="" @endif @endif>12</option>
-                                                        </optgroup>
+                                                      {{-- <optgroup label="Agustus"> --}}
+                                                        @for ($i = 0; $i < $jmlpekan; $i++)
+                                                          <option value="{{$i + 1}}">{{$i + 1}}</option>
+                                                        @endfor
+                                                      {{-- </optgroup> --}}
                                                     </select>
                                                 </div>
                                             </div>

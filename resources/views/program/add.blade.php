@@ -25,6 +25,11 @@
                         <p class="category">Isi form di bawah ini untuk menambahkan program</p>
                     </div>
                     <div class="card-content">
+                    <div id="alert" class="row" style="display: none;">
+                      <div class="col-md-8 col-sm-offset-2">
+                        <p id="alert-msg" class="text-danger" align="center">woi</p>
+                      </div>
+                    </div>
                     <form action="{{ url('/program/simpan') }}" method="post">
                       {{ csrf_field() }}
                       <div class="row">
@@ -77,28 +82,28 @@
                           <div class="col-md-3">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Umum (Pekan)</label>
-                                  <input class="form-control" name="persiapan_umum" type="number" min="1"  required=""  @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_umum }}" @endisset />
+                                  <input id="persiapan_umum" class="form-control" name="persiapan_umum" type="number" min="1"  required=""  @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_umum }}" @endisset />
                                   <small class="help-block">persiapan umum dalam satuan pekan</small>
                               </div>
                           </div>
                           <div class="col-md-3">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Khusus (Pekan)</label>
-                                  <input class="form-control" name="persiapan_khusus" type="number" required="" min="1" @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_khusus }}" @endisset />
+                                  <input id="persiapan_khusus" class="form-control" name="persiapan_khusus" type="number" required="" min="1" @isset ($program) value="{{ json_decode($program->siklus_makro)->persiapan_khusus }}" @endisset />
                                   <small class="help-block">persiapan khusus dalam satuan pekan</small>
                               </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Pra Kompetisi (Pekan)</label>
-                                  <input class="form-control" required="" name="pra_kompetisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->pra_kompetisi }}" @endisset/>
+                                  <input id="pra_kompetisi" class="form-control" required="" name="pra_kompetisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->pra_kompetisi }}" @endisset/>
                                   <small class="help-block">Pra kompetisi dalam satuan pekan</small>
                               </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Kompetisi (Pekan)</label>
-                                  <input class="form-control" required="" name="kompetisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->kompetisi }}" @endisset/>
+                                  <input id="kompetisi" class="form-control" required="" name="kompetisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->kompetisi }}" @endisset/>
                                   <small class="help-block">Kompetisi dalam satuan pekan</small>
                               </div>
                           </div>
@@ -236,6 +241,20 @@
                   $("#berakhir").val(new Date(tanggal_berakhir).toString('MM/dd/yyyy'));
                 }
             });
+
+            var persiapan_umum = parseInt($("#persiapan_umum").val());
+            var persiapan_khusus = parseInt($("#persiapan_khusus").val());
+            var pra_kompetisi = parseInt($("#pra_kompetisi").val());
+            var kompetisi = parseInt($("#kompetisi").val());
+            var jangka_durasi = parseInt($("#jangka_durasi").val()) * 4;
+
+            if (jangka_durasi > (persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi)) {
+              $("#alert-msg").html("Durasi pekan <b>kurang</b> dari jangka program!")
+              $("#alert").show();
+            }else if (jangka_durasi < (persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi)) {
+              $("#alert-msg").html("Durasi pekan <b>lebih</b> dari jangka program!")  
+              $("#alert").show();
+            }
         });
     </script>
 

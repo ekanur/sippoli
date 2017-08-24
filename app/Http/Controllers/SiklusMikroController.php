@@ -6,20 +6,24 @@ use Illuminate\Http\Request;
 use App\Program;
 use App\Siklus_mikro;
 use App\Sesi_latihan;
+use DateTime;
 
 class SiklusMikroController extends Controller
 {
-    public function index($id_program){
-    	$program = Program::findOrFail($id_program);
-    	$dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
-    	// dd($dataMikro);
-    	return view("program.siklus_mikro" ,compact('id_program','dataMikro', 'program'));
-    }
+  public function index($id_program){
+    $program = Program::findOrFail($id_program);
+    $dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
+    $mulai_program = new DateTime(date('Y-m-d', strtotime($program->mulai_program)));
+    $berakhir_program = new DateTime(date('Y-m-d', strtotime($program->berakhir_program)));
+    $jmlpekan = intval(round($mulai_program->diff($berakhir_program)->days / 7));
+    // dd($dataMikro->all());
+    return view("program.siklus_mikro" ,compact('dataMikro', 'jmlpekan', 'id_program'));
+  }
 
     public function detail($id_program, $id_siklus_mikro){
     	$program = Program::findOrFail($id_program);
       $sesi_latihan = Siklus_mikro::with('sesi_latihan')->findOrFail($id_siklus_mikro);
-      
+
     	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
     }
 
