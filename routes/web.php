@@ -33,6 +33,9 @@ Route::prefix("program")->group(function(){
 
 	Route::get('/{id_program}/mikro', 'SiklusMikroController@index');
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}', 'SiklusMikroController@detail');
+	Route::get('/{id_program}/mikro/{id_siklus_mikro}/edit', 'SiklusMikroController@edit');
+	Route::post('/{id_program}/mikro/{id_siklus_mikro}/ubah', 'SiklusMikroController@ubah');
+	Route::get('/{id_program}/mikro/{id_siklus_mikro}/hapus', 'SiklusMikroController@hapus');
 	// Route::post('/{id_program}/sesi-latihan/{id_siklus_mikro}/tambah_program_latihan', 'ProgramLatihanController@simpanProgramLatihan');
 	// Route::get("/{id_program}/mikro/{id_sesi_latihan}", 'ProgramLatihanController@index');
 	Route::get("/{id_program}/sesi-latihan/{id_sesi_latihan}", 'ProgramLatihanController@index');

@@ -63,8 +63,8 @@
                                             <td>Persiapan Umum</td>
                                             {{-- <td><a href="">Lihat</a></td> --}}
                                             <td>
-                                                <a href="{{ url('program/1/mikro/1') }}"><i class="material-icons">mode_edit</i></a>
-                                                <a href="{{{ action('ProgramController@deleteSiklusMikro',[$dataMikro->id]) }}}" ><i class="material-icons">delete</i></a>
+                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$dataMikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
+                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$dataMikro->id.'/hapus/') }}" ><i class="material-icons">delete</i></a>
                                             </td>
 
                                         </tr>
@@ -76,7 +76,7 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form action="{{ url('program/mikro/simpan') }}" method="post">
+                                        <form @if(isset($detail_siklus_mikro)) action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/ubah') }}"  @else action="{{ url('program/mikro/simpan') }}" @endif method="post">
                                         {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-md-2">
@@ -84,22 +84,22 @@
                                                   <label class="control-label">Pekan</label>
                                                     <select name="pekan" class="form-control">
                                                         <optgroup label="Agustus">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
+                                                            <option value="1" @if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 1) selected="" @endif @endif>1</option>
+                                                            <option value="2"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 2) selected="" @endif @endif>2</option>
+                                                            <option value="3"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 3) selected="" @endif @endif>3</option>
+                                                            <option value="4"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 4) selected="" @endif @endif>4</option>
                                                         </optgroup>
                                                         <optgroup label="September">
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
+                                                            <option value="5"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 5) selected="" @endif @endif>5</option>
+                                                            <option value="6"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 6) selected="" @endif @endif>6</option>
+                                                            <option value="7"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 7) selected="" @endif @endif>7</option>
+                                                            <option value="8"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 8) selected="" @endif @endif>8</option>
                                                         </optgroup>
                                                         <optgroup label="Oktober">
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="11">11</option>
-                                                            <option value="12">12</option>
+                                                            <option value="9"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 9) selected="" @endif @endif>9</option>
+                                                            <option value="10"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 10) selected="" @endif @endif>10</option>
+                                                            <option value="11"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 11) selected="" @endif @endif>11</option>
+                                                            <option value="12"@if(isset($detail_siklus_mikro)) @if($detail_siklus_mikro->pekan_ke == 12) selected="" @endif @endif>12</option>
                                                         </optgroup>
                                                     </select>
                                                 </div>
@@ -108,7 +108,7 @@
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" name="intensitas" type="number" min="1" required="" />
+                                                        <input class="form-control" name="intensitas" type="number" min="1" required="" @if(isset($detail_siklus_mikro)) value="{{ json_decode($detail_siklus_mikro->json_volume_intensitas)->intensitas }}"  @endif/>
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>
@@ -119,7 +119,7 @@
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" name="volume" type="number" min="1" required="" />
+                                                        <input class="form-control" name="volume" type="number" min="1" required="" @if(isset($detail_siklus_mikro)) value="{{ json_decode($detail_siklus_mikro->json_volume_intensitas)->volume }}"  @endif />
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>

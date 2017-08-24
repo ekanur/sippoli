@@ -19,29 +19,8 @@ class SiklusMikroController extends Controller
     public function detail($id_program, $id_siklus_mikro){
     	$program = Program::findOrFail($id_program);
       $sesi_latihan = Siklus_mikro::with('sesi_latihan')->findOrFail($id_siklus_mikro);
-      // $siklus_makro = json_decode($program->siklus_makro);
-      // dd($sesi_latihan->namaBulan());
-      // $siklus_makro = array(
-      //     "persiapan_umum" => $siklus_makro->persiapan_umum,
-      //     "persiapan_khusus" => $siklus_makro->persiapan_umum+$siklus_makro->persiapan_khusus,
-      //     "pra_kompetisi" => $siklus_makro->persiapan_khusus+$siklus_makro->pra_kompetisi,
-      //     "kompetisi" => $siklus_makro->pra_kompetisi+$siklus_makro->kompetisi,
-      //   );
-      // $detail_mikro = array(
-      //     "intensitas"=>json_decode($sesi_latihan[0]->siklus_mikro->json_volume_intensitas)->intensitas,
-      //     "volume"=>json_decode($sesi_latihan[0]->siklus_mikro->json_volume_intensitas)->volume,
-      // );
-      // if ($sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['persiapan_umum']) {
-      //   $detail_mikro["fase"] = "Persiapan Umum";
-      // } elseif($sesi_latihan[0]->siklus_mikro->pekan_ke > $siklus_makro['persiapan_umum'] && $sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['persiapan_khusus']) {
-      //   $detail_mikro["fase"] = "Persiapan Khusus";
-      // } elseif($sesi_latihan[0]->siklus_mikro->pekan_ke > $siklus_makro['persiapan_khusus'] && $sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['pra_kompetisi']) {
-      //   $detail_mikro["fase"] = "Pra Kompetisi";
-      // } elseif($sesi_latihan[0]->siklus_mikro->pekan_ke > $siklus_makro['pra_kompetisi'] && $sesi_latihan[0]->siklus_mikro->pekan_ke <= $siklus_makro['kompetisi']) {
-      //   $detail_mikro["fase"] = "Kompetisi";
-      // }
       
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program', 'detail_mikro'));
+    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
     }
 
     public function savesiklusMikro(Request $masuk){
@@ -69,7 +48,27 @@ class SiklusMikroController extends Controller
       $RencanaLatihan ->pekan_ke=$pekanLatihan;
       $RencanaLatihan ->save();
         return redirect()->back();
-      // return ("proses simpan");
+    }
 
+    public function edit($id_program, $id_siklus_mikro){
+      $detail_siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
+      $dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
+      // dd($sesi_latihan);
+      return view("program.siklus_mikro", compact('id_program', 'dataMikro', 'id_siklus_mikro', 'detail_siklus_mikro'));
+    }
+
+    public function ubah($id_program, $id_siklus_mikro, Request $request){
+      $json_volume_intensitas = array(
+                                    "volume"=>$request->volume,
+                                    "intensitas"=>$request->intensitas,
+                                );
+
+      $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
+      $siklus_mikro->pekan_ke = $request->pekan;
+      $siklus_mikro->bulan = 8; //next:dinamis berdasarkan pekan yg dipilih dan tanggal mulai s.d tgl berakhir
+      $siklus_mikro->json_volume_intensitas = json_encode($json_volume_intensitas);
+      $siklus_mikro->save();
+
+      return redirect("/program/".$id_program."/mikro/");
     }
 }
