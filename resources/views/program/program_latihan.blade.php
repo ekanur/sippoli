@@ -21,7 +21,7 @@
             <div class="tab-pane active" id="prolat">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                            <h4 class="card-title">Rancangan Program Latihan</h4> 
+                            <h4 class="card-title">Rancangan Program Latihan</h4>
                             <p class="category">
                                 Penyusunan siklus mikro dan sesi latihan tiap hari.
                             </p>
@@ -55,29 +55,41 @@
                                             <div class="col-md-1 col-xs-4">
                                                 <div class="form-group label-floating">
                                                             <label class="control-label">Kriteria</label>
-                                                        <span class="label label-success">Rendah</span>
+                                                        <span class="label label-success">{{$sesi_latihan->kriteria_volume_intensitas}}</span>
                                                     </div>
                                             </div>
-                                            <div class="col-md-3 col-xs-12">  
+                                            <div class="col-md-3 col-xs-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Materi Latihan</label>
-                                                    <strong>Materi 1, materi 3</strong>
-                                                </div>                                             
-                                            </div>                                            
+                                                    <strong>
+                                                      @foreach (json_decode($sesi_latihan->json_materi_latihan) as $key => $value)
+                                                        {{$value}},
+                                                      @endforeach
+                                                    </strong>
+                                                </div>
+                                            </div>
                                             <div class="col-md-3 col-xs-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas Max</label>
-                                                    <strong>Intesitas 1, Max Intesitas 2</strong>
+                                                    <strong>
+                                                      @foreach (json_decode($sesi_latihan->json_intensitas_max) as $key => $value)
+                                                        {{$value}},
+                                                      @endforeach
+                                                    </strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 col-xs-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume Max</label>
-                                                    <strong>Volume Max1, Volume Max2</strong>
+                                                    <strong>
+                                                      @foreach (json_decode($sesi_latihan->json_volume_max) as $key => $value)
+                                                        {{$value}},
+                                                      @endforeach
+                                                    </strong>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <table class="table table-bordered">
@@ -112,7 +124,7 @@
                                                             <td>{{$list_latihan->intensitas}}</td>
                                                             {{-- <td><a href="">Lihat</a></td> --}}
                                                             <td>
-                                                                <a href="{{ url('') }}"><small class="material-icons">mode_edit</small></a> 
+                                                                <a href="{{ url('') }}"><small class="material-icons">mode_edit</small></a>
                                                                 <a href="{{ url('') }}"><small class="material-icons">delete</small></a>
                                                                 <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
                                                             </td>
@@ -123,18 +135,18 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
+
                                     </div>
 
                                 </div>
-                               
+
                             </div>
 
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <form action="{{ url('/program/program-latihan/simpan') }}" method="post">
                                         {{csrf_field()}}
-                                        <input type="hidden" name="sesi_latihan_id" value="{{ $id_sesi_latihan }}">                              
+                                        <input type="hidden" name="sesi_latihan_id" value="{{ $id_sesi_latihan }}">
                                         <div class="col-md-2">
 
                                             <div class="form-group label-floating">
@@ -190,7 +202,7 @@
                                     </form>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -235,7 +247,7 @@
                           <button type="submit" class="btn btn-info">Tambah</button>
                         </div> --}}
                     </div>
-                    
+
                 </div>
             </div>
         </div>

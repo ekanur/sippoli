@@ -23,7 +23,7 @@ class SiklusMikroController extends Controller
     public function detail($id_program, $id_siklus_mikro){
     	$program = Program::findOrFail($id_program);
       $sesi_latihan = Siklus_mikro::with('sesi_latihan')->findOrFail($id_siklus_mikro);
-
+      //dd($sesi_latihan);
     	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
     }
 
