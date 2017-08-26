@@ -124,8 +124,8 @@
                                                             <td>{{$list_latihan->intensitas}}</td>
                                                             {{-- <td><a href="">Lihat</a></td> --}}
                                                             <td>
-                                                                <a href="{{ url('') }}"><small class="material-icons">mode_edit</small></a>
-                                                                <a href="{{ url('') }}"><small class="material-icons">delete</small></a>
+                                                                <a href="{{ url('program/'.$id_program.'/sesi-latihan/'.$id_sesi_latihan.'/menu-latihan/'.$list_latihan->id.'/edit') }}"><small class="material-icons">mode_edit</small></a>
+                                                                <a href="{{ url('program/'.$id_program.'/sesi-latihan/'.$list_latihan->id.'/hapus') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><small class="material-icons">delete</small></a>
                                                                 <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
                                                             </td>
                                                         </tr>
@@ -264,6 +264,8 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('#mulai').datepicker();
+            $('.del-confrim').confirm();
         });
     </script>
+
 @endpush
