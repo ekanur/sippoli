@@ -12,7 +12,7 @@ class SiklusMikroController extends Controller
 {
   public function index($id_program){
     $program = Program::findOrFail($id_program);
-    $dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
+    $dataMikro=Siklus_mikro::where('program_id',$id_program)->orderBy('pekan_ke', 'asc')->get();
     $mulai_program = new DateTime(date('Y-m-d', strtotime($program->mulai_program)));
     $berakhir_program = new DateTime(date('Y-m-d', strtotime($program->berakhir_program)));
     $jmlpekan = intval(round($mulai_program->diff($berakhir_program)->days / 7));
@@ -27,52 +27,93 @@ class SiklusMikroController extends Controller
     	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'sesi_latihan', 'program'));
     }
 
-    public function savesiklusMikro(Request $masuk){
+    public function savesiklusMikro(Request $masuk, $id_program){
+      try {
         // dd("masuk ke savesiklusMikro (proses simpan)");
         $pekanLatihan = $masuk->pekan;
         $json_volume_intensitas = array("volume"=>$masuk->volume,"intensitas"=>$masuk->intensitas);
         // $intensitasLatihan = $masuk->intensitas;
         // $volumeLatihan = $masuk->volume;
 
-        if (  $pekanLatihan>=1 &&   $pekanLatihan<= 4){
-              $bulan=8;
-        }
-        else if (  $pekanLatihan>=5 &&   $pekanLatihan<=8){
-              $bulan=9;
-        }
+        $program = Program::findOrFail($id_program);
 
-        else if($pekanLatihan>=9 &&   $pekanLatihan<=12){
-              $bulan=10;
-        }
+        $bulan_pekan = date("Y-m-d", strtotime($program->mulai_program . "+ ". $pekanLatihan ." week"));
 
-      $RencanaLatihan = new Siklus_mikro;
-      $RencanaLatihan ->program_id='1';
-      $RencanaLatihan ->json_volume_intensitas=json_encode($json_volume_intensitas);
-      $RencanaLatihan ->bulan=$bulan;
-      $RencanaLatihan ->pekan_ke=$pekanLatihan;
-      $RencanaLatihan ->save();
-        return redirect()->back();
+        $RencanaLatihan = new Siklus_mikro;
+        $RencanaLatihan ->program_id=$id_program;
+        $RencanaLatihan ->json_volume_intensitas=json_encode($json_volume_intensitas);
+        $RencanaLatihan ->bulan=date('m', strtotime($bulan_pekan));
+        $RencanaLatihan ->pekan_ke=$pekanLatihan;
+        $RencanaLatihan ->save();
+
+        return redirect()->back()->with([
+          'alert' => 'Item berhasil di simpan',
+          'tipe' => 'success'
+        ]);
+      } catch (Exception $e) {
+        return redirect()->back()->with([
+          'alert' => $e->getMessage,
+          'tipe' => 'danger'
+        ]);
+      }
+
     }
 
     public function edit($id_program, $id_siklus_mikro){
       $detail_siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
-      $dataMikro=Siklus_mikro::where('program_id',$id_program)->get();
+      $dataMikro=Siklus_mikro::where('program_id',$id_program)->orderBy('pekan_ke', 'asc')->get();
+
+      $program = Program::findOrFail($id_program);
+      $mulai_program = new DateTime(date('Y-m-d', strtotime($program->mulai_program)));
+      $berakhir_program = new DateTime(date('Y-m-d', strtotime($program->berakhir_program)));
+      $jmlpekan = intval(round($mulai_program->diff($berakhir_program)->days / 7));
+
       // dd($sesi_latihan);
-      return view("program.siklus_mikro", compact('id_program', 'dataMikro', 'id_siklus_mikro', 'detail_siklus_mikro'));
+      return view("program.siklus_mikro", compact('id_program', 'dataMikro', 'id_siklus_mikro', 'detail_siklus_mikro', 'jmlpekan'));
     }
 
     public function ubah($id_program, $id_siklus_mikro, Request $request){
-      $json_volume_intensitas = array(
-                                    "volume"=>$request->volume,
-                                    "intensitas"=>$request->intensitas,
-                                );
+      try {
+        $pekanLatihan = $request->pekan;
+        $json_volume_intensitas = array("volume"=>$request->volume, "intensitas"=>$request->intensitas);
 
-      $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
-      $siklus_mikro->pekan_ke = $request->pekan;
-      $siklus_mikro->bulan = 8; //next:dinamis berdasarkan pekan yg dipilih dan tanggal mulai s.d tgl berakhir
-      $siklus_mikro->json_volume_intensitas = json_encode($json_volume_intensitas);
-      $siklus_mikro->save();
+        $program = Program::findOrFail($id_program);
 
-      return redirect("/program/".$id_program."/mikro/");
+        $bulan_pekan = date("Y-m-d", strtotime($program->mulai_program . "+ ". $pekanLatihan ." week"));
+
+        $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
+        $siklus_mikro->pekan_ke = $request->pekan;
+        $siklus_mikro->bulan=date('m', strtotime($bulan_pekan));
+        $siklus_mikro->json_volume_intensitas = json_encode($json_volume_intensitas);
+        $siklus_mikro->save();
+
+        return redirect("/program/".$id_program."/mikro/")->with([
+          'alert' => 'Item berhasil di perbaharui',
+          'tipe' => 'success'
+        ]);
+      } catch (Exception $e) {
+        return redirect("/program/".$id_program."/mikro/")->with([
+          'alert' => $e->getMessage,
+          'tipe' => 'danger'
+        ]);
+      }
+
+    }
+
+    public function hapus($id_program, $id_siklus_mikro, Request $request){
+      try {
+        $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
+        $siklus_mikro->delete();
+        return redirect()->back()->with([
+          'alert' => 'Item berhasil di hapus',
+          'tipe' => 'success'
+        ]);
+      } catch (Exception $e) {
+        return redirect()->back()->with([
+          'alert' => $e->getMessage,
+          'tipe' => 'danger'
+        ]);
+      }
+
     }
 }

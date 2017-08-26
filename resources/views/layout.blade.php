@@ -114,7 +114,7 @@
 							<div class="row">
 								<div class="col-md-6">
 						        		<input type="text" class="form-control" placeholder="Mencari atlet, latihan, dan program latihan">
-						          
+
 						        </div>
 							</div>
 
@@ -182,9 +182,16 @@
 	<script src="{{ asset('js/material-dashboard.js') }}"></script>
 
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-	{{-- <script src="{{ asset('path') }}js/demo.js"></script> --}}
+	<script src="{{ asset('js/demo.js') }}"></script>
 
 	{{-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> --}}
-    @stack("script")
+	<script src="{{ asset('js/jquery.confirm.js') }}"></script>
+  @stack("script")
+
+	@if (session('alert'))
+		<script type="text/javascript">
+			demo.showNotification('{{session('tipe')}}', '{{session('alert')}}');
+		</script>
+	@endif
 
 </html>

@@ -40,7 +40,7 @@ Route::prefix("program")->group(function(){
 	// Route::get("/{id_program}/mikro/{id_sesi_latihan}", 'ProgramLatihanController@index');
 	Route::get("/{id_program}/sesi-latihan/{id_sesi_latihan}", 'ProgramLatihanController@index');
 	Route::post('/sesi-latihan/simpan', 'SesiLatihanController@simpanSesiLatihan');
-	Route::post('/mikro/simpan', 'SiklusMikroController@savesiklusMikro');
+	Route::post('/{id_program}/mikro/simpan', 'SiklusMikroController@savesiklusMikro');
 	Route::post("/program-latihan/simpan", 'ProgramLatihanController@simpan');
 });
 Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');

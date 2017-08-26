@@ -60,11 +60,11 @@
                                             <td><a href="{{ url('program/'.$id_program.'/mikro/'.$dataMikro->id) }}">{{$dataMikro->namaBulan()}}, pekan ke {{$dataMikro->pekan_ke}}</a></td>
                                             <td>{{ json_decode($dataMikro->json_volume_intensitas)->intensitas }}%</td>
                                             <td>{{ json_decode($dataMikro->json_volume_intensitas)->volume }}%</td>
-                                            <td>Persiapan Umum</td>
+                                            <td>{{$dataMikro->fase()}}</td>
                                             {{-- <td><a href="">Lihat</a></td> --}}
                                             <td>
                                                 <a href="{{ url('/program/'.$id_program.'/mikro/'.$dataMikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
-                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$dataMikro->id.'/hapus/') }}" ><i class="material-icons">delete</i></a>
+                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$dataMikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a>
                                             </td>
 
                                         </tr>
@@ -76,7 +76,7 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form @if(isset($detail_siklus_mikro)) action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/ubah') }}"  @else action="{{ url('program/mikro/simpan') }}" @endif method="post">
+                                        <form @if(isset($detail_siklus_mikro)) action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/ubah') }}"  @else action="{{ url('program/'.$id_program.'/mikro/simpan') }}" @endif method="post">
                                         {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-md-2">
@@ -84,9 +84,17 @@
                                                   <label class="control-label">Pekan</label>
                                                     <select name="pekan" class="form-control">
                                                       {{-- <optgroup label="Agustus"> --}}
-                                                        @for ($i = 0; $i < $jmlpekan; $i++)
-                                                          <option value="{{$i + 1}}">{{$i + 1}}</option>
-                                                        @endfor
+                                                        @if (isset($detail_siklus_mikro))
+                                                          @for ($i = 1; $i < $jmlpekan; $i++)
+                                                            <option value="{{$i}}" @if ($detail_siklus_mikro->pekan_ke == $i)
+                                                              selected
+                                                            @endif>{{$i}}</option>
+                                                          @endfor
+                                                        @else
+                                                          @for ($i = 1; $i < $jmlpekan; $i++)
+                                                            <option value="{{$i}}">{{$i}}</option>
+                                                          @endfor
+                                                        @endif
                                                       {{-- </optgroup> --}}
                                                     </select>
                                                 </div>
@@ -142,6 +150,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('#mulai').datepicker();
+            $('.del-confrim').confirm();
         });
     </script>
 @endpush
