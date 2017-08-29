@@ -35,17 +35,24 @@ Route::prefix("program")->group(function(){
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}', 'SiklusMikroController@detail');
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}/edit', 'SiklusMikroController@edit');
 	Route::post('/{id_program}/mikro/{id_siklus_mikro}/ubah', 'SiklusMikroController@ubah');
-	Route::get('/{id_program}/mikro/{id_siklus_mikro}/hapus', 'SiklusMikroController@hapus');
+	Route::get('/{id_program}/mikro/{id_siklus_mikro}/hapus', 'SiklusMikroController@hapus'); //perlu diubah ke route::delete
 	// Route::post('/{id_program}/sesi-latihan/{id_siklus_mikro}/tambah_program_latihan', 'ProgramLatihanController@simpanProgramLatihan');
 	// Route::get("/{id_program}/mikro/{id_sesi_latihan}", 'ProgramLatihanController@index');
-	Route::get("/{id_program}/sesi-latihan/{id_sesi_latihan}", 'ProgramLatihanController@index');
-	Route::get('/{id_program}/sesi-latihan/{id_sesi_latihan}/menu-latihan/{program_latihan_id}/edit', 'ProgramLatihanController@edit');
-	Route::get("/{id_program}/sesi-latihan/{id_sesi_latihan}/hapus", 'ProgramLatihanController@hapus');
-	Route::post('/sesi-latihan/simpan', 'SesiLatihanController@simpanSesiLatihan');
+	Route::get("/{id_program}/mikro/{id_siklus_mikro}/sesi-latihan/{id_sesi_latihan}", 'SesiLatihanController@index');
+	Route::get("/{id_program}/mikro/{id_siklus_mikro}/sesi-latihan/{id_sesi_latihan}/edit", 'SesiLatihanController@edit');
+	Route::post("/sesi-latihan/{id_sesi_latihan}/ubah", 'SesiLatihanController@ubah');
+	Route::delete("/{id_program}/mikro/{id_siklus_mikro}/sesi-latihan/{id_sesi_latihan}/hapus", 'SesiLatihanController@hapus');
+
+
+	Route::get('/{id_program}/mikro/{id_siklus_mikro}/sesi-latihan/{id_sesi_latihan}/menu-latihan/{program_latihan_id}/edit', 'ProgramLatihanController@edit');
+	Route::delete('/{id_program}/mikro/{id_siklus_mikro}/sesi-latihan/{id_sesi_latihan}/menu-latihan/{program_latihan_id}/hapus', 'ProgramLatihanController@hapus');
+	Route::post('/menu-latihan/{program_latihan_id}/ubah', 'ProgramLatihanController@ubah');
+
 	Route::post('/{id_program}/mikro/simpan', 'SiklusMikroController@savesiklusMikro');
-	Route::post("/program-latihan/simpan", 'ProgramLatihanController@simpan');
+	Route::post('/sesi-latihan/simpan', 'SesiLatihanController@simpanSesiLatihan');
+	Route::post("/menu-latihan/simpan", 'ProgramLatihanController@simpan');
 });
-Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');
+// Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');
 // Route::post('/program/mikro/save', 'ProgramController@savesiklusMikro');
 
 

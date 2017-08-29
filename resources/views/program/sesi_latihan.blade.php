@@ -34,7 +34,7 @@
                                 <div class="panel-heading">
                                     <ol class="breadcrumb">
                                       <li><a href="{{ url('/program/'.$id_program.'/mikro') }}">Siklus Mikro</a></li>
-                                      <li>{{ $sesi_latihan->namaBulan() }}, pekan ke {{ $sesi_latihan->pekan_ke }}</li>
+                                      <li>{{ $siklus_mikro->namaBulan() }}, pekan ke {{ $siklus_mikro->pekan_ke }}</li>
                                     </ol>
                                 </div>
                                 <div class="panel-body">
@@ -42,19 +42,19 @@
                                             <div class="col-md-1 col-xs-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas</label>
-                                                    <strong>{{ json_decode($sesi_latihan->json_volume_intensitas)->intensitas }}%</strong>
+                                                    <strong>{{ json_decode($siklus_mikro->json_volume_intensitas)->intensitas }}%</strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-1 col-xs-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume</label>
-                                                        <strong>{{ json_decode($sesi_latihan->json_volume_intensitas)->volume }}%</strong>
+                                                        <strong>{{ json_decode($siklus_mikro->json_volume_intensitas)->volume }}%</strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-xs-6">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Fase</label>
-                                                    <strong>{{ $sesi_latihan->fase() }}</strong>
+                                                    <strong>{{ $siklus_mikro->fase() }}</strong>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12">
@@ -72,30 +72,41 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if (null == sizeof($sesi_latihan->sesi_latihan))
+                                                        @if (null == sizeof($siklus_mikro->sesi_latihan))
                                                             <tr>
                                                                 <td colspan="7">
                                                                     <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
                                                                 </td>
                                                             </tr>
                                                         @endif
-
-                                                        @foreach ($sesi_latihan->sesi_latihan as $sesi_latihan)
+                                                            
+                                                        @foreach ($siklus_mikro->sesi_latihan as $sesi_latihan_perhari)
                                                             <tr>
-                                                                <td><a href="{{ url('/program/'.$id_program.'/sesi-latihan/'.$sesi_latihan->id) }}">{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</a></td>
+                                                                <td><a href="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/sesi-latihan/'.$sesi_latihan_perhari->id) }}">{{ date('D m-d-Y', strtotime($sesi_latihan_perhari->tanggal)) }}</a></td>
                                                                 {{-- <td>{{$sesi_latihan->tahapan}}</td> --}}
-                                                                <td>{{implode(',', json_decode($sesi_latihan->json_materi_latihan))}}</td>
-                                                                <td>{{implode(',', json_decode($sesi_latihan->json_intensitas_max))}}</td>
-                                                                <td>{{implode(',', json_decode($sesi_latihan->json_volume_max))}}</td>
-                                                                <td><span class="label label-success">{{$sesi_latihan->kriteria_volume_intensitas}}</span></td>
+                                                                <td>{{implode(',', json_decode($sesi_latihan_perhari->json_materi_latihan))}}</td>
+                                                                <td>{{implode(',', json_decode($sesi_latihan_perhari->json_intensitas_max))}}</td>
+                                                                <td>{{implode(',', json_decode($sesi_latihan_perhari->json_volume_max))}}</td>
+                                                                <td><span class="label label-success">{{$sesi_latihan_perhari->kriteria_volume_intensitas}}</span></td>
                                                                 <td>
-                                                                    <a href="{{ url('') }}"><i class="material-icons">mode_edit</i></a> 
-                                                                    <a href="{{ url('') }}"><i class="material-icons">delete</i></a>
-                                                                    <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
+                                                                <ul class="list-inline">
+                                                                    <li>
+                                                                        <a style="color:#9932B1" class="btn btn-just-icon btn-simple" href="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/sesi-latihan/'.$sesi_latihan_perhari->id.'/edit') }}"><i class="material-icons">mode_edit</i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <form action="/program/{{$id_program}}/mikro/{{$id_siklus_mikro}}/sesi-latihan/{{$sesi_latihan_perhari->id}}/hapus" method="post">
+                                                                            {{csrf_field()}}
+                                                                            {{method_field('DELETE')}}
+                                                                            <button type="submit" name="hapus" class="btn btn-just-icon btn-simple"><i style="color:#9932B1" class="material-icons">delete</i></button>
+                                                                        </form>
+                                                                    </li>
+                                                                    <li></li>
+                                                                </ul>
+                                                                     
                                                                 </td>
                                                             </tr>
                                                         @endforeach
-
+{{-- {{ dd($sesi_latihan->sesi_latihan) }} --}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -112,9 +123,16 @@
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form action="{{ url('/program/sesi-latihan/simpan/') }}" method="post">
+                                    <form 
+                                    @if (isset($sesi_latihan))
+                                        action="{{ url('/program/sesi-latihan/'.$sesi_latihan->id.'/ubah/') }}"
+                                    @else
+                                        action="{{ url('/program/sesi-latihan/simpan/') }}"
+                                    @endif  
+
+                                    method="post">
                                         {{ csrf_field() }}
-                                        <input type="hidden" name="siklus_mikro_id" value="@isset($sesi_latihan->id) {{ $sesi_latihan->id }} @endisset">
+                                        <input type="hidden" name="siklus_mikro_id" value="@isset($id_siklus_mikro) {{ $id_siklus_mikro }} @endisset">
                                         <div class="row">
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group label-floating">
@@ -126,7 +144,9 @@
                                             <div class="col-md-4">
                                                         <div class="form-group label-floating">
                                                           <label class="control-label">Tanggal</label>
-                                                          <input class="form-control" name="tanggal" type="text"  data-provide="datepicker"/>
+                                                          <input class="form-control" name="tanggal" type="text"  data-provide="datepicker" required="" @if (isset($sesi_latihan))
+                                                              value="{{ $sesi_latihan->tanggal }}"
+                                                          @endif  />
                                                         </div>
                                             </div>
 {{--                                             <div class="col-md-4">
@@ -140,13 +160,13 @@
                                                             <label class="control-label">Kriteria</label>
                                                         <div class="radio">
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i" value="rendah"><span class="circle"></span><span class="check"></span> Rendah
+                                                                <input type="radio" required="" name="kriteria_v_i" value="rendah" @if (isset($sesi_latihan)) @if($sesi_latihan->kriteria_volume_intensitas == 'rendah') checked="" @endif @endif ><span class="circle"></span><span class="check"></span> Rendah
                                                             </label>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i" value="sedang"><span class="circle"></span><span class="check"></span> Sedang
+                                                                <input type="radio" name="kriteria_v_i" value="sedang" @if (isset($sesi_latihan)) @if($sesi_latihan->kriteria_volume_intensitas == 'sedang') checked="" @endif @endif><span class="circle"></span><span class="check"></span> Sedang
                                                             </label>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i" value="berat"><span class="circle"></span><span class="check"></span> Berat
+                                                                <input type="radio" name="kriteria_v_i" value="berat" @if (isset($sesi_latihan)) @if($sesi_latihan->kriteria_volume_intensitas == 'tinggi') checked="" @endif @endif><span class="circle"></span><span class="check"></span> Berat
                                                             </label>
                                                         </div>
                                                     </div>
@@ -156,21 +176,22 @@
                                             <div class="col-md-4">  
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Materi Latihan</label>
-                                                    <textarea class="form-control" name="materi_latihan" rows="2" cols="10"></textarea>
+                                                    <textarea required="" class="form-control" name="materi_latihan" rows="2" cols="10" id="materi">@if (isset($sesi_latihan)) {{ implode(", ",json_decode($sesi_latihan->json_materi_latihan)) }} @endif</textarea>
+                                                    {{-- <div id="materi"></div> --}}
                                                     <p class="help-block">Gunakan koma(,) untuk pemisah</p>
                                                 </div>                                             
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas Max</label>
-                                                    <textarea class="form-control" name="intensitas_max" rows="2" cols="10"></textarea>
+                                                    <textarea required="" id="intensitas" class="form-control" name="intensitas_max" rows="2" cols="10">@if (isset($sesi_latihan)) {{ implode(", ",json_decode($sesi_latihan->json_intensitas_max)) }} @endif</textarea>
                                                     <p class="help-block">Gunakan koma(,) untuk pemisah</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume Max</label>
-                                                    <textarea class="form-control" name="volume_max" rows="2" cols="10"></textarea>
+                                                    <textarea required="" id="volume" class="form-control" name="volume_max" rows="2" cols="10">@if (isset($sesi_latihan)) {{ implode(", ",json_decode($sesi_latihan->json_volume_max)) }} @endif</textarea>
                                                     <p class="help-block">Gunakan koma(,) untuk pemisah</p>
                                                 </div>
                                             </div>
@@ -235,13 +256,22 @@
 
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
+    {{-- <link rel="stylesheet" href="{{ url('/css/taggle.css') }}"> --}}
 @endpush
 
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    {{-- <script src="{{ asset('/js/taggle.js') }}"></script> --}}
     <script type="text/javascript">
+
+        // new Taggle("materi");
+        // new Taggle("intensitas");
+        // new Taggle("volume");
         $(document).ready(function(){
             $('#mulai').datepicker();
+            $("button[name='hapus']").confirm({
+                submitForm:true,
+            });
         });
     </script>
 @endpush

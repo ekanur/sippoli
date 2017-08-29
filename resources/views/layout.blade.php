@@ -13,6 +13,7 @@
 
 
     <!-- Bootstrap core CSS     -->
+    @stack("style")
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
 
     <!--  Material Dashboard CSS    -->
@@ -43,7 +44,7 @@
         	background-color: #F1F3F5; border-radius: 0px
         }
     </style>
-    @stack("style")
+
 </head>
 
 <body>
@@ -161,6 +162,8 @@
 			</footer>
 		</div>
 	</div>
+
+@stack("modal")
 
 </body>
 
