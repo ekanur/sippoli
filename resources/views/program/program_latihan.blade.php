@@ -151,7 +151,7 @@
 
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Waktu</label>
-                                                          <select class="form-control" name="waktu">
+                                                          <select class="form-control" name="waktu" required="">
                                                               <option value="pagi">Pagi (05.00-08.00)</option>
                                                               <option value="siang">Siang (13.00-14.00)</option>
                                                               <option value="sore">Sore (16.00-18.00)</option>
@@ -161,7 +161,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Jenis Latihan</label>
-                                                          <select class="form-control" name="jenis_latihan">
+                                                          <select class="form-control" name="jenis_latihan" required="">
                                                               <option value="pemanasan">Pemanasan</option>
                                                               <option value="inti">Inti</option>
                                                               <option value="pendinginan">Pendinginan</option>
@@ -171,7 +171,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Latihan</label>
-                                                        <select class="form-control" name="list_latihan" >
+                                                        <select class="form-control" name="list_latihan" required="">
                                                           <optgroup label="Latihan Fisik">
                                                               <option value="1">CIRCUIT TRAINING</option>
                                                               <option value="2">INTERVAL TRAINING</option>
@@ -187,13 +187,13 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Volume</label>
-                                                          <input type="text" name="volume" class="form-control">
+                                                          <input type="text" name="volume" class="form-control" required="">
                                                         </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Intensitas</label>
-                                                          <input type="text" name="intensitas" class="form-control">
+                                                          <input type="text" name="intensitas" class="form-control" required="">
                                                         </div>
                                         </div>
                                         <div class="col-md-1 text-center">
