@@ -193,7 +193,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Intensitas</label>
-                                                          <input type="text" name="intensitas" class="form-control" required="">
+                                                          <input type="text" name="intensitas" class="form-control" required="  ">
                                                         </div>
                                         </div>
                                         <div class="col-md-1 text-center">

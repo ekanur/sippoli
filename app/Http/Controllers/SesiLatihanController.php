@@ -7,6 +7,7 @@ use App\Program;
 use App\Sesi_latihan;
 use App\Program_latihan;
 use App\Siklus_mikro;
+use Session;
 
 class SesiLatihanController extends Controller
 {
@@ -58,13 +59,16 @@ class SesiLatihanController extends Controller
         $sesi_latihan->json_intensitas_max = json_encode($json_intensitas_max);
         $sesi_latihan->json_volume_max = json_encode($json_volume_max);
         $sesi_latihan->save();
+        Session::flash("flash_message", "Berhasil mengubah data sesi latihan.");
+        Session::flash("flash_status", "success");
         return redirect()->back();
     }
 
     public function hapus($id_program,$id_siklus_mikro, $id_sesi_latihan){
         $sesi_latihan = Sesi_latihan::findOrFail($id_sesi_latihan);
         $sesi_latihan->delete();
-
+        Session::flash("flash_message", "Berhasil menghapus data sesi latihan.");
+        Session::flash("flash_status", "success");
         return redirect("/program/".$id_program."/mikro/".$id_siklus_mikro);
     }
 }

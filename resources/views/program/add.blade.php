@@ -30,7 +30,7 @@
                         <p id="alert-msg" class="text-danger" align="center">woi</p>
                       </div>
                     </div>
-                    <form action="{{ url('/program/simpan') }}" method="post">
+                    <form @if(isset($program)) action="{{ url("/program/".$program->id."/ubah") }}" @else action="{{ url('/program/simpan') }}" @endif  method="post">
                       {{ csrf_field() }}
                       <div class="row">
                         <div class="col-md-4">
@@ -119,7 +119,7 @@
                       <div class="col-md-12">
                           <div class="form-group label-floating">
                                   <label class="control-label">Deskripsi *Opsional</label>
-                                  <textarea class="form-control" name="deskripsi" rows="4" cols="10"></textarea>
+                                  <textarea class="form-control" name="deskripsi" rows="4" cols="10">@isset ($program){{ $program->deskripsi }} @endisset</textarea>
                           </div>
                       </div>
                        <div class="col-md-12 text-center">

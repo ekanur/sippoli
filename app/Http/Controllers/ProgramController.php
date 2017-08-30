@@ -46,6 +46,28 @@ class ProgramController extends Controller
         return redirect("/program"."/".$program->id."/deskripsi");
     }
 
+    public function ubah($id_program, Request $request){
+        $request->mulai_program = date('Y-m-d', strtotime($request->mulai_program));
+        $request->berakhir_program = date('Y-m-d', strtotime($request->berakhir_program));
+        $siklus_makro = array(
+                                        "persiapan_umum"=>$request->persiapan_umum,
+                                        "persiapan_khusus"=>$request->persiapan_khusus,
+                                        "pra_kompetisi"=>$request->pra_kompetisi,
+                                        "kompetisi"=>$request->kompetisi,
+                                        "transisi"=>$request->transisi);
+        $program = Program::findOrFail($id_program);
+        $program->nama = $request->nama;
+        $program->jangka_durasi = $request->jangka_durasi;
+        $program->pelatih_id = 1;
+        $program->mulai_program = $request->mulai_program;
+        $program->berakhir_program = $request->berakhir_program;
+        $program->siklus_makro = json_encode($siklus_makro);
+        $program->deskripsi = $request->deskripsi;
+
+        $program->save();
+        return redirect()->back();
+    }
+
     public function add(){
       return view('program.add');
     }
