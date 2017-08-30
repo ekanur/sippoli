@@ -124,7 +124,7 @@
                                                             <td>{{$list_latihan->intensitas}}</td>
                                                             {{-- <td><a href="">Lihat</a></td> --}}
                                                             <td>
-                                                                <a href="{{ url('program/'.$id_program.'/sesi-latihan/'.$id_sesi_latihan.'/menu-latihan/'.$list_latihan->id.'/edit') }}"><small class="material-icons">mode_edit</small></a>
+                                                                <a href="{{ url('program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/sesi-latihan/'.$id_sesi_latihan.'/menu-latihan/'.$list_latihan->id.'/edit') }}"><small class="material-icons">mode_edit</small></a>
                                                                 <a href="{{ url('program/'.$id_program.'/sesi-latihan/'.$list_latihan->id.'/hapus') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><small class="material-icons">delete</small></a>
                                                                 <a href="{{ url('') }}"><i class="material-icons">content_copy</i></a>
                                                             </td>
@@ -144,7 +144,11 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form action="{{ url('/program/program-latihan/simpan') }}" method="post">
+                                    <form @if ($detail_program_latihan)
+                                      action="{{ url("/program/$id_program/mikro/$id_siklus_mikro/sesi-latihan/$id_sesi_latihan/menu-latihan/$id_program_latihan/update") }}"
+                                    @else
+                                        action="{{ url("/program/$id_program/mikro/$id_siklus_mikro/sesi-latihan/$id_sesi_latihan/menu-latihan/simpan") }}"
+                                    @endif method="post">
                                         {{csrf_field()}}
                                         <input type="hidden" name="sesi_latihan_id" value="{{ $id_sesi_latihan }}">
                                         <div class="col-md-2">
@@ -152,9 +156,21 @@
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Waktu</label>
                                                           <select class="form-control" name="waktu" required="">
-                                                              <option value="pagi">Pagi (05.00-08.00)</option>
-                                                              <option value="siang">Siang (13.00-14.00)</option>
-                                                              <option value="sore">Sore (16.00-18.00)</option>
+                                                              @if ($detail_program_latihan)
+                                                                <option value="pagi" @if ($detail_program_latihan->waktu == "pagi")
+                                                                  selected
+                                                                @endif>Pagi (05.00-08.00)</option>
+                                                                <option value="siang" @if ($detail_program_latihan->waktu == "siang")
+                                                                  selected
+                                                                @endif>Siang (13.00-14.00)</option>
+                                                                <option value="sore" @if ($detail_program_latihan->waktu == "sore")
+                                                                  selected
+                                                                @endif>Sore (16.00-18.00)</option>
+                                                              @else
+                                                                <option value="pagi">Pagi (05.00-08.00)</option>
+                                                                <option value="siang">Siang (13.00-14.00)</option>
+                                                                <option value="sore">Sore (16.00-18.00)</option>
+                                                              @endif
                                                           </select>
                                                         </div>
                                         </div>
@@ -162,9 +178,21 @@
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Jenis Latihan</label>
                                                           <select class="form-control" name="jenis_latihan" required="">
-                                                              <option value="pemanasan">Pemanasan</option>
-                                                              <option value="inti">Inti</option>
-                                                              <option value="pendinginan">Pendinginan</option>
+                                                              @if ($detail_program_latihan)
+                                                                <option value="pemanasan" @if ($detail_program_latihan->jenis_latihan == "pemanasan")
+                                                                  selected
+                                                                @endif>Pemanasan</option>
+                                                                <option value="inti" @if ($detail_program_latihan->jenis_latihan == "inti")
+                                                                  selected
+                                                                @endif>Inti</option>
+                                                                <option value="pendinginan" @if ($detail_program_latihan->jenis_latihan == "pendinginan")
+                                                                  selected
+                                                                @endif>Pendinginan</option>
+                                                              @else
+                                                                <option value="pemanasan">Pemanasan</option>
+                                                                <option value="inti">Inti</option>
+                                                                <option value="pendinginan">Pendinginan</option>
+                                                              @endif
                                                           </select>
                                                         </div>
                                         </div>
@@ -187,13 +215,17 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Volume</label>
-                                                          <input type="text" name="volume" class="form-control" required="">
+                                                          <input type="text" name="volume" class="form-control" required="" @if ($detail_program_latihan)
+                                                            value="{{$detail_program_latihan->volume}}"
+                                                          @endif>
                                                         </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Intensitas</label>
-                                                          <input type="text" name="intensitas" class="form-control" required="  ">
+                                                          <input type="text" name="intensitas" class="form-control" required="" @if ($detail_program_latihan)
+                                                            value="{{$detail_program_latihan->intensitas}}"
+                                                          @endif>
                                                         </div>
                                         </div>
                                         <div class="col-md-1 text-center">
@@ -269,3 +301,14 @@
     </script>
 
 @endpush
+
+@if (null !== session("flash_message"))
+    @component("components.notifikasi")
+        @slot("pesan")
+            {{session("flash_message")}}
+        @endslot
+        @slot("status")
+            {{session("flash_status")}}
+        @endslot
+    @endcomponent
+@endif
