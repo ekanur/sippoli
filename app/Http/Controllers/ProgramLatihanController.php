@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sesi_latihan;
 use App\Program_latihan;
+use App\Siklus_mikro;
+use App\Program;
 
 class ProgramLatihanController extends Controller
 {
     public function index($id_program, $id_sesi_latihan){
         // dd($id_sesi_latihan);
-    	$program_latihan = Program_latihan::where("sesi_latihan_id", $id_sesi_latihan)->get();
-      $sesi_latihan = Sesi_latihan::find($id_sesi_latihan);
-      // dd($program_latihan);
-    	return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan'));
+    	$program_latihan = Program_latihan::where('sesi_latihan_id', $id_sesi_latihan)->get();
+      $sesi_latihan = Sesi_latihan::findOrFail($id_sesi_latihan);
+      $siklus_mikro = Siklus_mikro::with('sesi_latihan')->findOrFail($sesi_latihan->siklus_mikro_id);
+      // $program = Program::findOrFail($siklus_mikro->program_id);
+      // dd($program);
+    	return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'siklus_mikro'));
     }
 
     public function simpan(Request $request)

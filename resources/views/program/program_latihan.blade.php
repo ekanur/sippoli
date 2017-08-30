@@ -34,8 +34,8 @@
                                 <div class="panel-heading">
                                     <ol class="breadcrumb">
                                       <li><a href="#">Siklus Mikro</a></li>
-                                      <li><a href="#">Agustus, pekan ke 1</a></li>
-                                      <li>{{ date('D m-d-Y', strtotime('05/13/2017')) }}</li>
+                                      <li><a href="/program/{{$siklus_mikro->program_id}}/mikro/{{$siklus_mikro->id}}">{{$siklus_mikro->namaBulan()}}, pekan ke {{$siklus_mikro->pekan_ke}}</a></li>
+                                      <li>{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</li>
                                     </ol>
                                 </div>
                                 <div class="panel-body">

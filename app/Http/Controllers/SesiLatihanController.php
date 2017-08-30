@@ -15,8 +15,9 @@ class SesiLatihanController extends Controller
         // dd($id_sesi_latihan);
         $program_latihan = Program_latihan::where("sesi_latihan_id", $id_sesi_latihan)->get();
         $sesi_latihan = Sesi_latihan::findOrFail($id_sesi_latihan);
+        $siklus_mikro = Siklus_mikro::with('sesi_latihan')->findOrFail($id_siklus_mikro);
       // dd($program_latihan);
-        return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan'));
+        return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'siklus_mikro'));
     }
     public function simpanSesiLatihan(Request $request){
         $request->tanggal = date("Y-m-d", strtotime($request->tanggal));
