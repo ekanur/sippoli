@@ -21,11 +21,11 @@
             </p>
           </div>
           <div class="card-content">
-            <center>
+{{--             <center>
               <iframe width="560" height="315" src="{{ $latihan->video }}" frameborder="0" allowfullscreen></iframe>
-            </center>
+            </center> --}}
             <br>
-            <p>{{ $latihan->deskripsi }}</p>
+            <p>{!! $latihan->deskripsi !!}</p>
             <br>
             <center>
               <a href="/latihan" type="button" class="btn btn-warning">Kembali</a>

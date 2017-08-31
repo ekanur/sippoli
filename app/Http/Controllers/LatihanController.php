@@ -23,7 +23,7 @@ class LatihanController extends Controller
        $namaLatihan =$masuk->nameLatihan ;
        $kategoriLatihan=$masuk->cateogryLatihan;
        $deskripsiLatihan=$masuk->deskripsi_Latihan;
-       $linkVideo=$masuk->video_Latihan;
+       // $linkVideo=$masuk->video_Latihan;
        $caborLatihan=$masuk->cabor_id;
       // $caborLatihan=intval(round($caborLatihan));
 
@@ -31,9 +31,9 @@ class LatihanController extends Controller
       $tambahLatihan->nama=$namaLatihan;
       $tambahLatihan->kategori=$kategoriLatihan;
       $tambahLatihan->deskripsi=$deskripsiLatihan;
-      $tambahLatihan->video=$linkVideo;
+      // $tambahLatihan->video=$linkVideo;
       $tambahLatihan->pelatih_id='1';
-      $tambahLatihan->cabor_id=$caborLatihan;
+      $tambahLatihan->cabor_id=1;
       $tambahLatihan->save();
 
 

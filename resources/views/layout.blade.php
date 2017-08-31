@@ -156,7 +156,7 @@
 						</ul> --}}
 					</nav>
 					<p class="copyright pull-right">
-						&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.google.com">Laraveliyah UM</a>, made with love for a better web
+						&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.um.ac.id">{{-- Laraveliyah --}} UM</a>, {{-- made with love for a better web --}} The Learning University
 					</p>
 				</div>
 			</footer>

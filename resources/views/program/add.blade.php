@@ -15,7 +15,7 @@
 {{--         <h3 class="title text-center">PROGRAM LATIHAN DAN PROGRAM MAKAN</h3>
         <br> --}}
         <div class="nav-center">
-          @include("components.program_menu");
+          @include("components.program_menu")
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="deskripsi">
