@@ -66,7 +66,8 @@
 
                     @foreach($daftardariPelatih as $daftardariPelatih)
                     <tr>
-                      <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftardariPelatih->nama}}</a></td>
+                      <td width="95%"><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftardariPelatih->nama}}</a></td>
+                      <td width="5%"><a href="{{ url('latihan/'.$daftardariPelatih->id."/edit") }}"><small class="material-icons">mode_edit</small></a></td>
                     </tr>
                     @endforeach
 
@@ -166,7 +167,7 @@
                 </div>
                 <div class="form-group label-floating">
                   <label class="control-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi_Latihan" rows="6" cols="80"></textarea>
+                  <textarea class="form-control" name="deskripsi_latihan" rows="6" cols="80"></textarea>
                 </div>
 {{--                 <div class="form-group label-floating">
                   <label class="control-label">Link Video Latihan</label>
@@ -188,7 +189,7 @@
   <script type="text/javascript" src="{{ url('/js/tinymce/tinymce.min.js') }}"></script>
   <script type="text/javascript">
     tinymce.init({
-      selector: 'textarea[name="deskripsi_Latihan"]',
+      selector: 'textarea[name="deskripsi_latihan"]',
       height:300,
       plugins: [
         'media image'

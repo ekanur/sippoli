@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header" data-background-color="purple">
-            <h4 class="title">{{ $latihan->nama }}</h4>
+            <h4 class="title">{{ $latihan->nama }} @if($latihan->pelatih_id == 1) <small class="material-icons pull-right"><a class="" href="{{ url('/latihan/'.$latihan->id."/edit") }}">mode_edit</a></small> @endif</h4>
             <p class="category">
               {{ $latihan->kategori }}
             </p>
@@ -80,3 +80,14 @@
   </div>
 
 @endsection
+
+@if (null !== session("flash_message"))
+    @component("components.notifikasi")
+        @slot("pesan")
+            {{session("flash_message")}}
+        @endslot
+        @slot("status")
+            {{session("flash_status")}}
+        @endslot
+    @endcomponent
+@endif

@@ -65,4 +65,6 @@ Route::get('/latihan', 'LatihanController@index');
 Route::post('/latihan/tambah','LatihanController@save');
 
 Route::get('/latihan/{id}', 'LatihanController@detail');
+Route::get('/latihan/{id}/edit', 'LatihanController@edit');
+Route::post('/latihan/update', 'LatihanController@update');
 Route::get('/evaluasi', 'EvaluasiController@index');
