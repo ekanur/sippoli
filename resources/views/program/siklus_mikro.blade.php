@@ -42,6 +42,7 @@
                                             <th>Bulan, Pekan</th>
                                             <th>Intensitas</th>
                                             <th>Volume</th>
+                                            <th>Peaking</th>
                                             <th>Fase</th>
                                             {{-- <th>Sesi Latihan</th> --}}
                                             <th>Aksi</th>
@@ -50,21 +51,22 @@
                                     <tbody>
                                     @if (null == sizeof($dataMikro))
                                         <tr>
-                                             <td colspan="7">
+                                             <td colspan="8">
                                                 <h4 class="text-muted text-center">Siklus Mikro Belum Tersedia</h4>
                                             </td>
                                         </tr>
                                     @endif
-                                        @foreach ($dataMikro as $dataMikro)
+                                        @foreach ($dataMikro as $mikro)
                                         <tr>
-                                            <td><a href="{{ url('program/'.$id_program.'/mikro/'.$dataMikro->id) }}">{{$dataMikro->namaBulan()}}, pekan ke {{$dataMikro->pekan_ke}}</a></td>
-                                            <td>{{ json_decode($dataMikro->json_volume_intensitas)->intensitas }}%</td>
-                                            <td>{{ json_decode($dataMikro->json_volume_intensitas)->volume }}%</td>
-                                            <td>{{$dataMikro->fase()}}</td>
+                                            <td><a href="{{ url('program/'.$id_program.'/mikro/'.$mikro->id) }}">{{$mikro->namaBulan()}}, pekan ke {{$mikro->pekan_ke}}</a></td>
+                                            <td>{{ json_decode($mikro->json_volume_intensitas)->intensitas }}%</td>
+                                            <td>{{ json_decode($mikro->json_volume_intensitas)->volume }}%</td>
+                                            <td>{{ json_decode($mikro->json_volume_intensitas)->peaking }}%</td>
+                                            <td>{{$mikro->fase()}}</td>
                                             {{-- <td><a href="">Lihat</a></td> --}}
                                             <td>
-                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$dataMikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
-                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$dataMikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a>
+                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
+                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a>
                                             </td>
 
                                         </tr>
@@ -79,7 +81,7 @@
                                         <form @if(isset($detail_siklus_mikro)) action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/ubah') }}"  @else action="{{ url('program/'.$id_program.'/mikro/simpan') }}" @endif method="post">
                                         {{csrf_field()}}
                                         <div class="row">
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Pekan</label>
                                                     <select name="pekan" class="form-control">
@@ -99,7 +101,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas</label>
                                                     <div class="input-group">
@@ -110,11 +112,22 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume</label>
                                                     <div class="input-group">
                                                         <input class="form-control" name="volume" type="number" min="1" required="" @if(isset($detail_siklus_mikro)) value="{{ json_decode($detail_siklus_mikro->json_volume_intensitas)->volume }}"  @endif />
+                                                        <div class="input-group-addon">
+                                                            <i>%</i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Peaking</label>
+                                                    <div class="input-group">
+                                                        <input class="form-control" name="peaking" type="number" min="1" required="" @if(isset($detail_siklus_mikro)) value="{{ json_decode($detail_siklus_mikro->json_volume_intensitas)->peaking }}"  @endif />
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>
@@ -134,6 +147,21 @@
                         </div>
                     </div>
                     </div>
+                    
+                    <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                            <h4 class="card-title">Diagram Periodisasi</h4>
+                    </div>
+                      <div class="card-content">
+                        <div id="chart" style="width:100%; height: 550px">
+                          @if (null == sizeof($dataMikro))
+                              <h4 class="text-center text-muted">Diagram Periodisasi Belum Tersedia</h4>
+                          @endif
+
+                        </div>
+                      </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -157,3 +185,32 @@
     </script>
 @endpush
 
+@if (0 !== sizeof($dataMikro))
+    @push('script')
+      <script type="text/javascript" src="{{ url('/js/googlechart.loader.js') }}"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Pekan', 'Volume', 'Intensitas', 'Peaking'],
+            @foreach ($array_siklus_mikro as $siklus_mikro)
+              {{ json_encode($siklus_mikro) }},
+            @endforeach
+          ]);
+
+          var options = {
+            hAxis: {title: 'Pekan',  titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0},
+            colors: ['blue', 'red', 'black'],
+            chartArea: {width: '95%', height: '85%'},
+            legend: {position: 'in'},
+          };
+
+          var chart = new google.visualization.AreaChart(document.getElementById('chart'));
+          chart.draw(data, options);
+        }
+      </script>
+    @endpush
+@endif

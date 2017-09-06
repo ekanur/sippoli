@@ -16,8 +16,12 @@ class SiklusMikroController extends Controller
     $mulai_program = new DateTime(date('Y-m-d', strtotime($program->mulai_program)));
     $berakhir_program = new DateTime(date('Y-m-d', strtotime($program->berakhir_program)));
     $jmlpekan = intval(round($mulai_program->diff($berakhir_program)->days / 7));
+     $array_siklus_mikro = array();
+        foreach ($dataMikro as $mikro) {
+            $array_siklus_mikro[]=array($mikro->pekan_ke, intval(json_decode($mikro->json_volume_intensitas)->volume) , intval(json_decode($mikro->json_volume_intensitas)->intensitas), intval(json_decode($mikro->json_volume_intensitas)->peaking));
+        }
     // dd($dataMikro->all());
-    return view("program.siklus_mikro" ,compact('dataMikro', 'jmlpekan', 'id_program'));
+    return view("program.siklus_mikro" ,compact('dataMikro', 'jmlpekan', 'id_program', 'array_siklus_mikro'));
   }
 
     public function detail($id_program, $id_siklus_mikro){
@@ -31,7 +35,7 @@ class SiklusMikroController extends Controller
       try {
         // dd("masuk ke savesiklusMikro (proses simpan)");
         $pekanLatihan = $masuk->pekan;
-        $json_volume_intensitas = array("volume"=>$masuk->volume,"intensitas"=>$masuk->intensitas);
+        $json_volume_intensitas = array("volume"=>$masuk->volume,"intensitas"=>$masuk->intensitas, "peaking"=>$masuk->peaking);
         // $intensitasLatihan = $masuk->intensitas;
         // $volumeLatihan = $masuk->volume;
 
@@ -67,15 +71,18 @@ class SiklusMikroController extends Controller
       $mulai_program = new DateTime(date('Y-m-d', strtotime($program->mulai_program)));
       $berakhir_program = new DateTime(date('Y-m-d', strtotime($program->berakhir_program)));
       $jmlpekan = intval(round($mulai_program->diff($berakhir_program)->days / 7));
-
+      $array_siklus_mikro = array();
+              foreach ($dataMikro as $mikro) {
+                  $array_siklus_mikro[]=array($mikro->pekan_ke, intval(json_decode($mikro->json_volume_intensitas)->volume) , intval(json_decode($mikro->json_volume_intensitas)->intensitas), intval(json_decode($mikro->json_volume_intensitas)->peaking));
+              }
       // dd($sesi_latihan);
-      return view("program.siklus_mikro", compact('id_program', 'dataMikro', 'id_siklus_mikro', 'detail_siklus_mikro', 'jmlpekan'));
+      return view("program.siklus_mikro", compact('id_program', 'dataMikro', 'id_siklus_mikro', 'detail_siklus_mikro', 'jmlpekan', 'array_siklus_mikro'));
     }
 
     public function ubah($id_program, $id_siklus_mikro, Request $request){
       try {
         $pekanLatihan = $request->pekan;
-        $json_volume_intensitas = array("volume"=>$request->volume, "intensitas"=>$request->intensitas);
+        $json_volume_intensitas = array("volume"=>$request->volume, "intensitas"=>$request->intensitas, "peaking"=>$request->peaking);
 
         $program = Program::findOrFail($id_program);
 

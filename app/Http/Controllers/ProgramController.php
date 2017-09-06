@@ -79,10 +79,7 @@ class ProgramController extends Controller
     public function edit($id_program){
         $program = Program::findOrFail($id_program);
         $siklus_mikro = Siklus_mikro::where("program_id", $id_program)->orderBy('pekan_ke', 'asc')->orderBy("id", "asc")->get();
-        $array_siklus_mikro = array();
-        foreach ($siklus_mikro as $mikro) {
-            $array_siklus_mikro[]=array($mikro->pekan_ke, intval(json_decode($mikro->json_volume_intensitas)->volume) , intval(json_decode($mikro->json_volume_intensitas)->intensitas));
-        }
+       
         // dd($array_siklus_mikro);
         // ['1',  25,      35],
         // ['2',  27,      30],
