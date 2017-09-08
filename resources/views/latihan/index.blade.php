@@ -100,7 +100,6 @@ $(document).ready(function()
 
                     @foreach($daftardariPelatih as $daftardariPelatih)
                     <tr>
-<<<<<<< HEAD
                       <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftardariPelatih->nama}}</a></td>
 
                       <td>
@@ -132,10 +131,6 @@ $(document).ready(function()
                               </div>
                           </div> -->
                       </td>
-=======
-                      <td width="95%"><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftardariPelatih->nama}}</a></td>
-                      <td width="5%"><a href="{{ url('latihan/'.$daftardariPelatih->id."/edit") }}"><small class="material-icons">mode_edit</small></a></td>
->>>>>>> 176916aa26fbc078623e98c1e55c7a776fbf3aa7
                     </tr>
                     @endforeach
 
@@ -188,14 +183,7 @@ $(document).ready(function()
       	</div>
       </div>
 
-      
-    </div>
-  </div>
-
-@endsection
-
-@push('modal')
-  <!-- Modal -->
+      <!-- Modal -->
       <div id="tambahLatihan" class="modal fade" role="dialog" data-backdrop="false">
         <div class="modal-dialog modal-lg">
 
@@ -210,18 +198,18 @@ $(document).ready(function()
                   {{csrf_field()}}
 
                 <div class="row">
-                  <div class="form-group label-floating col-md-10">
+                  <div class="form-group label-floating col-md-6">
                     <label class="control-label">Nama Latihan</label>
                     <input class="form-control" type="text" name="nameLatihan" value="" required>
                   </div>
-                  <div class="form-group label-floating col-md-2">
+                  <div class="form-group label-floating col-md-3">
                     <label class="control-label">Kategori Latihan</label>
                     <select class="form-control" name="cateogryLatihan">
-                      <option value="Latihan Fisik">Latihan Fisik</option>
-                      <option value="Latihan Cabor">Latihan Cabor</option>
+                      <option value="Metode Latihan Fisik">Latihan Fisik</option>
+                      <option value="Metode Latihan Cabor Or">Latihan Cabor</option>
                     </select>
                   </div>
-{{--                   <div class="form-group label-floating col-md-3">
+                  <div class="form-group label-floating col-md-3">
                     <label class="control-label">Cabang Olahraga</label>
                     <select class="form-control" name="cabor_id">
                       <option value="1">Anggar</option>
@@ -229,16 +217,16 @@ $(document).ready(function()
                       <option value="3">Bola Voli</option>
                       <option value="4">Boling</option>
                     </select>
-                  </div> --}}
+                  </div>
                 </div>
                 <div class="form-group label-floating">
                   <label class="control-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi_latihan" rows="6" cols="80"></textarea>
+                  <textarea class="form-control" name="deskripsi_Latihan" rows="6" cols="80"></textarea>
                 </div>
-{{--                 <div class="form-group label-floating">
+                <div class="form-group label-floating">
                   <label class="control-label">Link Video Latihan</label>
                   <input class="form-control" type="text" name="video_Latihan" value="">
-                </div> --}}
+                </div>
                 <div class="text-right">
                   <button class="btn btn-success btn-sm" type="submit">Tambah</button>
                 </div>
@@ -248,7 +236,6 @@ $(document).ready(function()
 
         </div>
       </div>
-<<<<<<< HEAD
 
 
 
@@ -331,8 +318,8 @@ $(document).ready(function()
             $('.del-confrim_list_latihan').confirm();
         });
     </script>
-=======
 @endpush
+
 
 @push('script')
   <script type="text/javascript" src="{{ url('/js/tinymce/jquery.tinymce.min.js') }}"></script>
@@ -350,5 +337,4 @@ $(document).ready(function()
         '//www.tinymce.com/css/codepen.min.css']
     });
   </script>
->>>>>>> 176916aa26fbc078623e98c1e55c7a776fbf3aa7
 @endpush
