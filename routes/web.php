@@ -26,6 +26,8 @@ Route::prefix("program")->group(function(){
 	Route::get('/', 'ProgramController@index');
 	Route::post("/simpan", "ProgramController@simpan");
 	Route::get('/baru', 'ProgramController@baru');
+	Route::get('/hapus/{id_program}','ProgramController@hapus');
+
 	Route::get('/{id_program}/deskripsi', 'ProgramController@edit');
 	Route::post("/{id_program}/ubah", 'ProgramController@ubah');
 	Route::get('/{id_program}/atlet', 'ProgramController@pilihAtlet');
@@ -64,5 +66,8 @@ Route::get('/list_makanan','ListMakananController@index');
 Route::get('/latihan', 'LatihanController@index');
 Route::post('/latihan/tambah','LatihanController@save');
 
+
 Route::get('/latihan/{id}', 'LatihanController@detail');
+Route::get('/latihan/hapus/{id_latihan}','LatihanController@hapus');
+
 Route::get('/evaluasi', 'EvaluasiController@index');

@@ -43,7 +43,32 @@ class ProgramController extends Controller
 
         $program->save();
 
-        return redirect("/program"."/".$program->id."/deskripsi");
+        // return redirect("/program"."/".$program->id."/deskripsi");
+        // return redirect('/program')->with('message',$program->nama = $request->nama);
+        return redirect('/program')->with([
+          'alert'=> 'item berhasil di tambahkan',
+          'tipe' => 'success'
+        ]);
+    }
+
+    public function hapus($id_program){
+      $program = Program::where("pelatih_id",$id_program)->get();
+
+      try{
+        $hapusProgram= Program::findOrFail($id_program);
+        $hapusProgram->delete();
+        return redirect()->back()->with([
+          'alert'=>'item berhasil di hapus',
+          'tipe'=>'success'
+        ]);
+      }
+      catch(Exception $e){
+        return redirect()->back()->with([
+          'alert'=>$e->getMessage,
+          'tipe'=>'danger'
+        ]);
+      }
+
     }
 
     public function ubah($id_program, Request $request){
