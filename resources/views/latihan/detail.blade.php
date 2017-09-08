@@ -15,17 +15,17 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header" data-background-color="purple">
-            <h4 class="title">{{ $latihan->nama }}</h4>
+            <h4 class="title">{{ $latihan->nama }} @if($latihan->pelatih_id == 1) <small class="material-icons pull-right"><a class="" href="{{ url('/latihan/'.$latihan->id."/edit") }}">mode_edit</a></small> @endif</h4>
             <p class="category">
               {{ $latihan->kategori }}
             </p>
           </div>
           <div class="card-content">
-            <center>
+{{--             <center>
               <iframe width="560" height="315" src="{{ $latihan->video }}" frameborder="0" allowfullscreen></iframe>
-            </center>
+            </center> --}}
             <br>
-            <p>{{ $latihan->deskripsi }}</p>
+            <p>{!! $latihan->deskripsi !!}</p>
             <br>
             <center>
               <a href="/latihan" type="button" class="btn btn-warning">Kembali</a>
@@ -80,3 +80,14 @@
   </div>
 
 @endsection
+
+@if (null !== session("flash_message"))
+    @component("components.notifikasi")
+        @slot("pesan")
+            {{session("flash_message")}}
+        @endslot
+        @slot("status")
+            {{session("flash_status")}}
+        @endslot
+    @endcomponent
+@endif

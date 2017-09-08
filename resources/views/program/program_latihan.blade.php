@@ -15,7 +15,7 @@
 {{--         <h3 class="title text-center">PROGRAM LATIHAN DAN PROGRAM MAKAN</h3>
         <br> --}}
         <div class="nav-center">
-          @include("components.program_menu");
+          @include("components.program_menu")
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="prolat">
@@ -119,7 +119,7 @@
                                                             <td>{{ $list_latihan->waktu }}</td>
                                                             <td>{{$list_latihan->jenis_latihan}}</td>
                                                             {{-- <td>{{$list_latihan->list_latihan_id}}</td> --}}
-                                                            <td>SISTEM AEROBIC</td>
+                                                            <td>{{$list_latihan->list_latihan->kategori}}-<a href="{{ url('/latihan/'.$list_latihan->list_latihan_id) }}" target="_blank">{{ucfirst($list_latihan->list_latihan->nama)}}</a></td>
                                                             <td>{{$list_latihan->volume}}</td>
                                                             <td>{{$list_latihan->intensitas}}</td>
                                                             {{-- <td><a href="">Lihat</a></td> --}}
@@ -144,7 +144,7 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form @if ($detail_program_latihan)
+                                    <form @if (isset($detail_program_latihan))
                                       action="{{ url("/program/$id_program/mikro/$id_siklus_mikro/sesi-latihan/$id_sesi_latihan/menu-latihan/$id_program_latihan/update") }}"
                                     @else
                                         action="{{ url("/program/$id_program/mikro/$id_siklus_mikro/sesi-latihan/$id_sesi_latihan/menu-latihan/simpan") }}"
@@ -156,7 +156,7 @@
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Waktu</label>
                                                           <select class="form-control" name="waktu" required="">
-                                                              @if ($detail_program_latihan)
+                                                              @if (isset($detail_program_latihan))
                                                                 <option value="pagi" @if ($detail_program_latihan->waktu == "pagi")
                                                                   selected
                                                                 @endif>Pagi (05.00-08.00)</option>
@@ -178,7 +178,7 @@
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Jenis Latihan</label>
                                                           <select class="form-control" name="jenis_latihan" required="">
-                                                              @if ($detail_program_latihan)
+                                                              @if (isset($detail_program_latihan))
                                                                 <option value="pemanasan" @if ($detail_program_latihan->jenis_latihan == "pemanasan")
                                                                   selected
                                                                 @endif>Pemanasan</option>
@@ -200,7 +200,7 @@
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Latihan</label>
                                                         <select class="form-control" name="list_latihan" required="">
-                                                          <optgroup label="Latihan Fisik">
+                                                          {{-- <optgroup label="Latihan Fisik">
                                                               <option value="1">CIRCUIT TRAINING</option>
                                                               <option value="2">INTERVAL TRAINING</option>
                                                               <option value="3">SISTEM AEROBIC</option>
@@ -208,14 +208,19 @@
                                                           <optgroup label="Latihan Cabor">
                                                               <option value="4">LATIHAN TEKNIK</option>
                                                               <option value="5">LATIHAN TAKTIK</option>
-                                                          </optgroup>
+                                                          </optgroup> --}}
+                                                          @foreach ($latihan as $list_latihan)
+                                                            <option value="{{ $list_latihan->id }}" @isset ($detail_program_latihan) @if($detail_program_latihan->list_latihan_id == $list_latihan->id)
+                                                                selected="" @endif
+                                                            @endisset >{{$list_latihan->kategori}} - {{$list_latihan->nama}}</option>
+                                                          @endforeach
                                                         </select>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Volume</label>
-                                                          <input type="text" name="volume" class="form-control" required="" @if ($detail_program_latihan)
+                                                          <input type="text" name="volume" class="form-control" required="" @if (isset($detail_program_latihan))
                                                             value="{{$detail_program_latihan->volume}}"
                                                           @endif>
                                                         </div>
@@ -223,7 +228,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group label-floating">
                                                           <label class="control-label">Intensitas</label>
-                                                          <input type="text" name="intensitas" class="form-control" required="" @if ($detail_program_latihan)
+                                                          <input type="text" name="intensitas" class="form-control" required="" @if (isset($detail_program_latihan))
                                                             value="{{$detail_program_latihan->intensitas}}"
                                                           @endif>
                                                         </div>

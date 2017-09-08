@@ -15,82 +15,18 @@
 {{--         <h3 class="title text-center">PROGRAM LATIHAN DAN PROGRAM MAKAN</h3>
         <br> --}}
         <div class="nav-center">
-          @include("components.program_menu");
+          @include("components.program_menu")
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="deskripsi">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="card-title">Tambah Program</h4>
-                        <p class="category">Isi form di bawah ini untuk menambahkan program</p>
+                        <h4 class="card-title">Program Makanan</h4>
+                        <p class="category">Pengaturan Program Makanan</p>
                     </div>
                     <div class="card-content">
-                    <form action="" method="post">
-                      {{ csrf_field() }}
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Nama Program</label>
-                            <input class="form-control" type="text" name="nama" value="">
-                            <span class="material-input"></span>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Jangka Program</label>
-                            <select class="form-control" name="jangka">
-                              <option value="pendek">Pendek (3 bulan)</option>
-                              <option value="menengah">Menengah (6 bulan)</option>
-                              <option value="panjang">Panjang (12 bulan)</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Mulai</label>
-                            <div class="input-group date" data-provide="datepicker">
-                                <input type="text" class="form-control" id="mulai">
-                                <div class="input-group-addon">
-                                    <i class="material-icons">date_range</i>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Berakhir</label>
-                                <input type="text" class="form-control" id="mulai" disabled>
-                          </div>
-                        </div>
-                      </div>
-                      {{-- <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group label-floating">
-                            <label class="control-label">Deskripsi Program</label>
-                            <textarea class="form-control" name="deskripsi" rows="3" cols="20"></textarea>
-                          </div>
-                        </div>
-                      </div> --}}
-                      <div class="row">
-                          <div class="col-md-3">
-                              <div class="form-group label-floating">
-                                  <label class="control-label">Persiapan Umum</label>
-                                  <input class="form-control" name="persiapan_umum" type="number" min="1"/>
-                                  <small class="help-block">Lama persiapan umum dalam satuan pekan</small>
-                              </div>
-                          </div>
-                          <div class="col-md-3">
-                              <div class="form-group label-floating">
-                                  <label class="control-label">Persiapan Khusus</label>
-                                  <input class="form-control" name="persiapan_umum" type="number" min="1"/>
-                                  <small class="help-block">Lama persiapan khusus dalam satuan pekan</small>
-                              </div>
-                          </div>
-                      </div>
-                      <center>
-                        <button class="btn btn-primary" type="submit">Tambah</button>
-                      </center>
-                    </form>
+                    {{--  --}}
+                    <h4 class="text-center text-muted">Program Makanan dalam proses perancangan</h4>
                   </div>
                 </div>
             </div>

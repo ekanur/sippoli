@@ -103,8 +103,12 @@ class ProgramController extends Controller
 
     public function edit($id_program){
         $program = Program::findOrFail($id_program);
-        // dd($program);
-    	return view("program.add", compact('program', 'id_program'));
+        $siklus_mikro = Siklus_mikro::where("program_id", $id_program)->orderBy('pekan_ke', 'asc')->orderBy("id", "asc")->get();
+       
+        // dd($array_siklus_mikro);
+        // ['1',  25,      35],
+        // ['2',  27,      30],
+    	return view("program.add", compact('program', 'id_program', 'array_siklus_mikro'));
     }
 
     public function pilihAtlet($id_program){

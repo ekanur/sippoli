@@ -22,8 +22,8 @@ class LatihanController extends Controller
     public function save(Request $masuk){
        $namaLatihan =$masuk->nameLatihan ;
        $kategoriLatihan=$masuk->cateogryLatihan;
-       $deskripsiLatihan=$masuk->deskripsi_Latihan;
-       $linkVideo=$masuk->video_Latihan;
+       $deskripsiLatihan=$masuk->deskripsi_latihan;
+       // $linkVideo=$masuk->video_Latihan;
        $caborLatihan=$masuk->cabor_id;
       // $caborLatihan=intval(round($caborLatihan));
 
@@ -31,9 +31,9 @@ class LatihanController extends Controller
       $tambahLatihan->nama=$namaLatihan;
       $tambahLatihan->kategori=$kategoriLatihan;
       $tambahLatihan->deskripsi=$deskripsiLatihan;
-      $tambahLatihan->video=$linkVideo;
+      // $tambahLatihan->video=$linkVideo;
       $tambahLatihan->pelatih_id='1';
-      $tambahLatihan->cabor_id=$caborLatihan;
+      $tambahLatihan->cabor_id=1;
       $tambahLatihan->save();
       return redirect()->back()->with([
           'alert'=>'item berhasil ditambahkan',
@@ -60,5 +60,22 @@ class LatihanController extends Controller
       }
     }
 
+    public function edit($id){
+      $latihan=List_latihan::where([['id',$id], ['pelatih_id', 1]])->firstOrFail();
 
+      return view("latihan.edit", compact('latihan'));
+    }
+
+    public function update(Request $request){
+      $latihan = List_latihan::findOrFail($request->id);
+      $latihan->nama = $request->nameLatihan;
+      $latihan->kategori = $request->cateogryLatihan;
+      $latihan->deskripsi = $request->deskripsi_latihan;
+      $latihan->save();
+
+      $request->session()->flash('flash_message', "Berhasil memperbarui latihan.");
+      $request->session()->flash('flash_status', "success");
+
+      return redirect("/latihan/".$request->id);
+    }
 }

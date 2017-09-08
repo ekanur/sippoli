@@ -15,7 +15,7 @@
 {{--         <h3 class="title text-center">PROGRAM LATIHAN DAN PROGRAM MAKAN</h3>
         <br> --}}
         <div class="nav-center">
-          @include("components.program_menu");
+          @include("components.program_menu")
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="deskripsi">
@@ -129,6 +129,7 @@
                     </form>
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div class="card">
                   <div class="card-content">
                     <div id="chart" style="width:100%; height: 450px">
@@ -136,6 +137,12 @@
                     </div>
                   </div>
                 </div>
+=======
+
+
+
+
+>>>>>>> 176916aa26fbc078623e98c1e55c7a776fbf3aa7
             </div>
             {{-- <div class="tab-pane" id="pilihatlet">
                 <div class="card">
@@ -257,29 +264,6 @@
             }
         });
     </script>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Pekan', 'Volume', 'Intensitas'],
-          ['1',  25,      35],
-          ['2',  27,      30],
-          ['3',  35,       30],
-          ['4',  40,      30]
-        ]);
-
-        var options = {
-          title: 'Periodesasi',
-          hAxis: {title: 'Pekan',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-
-        var chart = new google.visualization.AreaChart(document.getElementById('chart'));
-        chart.draw(data, options);
-      }
-    </script>
 @endpush
+
+

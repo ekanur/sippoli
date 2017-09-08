@@ -7,17 +7,19 @@ use App\Program;
 use App\Sesi_latihan;
 use App\Program_latihan;
 use App\Siklus_mikro;
+use App\List_latihan;
 use Session;
 
 class SesiLatihanController extends Controller
 {
     public function index($id_program, $id_siklus_mikro, $id_sesi_latihan){
         // dd($id_sesi_latihan);
-        $program_latihan = Program_latihan::where("sesi_latihan_id", $id_sesi_latihan)->get();
+        $program_latihan = Program_latihan::with('list_latihan')->where("sesi_latihan_id", $id_sesi_latihan)->get();
         $sesi_latihan = Sesi_latihan::findOrFail($id_sesi_latihan);
         $siklus_mikro = Siklus_mikro::with('sesi_latihan')->findOrFail($id_siklus_mikro);
+        $latihan = List_latihan::all();
       // dd($program_latihan);
-        return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'id_siklus_mikro' ,'siklus_mikro'));
+        return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'id_siklus_mikro' ,'siklus_mikro', 'latihan'));
     }
     public function simpanSesiLatihan(Request $request){
         $request->tanggal = date("Y-m-d", strtotime($request->tanggal));

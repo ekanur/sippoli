@@ -7,6 +7,7 @@ use App\Sesi_latihan;
 use App\Program_latihan;
 use App\Siklus_mikro;
 use App\Program;
+use App\List_latihan;
 use Session;
 
 class ProgramLatihanController extends Controller
@@ -16,9 +17,10 @@ class ProgramLatihanController extends Controller
     	$program_latihan = Program_latihan::where('sesi_latihan_id', $id_sesi_latihan)->get();
       $sesi_latihan = Sesi_latihan::findOrFail($id_sesi_latihan);
       $siklus_mikro = Siklus_mikro::with('sesi_latihan')->findOrFail($sesi_latihan->siklus_mikro_id);
+      $latihan = List_latihan::all();
       // $program = Program::findOrFail($siklus_mikro->program_id);
       // dd($program);
-    	return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'id_siklus_mikro', 'siklus_mikro'));
+    	return view('program.program_latihan', compact('id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'id_siklus_mikro', 'siklus_mikro', 'latihan'));
     }
 
     public function simpan(Request $request)
@@ -49,9 +51,10 @@ class ProgramLatihanController extends Controller
       // dd($detail_program_latihan);
       $sesi_latihan = Sesi_latihan::find($id_sesi_latihan);
       $siklus_mikro = Siklus_mikro::with('sesi_latihan')->findOrFail($sesi_latihan->siklus_mikro_id);
+      $latihan = List_latihan::all();
 
       // dd($program_latihan);
-    	return view('program.program_latihan', compact('siklus_mikro', 'id_siklus_mikro', 'id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'detail_program_latihan', 'id_program_latihan'));
+    	return view('program.program_latihan', compact('siklus_mikro', 'id_siklus_mikro', 'id_sesi_latihan', 'program_latihan', 'id_program', 'sesi_latihan', 'detail_program_latihan', 'id_program_latihan', 'latihan'));
     }
 
     public function update ($id_program, $id_siklus_mikro, $id_sesi_latihan, $id_program_latihan, Request $request)
