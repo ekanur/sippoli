@@ -46,11 +46,11 @@
                         @else
                             <ul class="list-inline">
 
-                                @foreach ($program_atlet as $program_atlet)
+                                @foreach ($program_atlet->atlet as $program_atlet)
                                     <li style=" border:1px solid #ddd">
                                         <img src="{{ url('/uploads/sample-'.rand(1,3).".jpg") }}" alt="nama atlet" style="width: 74px;height: 76px; border:1.5px solid #bcbcbc" class="img-circle pull-left">
                                         <span class="pull-left" style="margin: 5px 10px;">
-                                            <p>{{$program_atlet->atlet->nama}}</p>                             
+                                            <p>{{$program_atlet->nama}}</p>                             
                                         </span>
                                         <div class="dropdown pull-right">
                                           <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-success btn-simple btn-xs">
@@ -60,7 +60,7 @@
                                             <li><a href="">Asessment</a></li>
                                             <li><a href="">Program Makan</a></li>
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="{{ url('/program/'.$id_program.'/hapus-atlet/'.$program_atlet->atlet_id) }}">Remove</a></li>
+                                            <li><a href="{{ url('/program/'.$id_program.'/hapus-atlet/'.$program_atlet->id) }}">Remove</a></li>
                                           </ul>
                                         </div>
 

@@ -129,10 +129,20 @@
                     </form>
                   </div>
                 </div>
+<<<<<<< HEAD
+                <div class="card">
+                  <div class="card-content">
+                    <div id="chart" style="width:100%; height: 450px">
+
+                    </div>
+                  </div>
+                </div>
+=======
 
 
 
 
+>>>>>>> 176916aa26fbc078623e98c1e55c7a776fbf3aa7
             </div>
             {{-- <div class="tab-pane" id="pilihatlet">
                 <div class="card">
@@ -249,7 +259,7 @@
               $("#alert-msg").html("Durasi pekan <b>kurang</b> dari jangka program!")
               $("#alert").show();
             }else if (jangka_durasi < (persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi)) {
-              $("#alert-msg").html("Durasi pekan <b>lebih</b> dari jangka program!")  
+              $("#alert-msg").html("Durasi pekan <b>lebih</b> dari jangka program!")
               $("#alert").show();
             }
         });

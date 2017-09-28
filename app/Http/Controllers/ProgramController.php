@@ -46,7 +46,32 @@ class ProgramController extends Controller
 
         $program->save();
 
-        return redirect("/program"."/".$program->id."/deskripsi");
+        // return redirect("/program"."/".$program->id."/deskripsi");
+        // return redirect('/program')->with('message',$program->nama = $request->nama);
+        return redirect('/program')->with([
+          'alert'=> 'item berhasil di tambahkan',
+          'tipe' => 'success'
+        ]);
+    }
+
+    public function hapus($id_program){
+      $program = Program::where("pelatih_id",$id_program)->get();
+
+      try{
+        $hapusProgram= Program::findOrFail($id_program);
+        $hapusProgram->delete();
+        return redirect()->back()->with([
+          'alert'=>'item berhasil di hapus',
+          'tipe'=>'success'
+        ]);
+      }
+      catch(Exception $e){
+        return redirect()->back()->with([
+          'alert'=>$e->getMessage,
+          'tipe'=>'danger'
+        ]);
+      }
+
     }
 
     public function ubah($id_program, Request $request){
@@ -92,8 +117,8 @@ class ProgramController extends Controller
     public function pilihAtlet($id_program){
     	// $program = Program::findOrFail($id_program);
         $atlet = Atlet::all();
-        $program_atlet = Program_atlet::with("atlet")->where("program_id", $id_program)->get();
-        // dd(sizeof($program_atlet));
+        $program_atlet = Program::findOrFail($id_program);
+        // dd($program_atlet);
     	return view("program.pilih_atlet", compact('atlet', "id_program", "program_atlet"));
     }
 

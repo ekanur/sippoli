@@ -2,13 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Program_atlet extends Model
+class Program_atlet extends Pivot
 {
     protected $table ="program_atlet";
-
-    public function atlet(){
-    	return $this->belongsTo("App\Atlet");
-    }
 }

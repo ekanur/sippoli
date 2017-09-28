@@ -108,19 +108,20 @@ class SiklusMikroController extends Controller
     }
 
     public function hapus($id_program, $id_siklus_mikro, Request $request){
-      try {
-        $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
-        $siklus_mikro->delete();
-        return redirect()->back()->with([
-          'alert' => 'Item berhasil di hapus',
-          'tipe' => 'success'
-        ]);
-      } catch (Exception $e) {
-        return redirect()->back()->with([
-          'alert' => $e->getMessage,
-          'tipe' => 'danger'
-        ]);
-      }
+      dd($id_siklus_mikro);
+      // try {
+      //   $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
+      //   $siklus_mikro->delete();
+      //   return redirect()->back()->with([
+      //     'alert' => 'Item berhasil di hapus',
+      //     'tipe' => 'success'
+      //   ]);
+      // } catch (Exception $e) {
+      //   return redirect()->back()->with([
+      //     'alert' => $e->getMessage,
+      //     'tipe' => 'danger'
+      //   ]);
+      // }
 
     }
 }

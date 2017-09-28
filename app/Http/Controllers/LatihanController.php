@@ -16,7 +16,7 @@ class LatihanController extends Controller
     public function detail($id){
       $latihan=List_latihan::findOrFail($id);
       // dd($latihan);
-      return view('latihan.detail', compact('latihan'));
+      return view('latihan.detail', compact('latihan','id'));
     }
 
     public function save(Request $masuk){
@@ -35,10 +35,29 @@ class LatihanController extends Controller
       $tambahLatihan->pelatih_id='1';
       $tambahLatihan->cabor_id=1;
       $tambahLatihan->save();
+      return redirect()->back()->with([
+          'alert'=>'item berhasil ditambahkan',
+          'tipe'=>'success'
+      ]);
+      // return redirect()->back()->with('sukses_tambah_latihan', $tambahLatihan->nama=$namaLatihan);
+    }
 
-
-      return redirect()->back();
-
+    public function hapus($id_latihan){
+      $daftardariPelatih=List_latihan::where('pelatih_id',$id_latihan)->get();
+      try{
+        $hapusLatihan= List_latihan::findOrFail($id_latihan);
+        $hapusLatihan ->delete();
+        return redirect()->back()->with([
+          'alert'=> 'item berhasil di hapus',
+          'tipe' => 'success'
+        ]);
+      }
+      catch (Exception $e){
+          return redirect()->back()->with([
+            'alert'=>$e->getMessage,
+            'tipe'=> 'danger'
+          ]);
+      }
     }
 
     public function edit($id){
