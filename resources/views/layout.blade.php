@@ -191,6 +191,17 @@
 	<script src="{{ asset('js/jquery.confirm.js') }}"></script>
   @stack("script")
 
+  @if (null !== session("flash_message"))
+	    @component("components.notifikasi")
+	        @slot("pesan")
+	            {{session("flash_message")}}
+	        @endslot
+	        @slot("status")
+	            {{session("flash_status")}}
+	        @endslot
+	    @endcomponent
+	@endif
+
 	@if (session('alert'))
 		<script type="text/javascript">
 			demo.showNotification('{{session('tipe')}}', '{{session('alert')}}');

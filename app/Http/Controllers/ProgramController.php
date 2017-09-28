@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Program;
 use App\Siklus_mikro ;
 use App\Sesi_latihan;
+use App\Atlet;
+use App\Program_atlet;
 use DateTime;
+use Session;
 
 class ProgramController extends Controller
 {
@@ -88,7 +91,27 @@ class ProgramController extends Controller
 
     public function pilihAtlet($id_program){
     	// $program = Program::findOrFail($id_program);
-    	return view("program.pilih_atlet", compact('program', "id_program"));
+        $atlet = Atlet::all();
+        $program_atlet = Program_atlet::with("atlet")->where("program_id", $id_program)->get();
+        // dd(sizeof($program_atlet));
+    	return view("program.pilih_atlet", compact('atlet', "id_program", "program_atlet"));
+    }
+
+    public function simpanAtlet(Request $request){
+        $atlet = Program_atlet::where("atlet_id", $request->id)->get();
+            
+        if(sizeof($atlet) != null){
+            Session::flash("flash_message", "Terjadi kesalahan.");
+            Session::flash("flash_status", "danger");
+            return response()->json("error");
+        }
+        $program_atlet = new Program_atlet;
+        $program_atlet->program_id = $request->program_id;
+        $program_atlet->atlet_id = $request->id;
+        $program_atlet->save();
+        Session::flash("flash_message", "Berhasil memilih atlet.");
+        Session::flash("flash_status", "success");
+        return response()->json("success");
     }
 
 

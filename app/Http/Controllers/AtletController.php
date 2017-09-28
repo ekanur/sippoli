@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Atlet;
+use App\Cabor;
+use Session;
 
 class AtletController extends Controller
 {
@@ -14,7 +16,9 @@ class AtletController extends Controller
      */
     public function index()
     {
-        return view('atlet.profilatlet');
+        $atlet = Atlet::with('cabor')->orderBy("id", "desc")->get();
+        // dd($atlet);
+        return view('atlet.profilatlet', compact('atlet'));
     }
 
 
@@ -25,7 +29,8 @@ class AtletController extends Controller
      */
     public function create()
     {
-          return view('atlet.inputatlet');
+        $cabor = Cabor::all();
+        return view('atlet.inputatlet', compact('cabor'));
     }
 
     /**
@@ -63,8 +68,9 @@ class AtletController extends Controller
        $tambahAtlet ->cabor_id= $caborAtlet;
        $tambahAtlet ->pelatih_id='1';
        $tambahAtlet->save();
-
-       return redirect()->back();
+        Session::flash("flash_message", "Berhasil menambah atlet.");
+        Session::flash("flash_status", "success");
+       return redirect("atlet");
 
        //return ("proses simpan");
       //  $tambahAtlet->nama =$masuk->namaAtlet;

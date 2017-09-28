@@ -20,7 +20,7 @@ Route::get('/', 'PageController@index');
 // Route::post('/program/tambah', 'ProgramController@store');
 Route::get('/atlet', 'AtletController@index');
 Route::get('/atlet/tambah', 'AtletController@create');
-Route::post('/atlet/tambah/save', 'AtletController@save');
+Route::post('/atlet/save', 'AtletController@save');
 
 Route::prefix("program")->group(function(){
 	Route::get('/', 'ProgramController@index');
@@ -57,6 +57,7 @@ Route::prefix("program")->group(function(){
 // Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');
 // Route::post('/program/mikro/save', 'ProgramController@savesiklusMikro');
 
+Route::post("/pilih-atlet", "ProgramController@simpanAtlet");
 
 Route::get('/olahraga', 'CaborController@index');
 Route::get('/pelatih', 'PelatihController@index');

@@ -21,391 +21,253 @@
             <div class="tab-pane active" id="deskripsi">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="card-title">Pilih Atlet</h4>
-                        <p class="category">Atlet yang akan mengikuti program latihan</p>
-                    </div>
-                    <div class="card-content">
-                    {{--  --}}
-                    <h4 class="text-center text-muted">Pilih Atlet dalam proses perancangan</h4>
-                  </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="pilihatlet">
-                <div class="card">
-                    <div class="card-header" data-background-color="purple">
-                        <h4 class="card-title">Pilih Atlet</h4>
-                        <p class="category">
-                            More information here
-                        </p>
-                    </div>
-                    <div class="card-content">
-                        Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                        <br>
-                        <br> Dramatically maintain clicks-and-mortar solutions without functional solutions.
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="prolat">
-                <div class="card">
-                    <div class="card-header" data-background-color="purple">
-                        <div class="pull-left">   
-                            <h4 class="title">Rancangan Program Latihan</h4> 
-                            <p class="category">
-                                Penyusunan siklus mikro dan sesi latihan tiap hari.
-                            </p>
+                        <div class="pull-left">
+                            <h4 class="card-title">Pilih Atlet</h4>
+                            <p class="category">Atlet yang akan mengikuti program latihan</p>
                         </div>
                         <div class="pull-right">
-                            <a href="/program"><i class="material-icons">add_circle</i></a>
+                            <a href="#" data-toggle="modal" data-target="#pilihAtlet"><i class="material-icons">add_circle</i></a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-content">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="panel panel-success">
-                                <div class="panel-body">
-                                    <form action="{{ url('/mikro/save') }}" method="post">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pelatih</label>
-                                                    <strong>Rene Albert</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Atlet</label>
-                                                    <strong>Taufik, Lin Dan, Kim Jeffry</strong>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Fase</label>
-                                                    <strong>Persiapan Umum</strong>
-                                                </div>
-                                            </div> --}}
-                                            {{-- <div class="col-md-4">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Bulan</label>
-                                                            <strong>Agustus</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Minggu</label>
-                                                          <strong>1</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Tanggal</label>
-                                                          <input class="form-control" name="tanggal" type="text"  data-provide="datepicker"/>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Tahapan</label>
-                                                            <input type="text" name="tahapan" class="form-control">
-                                                      </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Materi Latihan</label>
-                                                            <textarea class="form-control" name="materi_latihan" rows="2" cols="10"></textarea>
-                                                            <p class="help-block">Gunakan koma(,) untuk pemisah</p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                
-                                            </div>
-                                            <div class="col-md-4">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Pelatih</label>
-                                                          <strong>Rene Albert</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Atlet</label>
-                                                            <strong>Taufik, Lin Dan, Kim Jeffry</strong>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Intensitas</label>
-                                                          <div class="input-group">
-                                                            <input class="form-control" name="intensitas" type="number" min="1"/>
-                                                            <div class="input-group-addon">
-                                                                <i>%</i>
-                                                            </div>
-                                                        </div>
-                                                          
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                          <label class="control-label">Volume</label>
-                                                          <div class="input-group">
-                                                            <input class="form-control" name="volume" type="number" min="1"/>
-                                                            <div class="input-group-addon">
-                                                                <i>%</i>
-                                                            </div>
-                                                        </div>
-                                                          
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <ul class="list-unstyled">
-                                                    <li>&nbsp;</li>
-                                                    <li>&nbsp;</li>
-                                                    <li>&nbsp;</li>
-                                                    <li>&nbsp;</li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Intensitas Max</label>
-                                                            <textarea class="form-control" name="intensitas_max" rows="2" cols="10"></textarea>
-                                                            <p class="help-block">Gunakan koma(,) untuk pemisah</p>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Volume Max</label>
-                                                            <textarea class="form-control" name="volume_max" rows="2" cols="10"></textarea>
-                                                            <p class="help-block">Gunakan koma(,) untuk pemisah</p>
-                                                        </div>
-                                                    </li>
-                                                    <li>&nbsp;</li>
-                                                    <li>
-                                                    <div class="form-group label-floating">
-                                                            <label class="control-label">Kriteria</label>
-                                                        <div class="radio">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Rendah
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Sedang
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="kriteria_v_i"><span class="circle"></span><span class="check"></span> Berat
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    </li>
+                    {{--  --}}
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">&nbsp;
+                            <input type="text" class="pull-right col-md-6" id="cari_atlet" placeholder="Cari Atlet..">
 
-                                                </ul>
-                                            </div> --}}
-                                        </div>
-                                        <div class="row">
-                                            {{-- <div class="col-md-3">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Bulan</label>
-                                                    <select name="bulan" class="form-control">
-                                                        <option value="8">Agustus</option>
-                                                        <option value="9">September</option>
-                                                        <option value="10">Oktober</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
-                                            <div class="col-md-2">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pekan</label>
-                                                    <select name="pekan" class="form-control">
-                                                        <optgroup label="Agustus">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option> 
-                                                        </optgroup>
-                                                        <optgroup label="September">
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                        </optgroup>
-                                                        <optgroup label="Oktober">
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="11">11</option>
-                                                            <option value="12">12</option>
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Intensitas</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="intensitas" type="number" min="1"/>
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div> 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Volume</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="volume" type="number" min="1"/>
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div> 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button class="text-center btn btn-info" type="submit">Simpan</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Bulan/Pekan</th>
-                                            <th>Volume</th>
-                                            <th>Intensitas</th>
-                                            <th>Fase</th>
-                                            {{-- <th>Sesi Latihan</th> --}}
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                           {{--  <td colspan="7">
-                                                <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
-                                            </td> --}}
-                                            <td><a href="">Agustus/1</a></td>
-                                            <td>50%</td>
-                                            <td>35%</td>
-                                            <td>Persiapan Umum</td>
-                                            {{-- <td><a href="">Lihat</a></td> --}}
-                                            <td>
-                                                <a href=""><i class="material-icons">mode_edit</i></a> 
-                                                <a href=""><i class="material-icons">delete</i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-{{--                       <div class="col-md-3">
-                        Nama atlet
-                      </div> --}}
-{{--                         <div class="row col-md-2">
-                          <label for="hari">HARI</label> <br>
-                          <select name="Hari">
-                            <option value="">Pilih</option>
-                            <option value="senin">Senin</option>
-                            <option value="selasa">Selasa</option>
-                            <option value="rabu">Rabu</option>
-                            <option value="kamis">Kamis</option>
-                            <option value="jumat">Jumat</option>
-                            <option value="sabtu">Sabtu</option>
-                            <option value="minggu">Minggu</option>
-                          </select>
-                        </div> --}}
-
-                        {{-- <div class="row col-md-2">
-                          <label for="hari">SESI</label> <br>
-                          <select name="sesi">
-                            <option value="">Pilih</option>
-                            <option value="senin">Pagi</option>
-                            <option value="selasa">Siang</option>
-                            <option value="rabu">Sore</option>
-                          </select>
-                        </div>
-
-                        <div class="row col-md-2">
-                          <label for="hari">ITEM LATIHAN </label> <br>
-                          <select name="itemlatihan">
-                            <option value="">Pilih</option>
-                            <option value="senin">Lari</option>
-                            <option value="selasa">Sit Up</option>
-                            <option value="rabu">Back Up</option>
-                          </select>
-                        </div> --}}
-
-                        {{-- <div class="row">
-                          <button type="submit" class="btn btn-info">Tambah</button>
-                        </div> --}}
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="promak">
-                <div class="card">
-                    <div class="card-header" data-background-color="purple">
-                        <h4 class="card-title">Rancangan Program Makan</h4>
-                        <p class="category">
-                            More information here
-                        </p>
-                    </div>
-                    <div class="card-content">
-                      <div class="col-md-3">
-                        Nama atlet
+                        </h3>
                       </div>
-                        <div class="row col-md-2" style="margin-left:10px">
-                          <label for="hari">HARI</label> <br>
-                          <select name="Hari">
-                            <option value="">Pilih</option>
-                            <option value="senin">Senin</option>
-                            <option value="selasa">Selasa</option>
-                            <option value="rabu">Rabu</option>
-                            <option value="kamis">Kamis</option>
-                            <option value="jumat">Jumat</option>
-                            <option value="sabtu">Sabtu</option>
-                            <option value="minggu">Minggu</option>
-                          </select>
-                        </div>
+                      <div class="panel-body">
+                        
+                        @if (sizeof($program_atlet) === 0)
+                            <h4 class="text-center text-muted">Belum Memilih Atlet</h4>
+                        @else
+                            <ul class="list-inline">
 
-                        <div class="row col-md-2">
-                          <label for="hari">SESI</label> <br>
-                          <select name="sesi">
-                            <option value="">Pilih</option>
-                            <option value="pagi">Pagi</option>
-                            <option value="siang">Siang</option>
-                            <option value="sore">Sore</option>
-                          </select>
-                        </div>
+                                @foreach ($program_atlet as $program_atlet)
+                                    <li style=" border:1px solid #ddd">
+                                        <img src="{{ url('/uploads/sample-'.rand(1,3).".jpg") }}" alt="nama atlet" style="width: 74px;height: 76px; border:1.5px solid #bcbcbc" class="img-circle pull-left">
+                                        <span class="pull-left" style="margin: 5px 10px;">
+                                            <p>{{$program_atlet->atlet->nama}}</p>                             
+                                        </span>
+                                        <div class="dropdown pull-right">
+                                          <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-success btn-simple btn-xs">
+                                            <i class="material-icons">more_vert</i>
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                            <li><a href="">Asessment</a></li>
+                                            <li><a href="">Program Makan</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="{{ url('/program/'.$id_program.'/hapus-atlet/'.$program_atlet->atlet_id) }}">Remove</a></li>
+                                          </ul>
+                                        </div>
 
-                        <div class="row col-md-2">
-                          <label for="hari">ITEM MAKANAN</label> <br>
-                          <select name="itemlatihan">
-                            <option value="">Pilih</option>
-                            <option value="karbo">Karbohidrat</option>
-                            <option value="protein">Protein</option>
-                            <option value="sayur">Sayuran</option>
-                            <option value="buah">Buah</option>
-                          </select>
-                        </div>
-
-                        <div class="row">
-                          <button type="submit" class="btn btn-info">Tambah</button>
-                        </div>
+                                        
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        
+                      </div>
+                      <div class="panel-footer">
+                        <ul class="list-inline">
+                            <li> <small>Avg. Usia : </small></li>
+                            <li> <small>Avg. Berat Badan : </small></li>
+                            <li> <small>Avg. Berat Badan : </small></li>
+                        </ul>
+                       
+                      </div>
                     </div>
+                    
+                    
+                  </div>
                 </div>
             </div>
+            
+            
         </div>
     </div>
 </div>
 @endsection
 
 @push('style')
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
+<style>
+    #cari_atlet{
+        border:0.5px solid #ddd;
+        border-radius: 5px;
+    }
+    .list-inline{
+        margin-bottom: 0px;
+    }
+    .panel-body li{
+        margin-right: 5px;
+        padding-top:5px;
+        padding-bottom: 5px;
+        width:250px;
+    }
+    .list-inline li span .btn{
+        margin:0px;
+        margin-top: 10px;
+        padding:5px;
+    }
+    .dropdown button{
+        padding: 2px !important;
+        margin: 0px;
+    }
+    .dropdown ul{
+        width: 50%;
+    }
+    .dropdown ul li{
+        width: 100%;
+        padding:0px;
+    }
+    .dropdown ul li a{
+        padding:5px 8px;
+    }
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+}
+
+.pagination>li>a, .pagination>li>span {
+    border: 0 !important;
+    border-radius: 30px !important;
+    transition: all .3s;
+    padding: 0px 11px;
+    margin: 0 3px;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #999999;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: transparent;
+}
+
+.dataTables_filter{
+    float:right;
+    width: 100%;    
+}
+.dataTables_filter label{
+    display:block;
+}
+
+.dataTables_filter input{
+    width: 100% !important;
+}
+
+</style>
 @endpush
 
 @push('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#mulai').datepicker();
+<script src="{{ url('/js/jquery.datatables.js') }}"></script>
+<script type="text/javascript">
+    $(function() {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-Token': "{{ csrf_token() }}"
+        }
+      });
+    });
+    $(document).ready(function(){
+
+
+        $('#atlet').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [5, 10, 15, -1],
+                [5, 10, 15, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Cari..",
+            }
+
         });
-    </script>
+    });
+
+    $("button[rel='tooltip']").click(function(){
+    var id = $(this).data("id");
+    $.post("{{ url('/pilih-atlet') }}", {id:id, program_id:"{{ $id_program }}"})
+        .done(function(data){                
+            window.location.replace("{{ url('/program/'.$id_program.'/atlet') }}");
+        });
+    });
+</script>
 @endpush
+
+@push('modal')
+<div class="modal fade" id="pilihAtlet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+{{--       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Pilih Atlet</h4>
+      </div> --}}
+      <div class="modal-body">
+        <table class="table" id="atlet" data-page-length='5'>
+            <thead>
+                <tr>
+                    <th width="8%">#</th>
+                    <th width="90%">Profile</th>
+                    <th width="2%">Tambah</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($atlet as $atlet)
+                    <tr>
+                        <td width="8%">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="pilih_atlet" value="{{ $atlet->id }}">
+                                    
+                                </label>
+                            </div>
+                        </td>
+                        <td width="90%">
+                            <img src="{{ url('/uploads/sample-'.rand(1,3).".jpg") }}" alt="nama atlet" style="width: 50px;height: 50px; border:1.5px solid #bcbcbc; margin-right:10px" class="img-circle">
+                            <span style="font-size:1.15em; font-weight:bolder;">{{ucwords($atlet->nama)}}</span>
+                        </td>
+                        <td class="text-right"  width="2%">
+                            <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Pilih {{ ucwords($atlet->nama) }}" data-id="{{ $atlet->id }}">
+                                <i class="material-icons">person_add</i>
+                            </button>
+                            
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+        <button type="button" class="btn btn-primary" disabled="">Tambah</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endpush
+
+@if (null !== session("flash_message"))
+  @component("components.notifikasi")
+      @slot("pesan")
+          {{session("flash_message")}}
+      @endslot
+      @slot("status")
+          {{session("flash_status")}}
+      @endslot
+  @endcomponent
+@endif
+
+

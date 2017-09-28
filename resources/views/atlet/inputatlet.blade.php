@@ -2,11 +2,11 @@
 @section("content")
 
 <div class="container-fluid">
-  <div class="row">
+{{--   <div class="row">
       <div class="col-md-12">
         <h4><b>INPUT PROFIL ATLET</b></h4>
     </div>
-  </div>
+  </div> --}}
   <div class="row">
       <div class="col-md-8">
         <div class="card">
@@ -16,7 +16,7 @@
             <!-- <p class="category">Complete your profile</p> -->
           </div>
           <div class="card-content">
-            <form action="save" method="post">
+            <form action="{{ url('/atlet/save') }}" method="post">
               {{csrf_field()}}
 
               <div class="row">
@@ -50,8 +50,9 @@
                     <label class="control-label">Cabor</label>
                     <select class="form-control" name="cabor_Atlet" required="">
                       <option value="">Pilih</option>
-                      <option value="0">Voli</option>
-                      <option value="1">Bulutangkis</option>
+                      @foreach ($cabor as $cabang_olahraga)
+                        <option value="{{ $cabang_olahraga->id }}">{{ ucfirst($cabang_olahraga->nama) }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -63,7 +64,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      {{-- <div class="col-md-4">
       	<div class="card card-profile">
       		<div class="card-avatar">
       			<a href="#pablo">
@@ -79,7 +80,7 @@
       			<a href="#pablo" class="btn btn-primary btn-round">Follow</a>
       		</div>
       	</div>
-      </div>
+      </div> --}}
     </div>
 
 
