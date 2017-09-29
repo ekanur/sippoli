@@ -116,24 +116,25 @@ class ProgramController extends Controller
 
     public function pilihAtlet($id_program){
     	// $program = Program::findOrFail($id_program);
-        $atlet = Atlet::all();
+        $atlet = Atlet::doesntHave("program")->get();
         $program_atlet = Program::findOrFail($id_program);
-        // dd($program_atlet);
+        // dd($atlet);
     	return view("program.pilih_atlet", compact('atlet', "id_program", "program_atlet"));
     }
 
     public function simpanAtlet(Request $request){
-        $atlet = Program_atlet::where("atlet_id", $request->id)->get();
-            
-        if(sizeof($atlet) != null){
-            Session::flash("flash_message", "Terjadi kesalahan.");
-            Session::flash("flash_status", "danger");
-            return response()->json("error");
-        }
-        $program_atlet = new Program_atlet;
-        $program_atlet->program_id = $request->program_id;
-        $program_atlet->atlet_id = $request->id;
-        $program_atlet->save();
+        // $atlet = Program::findOrFail($request->program_id)->atlet()->wherePivot("atlet_id", $request->id)->get();
+
+        // if(sizeof($atlet) != null){
+        //     Session::flash("flash_message", "Terjadi kesalahan.");
+        //     Session::flash("flash_status", "danger");
+        //     return response()->json("error");
+        // }
+        $program_atlet = Program::findOrFail($request->program_id)->atlet()->attach($request->id);
+        // return response()->json($program_atlet);
+        // $program_atlet->program_id = $request->program_id;
+        // $program_atlet->atlet_id = $request->id;
+        // $program_atlet->save();
         Session::flash("flash_message", "Berhasil memilih atlet.");
         Session::flash("flash_status", "success");
         return response()->json("success");

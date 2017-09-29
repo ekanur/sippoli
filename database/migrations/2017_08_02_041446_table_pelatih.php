@@ -15,6 +15,7 @@ class TablePelatih extends Migration
     {
         Schema::create('pelatih', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer("cabor_id");
             $table->string('nama',45);
             $table->string('email',45);
             $table->string('password',45);

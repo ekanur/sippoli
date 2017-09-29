@@ -17,7 +17,6 @@ class TableCabor extends Migration
             $table->increments('id');
             $table->string('nama',45);
             $table->string('kategori',45);
-            $table->integer("pelatih_id");
             $table->timestamps();
             $table->softDeletes();
         });

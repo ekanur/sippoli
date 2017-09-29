@@ -11,7 +11,7 @@ class Atlet extends Model
 
     public function program(){
     	// return $this->belongsToMany("App\Program", "program_atlet", "atlet_id", "program_id");
-    	return $this->belongsToMany("App\Program")->using("App\Program_atlet");
+    	return $this->belongsToMany("App\Program", "program_atlet")->using("App\Program_atlet");
     }
 
     public function pelatih(){

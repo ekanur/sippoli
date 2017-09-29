@@ -200,7 +200,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     $("button[rel='tooltip']").click(function(){
     var id = $(this).data("id");
     $.post("{{ url('/pilih-atlet') }}", {id:id, program_id:"{{ $id_program }}"})
-        .done(function(data){                
+        .done(function(data){
+            // console.log(data);                
             window.location.replace("{{ url('/program/'.$id_program.'/atlet') }}");
         });
     });
