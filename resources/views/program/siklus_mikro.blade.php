@@ -84,21 +84,13 @@
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Pekan</label>
-                                                    <select name="pekan" class="form-control">
-                                                      {{-- <optgroup label="Agustus"> --}}
-                                                        @if (isset($detail_siklus_mikro))
-                                                          @for ($i = 1; $i < $jmlpekan; $i++)
-                                                            <option value="{{$i}}" @if ($detail_siklus_mikro->pekan_ke == $i)
-                                                              selected
-                                                            @endif>{{$i}}</option>
-                                                          @endfor
-                                                        @else
-                                                          @for ($i = 1; $i < $jmlpekan; $i++)
-                                                            <option value="{{$i}}">{{$i}}</option>
-                                                          @endfor
-                                                        @endif
-                                                      {{-- </optgroup> --}}
-                                                    </select>
+                                                  <div class="input-group">
+                                                        <input class="form-control" name="pekan" type="number" min="1" readonly="" @if(isset($detail_siklus_mikro)) value="{{ $detail_siklus_mikro->pekan_ke }}"  @endif/>
+                                                        <div class="input-group-addon">
+                                                            <i>%</i>
+                                                        </div>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-md-2">

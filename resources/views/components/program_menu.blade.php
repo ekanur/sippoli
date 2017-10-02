@@ -32,7 +32,7 @@
                     </a>
                     @endif                    
                 </li>
-{{--                 <li @if (Request::is('program/*/makanan') || Request::is('program/*/makanan/*')) class="active"  @endif>
+                <li @if (Request::is('program/*/makanan') || Request::is('program/*/makanan/*')) class="active"  @endif>
                     @if (isset($id_program)) 
                       <a href="{{ url('/program/'.$id_program.'/makanan') }}" role="tab">
                         <i class="material-icons">restaurant</i>Program Makan
@@ -42,5 +42,5 @@
                         <i class="material-icons">restaurant</i>Program Makan
                     </a>
                     @endif                  
-                </li> --}}
+                </li>
             </ul>
