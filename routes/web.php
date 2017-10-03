@@ -54,6 +54,7 @@ Route::prefix("program")->group(function(){
 
 	Route::post('/{id_program}/mikro/simpan', 'SiklusMikroController@savesiklusMikro');
 	Route::post('/sesi-latihan/simpan', 'SesiLatihanController@simpanSesiLatihan');
+	Route::post('/program-makan/simpan', 'ProgramMakan@simpan');
 	// Route::post("/menu-latihan/simpan", 'ProgramLatihanController@simpan');
 });
 // Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');

@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 text-center">
-        <a href="/atlet/tambah/" class="btn btn-primary btn-round" style="margin: 20px auto">Tambah Atlet</a>
+        <a href="/atlet/tambah/" class="btn btn-success btn-round" style="margin: 20px auto 50px auto">Tambah Atlet</a>
       </div>
       @forelse ($atlet as $atlet)
           <div class="col-md-4">

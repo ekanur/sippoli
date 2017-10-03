@@ -26,7 +26,52 @@
                     </div>
                     <div class="card-content">
                     {{--  --}}
-                    <h4 class="text-center text-muted">Program Makanan dalam proses perancangan</h4>
+                    <form action="{{ url('/program/program-makan/simpan') }}" method="post">
+                        <input type="hidden" name="id_program" value="{{ $id_program }}">
+                        {{ csrf_field() }}
+                        <div class="row">
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Persiapan Umum</label>
+                                  <input id="persiapan_umum" class="form-control" name="persiapan_umum" type="number" min="1" required="">
+                                  <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
+                              <span class="material-input"></span></div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Persiapan Khusus</label>
+                                  <input id="persiapan_khusus" class="form-control" name="persiapan_khusus" type="number" required="" min="1">
+                                  <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
+                              <span class="material-input"></span></div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Pra Kompetisi</label>
+                                  <input id="pra_kompetisi" class="form-control" required="" name="pra_kompetisi" type="number" min="1">
+                                  <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
+                              <span class="material-input"></span></div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Kompetisi</label>
+                                  <input id="kompetisi" class="form-control" required="" name="kompetisi" type="number" min="1">
+                                  <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
+                              <span class="material-input"></span></div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <label class="control-label">Transisi</label>
+                                  <input class="form-control" required="" name="transisi" type="number" min="1">
+                                  <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
+                              <span class="material-input"></span></div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group label-floating">
+                                  <button type="submit" name="simpan" class="btn btn-info">Simpan</button>
+                              <span class="material-input"></span></div>
+                          </div>
+                      </div>
+                      </form>
                   </div>
                 </div>
             </div>
