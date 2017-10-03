@@ -12,7 +12,7 @@ class Pelatih extends Model
     }
 
     public function cabor(){
-    	return $this->hasMany("App\Cabor");
+    	return $this->belongsTo("App\Cabor");
     }
 
     public function list_makanan(){

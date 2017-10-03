@@ -27,9 +27,6 @@
             <br>
             <p>{!! $latihan->deskripsi !!}</p>
             <br>
-            <center>
-              <a href="/latihan" type="button" class="btn btn-warning">Kembali</a>
-            </center>
           </div>
         </div>
       </div>

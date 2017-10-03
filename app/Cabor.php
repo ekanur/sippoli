@@ -12,6 +12,6 @@ class Cabor extends Model
     }
 
     public function pelatih(){
-    	return $this->belongsTo("App\Pelatih");
+    	return $this->hasMany("App\Pelatih");
     }
 }

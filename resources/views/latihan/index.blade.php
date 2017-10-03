@@ -1,17 +1,3 @@
-<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script>
-$(document).ready(function()
-{
-    $("button").click(function()
-    {
-        $("#delete_item_id").val( $('p').get(0).id );
-        $('#delete_confirmation_modal').modal('show');
-    });
-});
-</script> -->
 @extends('layout')
 
 @push('style')
@@ -166,16 +152,15 @@ $(document).ready(function()
       	<div class="card">
           <div class="card-header" data-background-color="purple">
             <h4 class="title">Tambah Latihan</h4>
-            {{-- <p class="category">Lorem ipsum dolor sit amet</p> --}}
           </div>
           <div class="card-content">
-            <div class="form-group label-floating">
+<!--             <div class="form-group label-floating">
               <label class="control-label">Kategori Latihan</label>
               <select class="form-control" name="cateogry">
                 <option value="Metode Latihan Fisik">Latihan Fisik</option>
                 <option value="Metode Latihan Cabor Or">Latihan Cabor</option>
               </select>
-            </div>
+            </div> -->
             <div class="text-center">
               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#tambahLatihan">Tambah</button>
             </div>
@@ -204,28 +189,23 @@ $(document).ready(function()
                   </div>
                   <div class="form-group label-floating col-md-3">
                     <label class="control-label">Kategori Latihan</label>
-                    <select class="form-control" name="cateogryLatihan">
-                      <option value="Metode Latihan Fisik">Latihan Fisik</option>
-                      <option value="Metode Latihan Cabor Or">Latihan Cabor</option>
+                    <select class="form-control" name="cateogryLatihan" required="">
+                      <option value="Latihan Fisik">Latihan Fisik</option>
+                      <option value="Latihan Cabor">Latihan Cabor</option>
                     </select>
                   </div>
                   <div class="form-group label-floating col-md-3">
                     <label class="control-label">Cabang Olahraga</label>
-                    <select class="form-control" name="cabor_id">
-                      <option value="1">Anggar</option>
-                      <option value="2">Bisbol</option>
-                      <option value="3">Bola Voli</option>
-                      <option value="4">Boling</option>
+                    <select class="form-control" name="cabor_id" required="">
+                      @foreach($cabor as $cabor)
+                        <option value={{ $cabor->id }}>{{ ucwords($cabor->nama) }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
                 <div class="form-group label-floating">
                   <label class="control-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi_Latihan" rows="6" cols="80"></textarea>
-                </div>
-                <div class="form-group label-floating">
-                  <label class="control-label">Link Video Latihan</label>
-                  <input class="form-control" type="text" name="video_Latihan" value="">
+                  <textarea class="form-control" name="deskripsi_latihan" rows="6" cols="80"></textarea>
                 </div>
                 <div class="text-right">
                   <button class="btn btn-success btn-sm" type="submit">Tambah</button>
@@ -261,8 +241,8 @@ $(document).ready(function()
                   <div class="form-group label-floating col-md-3">
                     <label class="control-label">Kategori Latihan</label>
                     <select class="form-control" name="cateogryLatihan">
-                      <option value="Metode Latihan Fisik">Latihan Fisik</option>
-                      <option value="Metode Latihan Cabor Or">Latihan Cabor</option>
+                      <option value="Latihan Fisik">Latihan Fisik</option>
+                      <option value="Latihan Cabor">Latihan Cabor</option>
                     </select>
                   </div>
                   <div class="form-group label-floating col-md-3">
@@ -277,14 +257,10 @@ $(document).ready(function()
                 </div>
                 <div class="form-group label-floating">
                   <label class="control-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi_Latihan" rows="6" cols="80"></textarea>
-                </div>
-                <div class="form-group label-floating">
-                  <label class="control-label">Link Video Latihan</label>
-                  <input class="form-control" type="text" name="video_Latihan" value="">
+                  <textarea class="form-control" name="deskripsi_latihan" rows="6" cols="80"></textarea>
                 </div>
                 <div class="text-right">
-                  <button class="btn btn-success btn-sm" type="submit">Simpan Perubahan ?</button>
+                  <button class="btn btn-success btn-sm" type="submit">Simpan</button>
                 </div>
               </form>
             </div>
@@ -305,6 +281,16 @@ $(document).ready(function()
   </div>
 
 @endsection
+  @if (null !== session("flash_message"))
+      @component("components.notifikasi")
+          @slot("pesan")
+              {{session("flash_message")}}
+          @endslot
+          @slot("status")
+              {{session("flash_status")}}
+          @endslot
+      @endcomponent
+  @endif
 
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
@@ -326,7 +312,7 @@ $(document).ready(function()
   <script type="text/javascript" src="{{ url('/js/tinymce/tinymce.min.js') }}"></script>
   <script type="text/javascript">
     tinymce.init({
-      selector: 'textarea[name="deskripsi_latihan"]',
+      selector: 'textarea',
       height:300,
       plugins: [
         'media image'
@@ -338,3 +324,5 @@ $(document).ready(function()
     });
   </script>
 @endpush
+
+

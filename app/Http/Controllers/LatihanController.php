@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\List_latihan;
+use App\Cabor;
+use Session;
 
 class LatihanController extends Controller
 {
     public function index(){
       $daftardariPelatih=List_latihan::where('pelatih_id',1)->get();
       $daftarsemuaLatihan=List_latihan::all();
-      return view('latihan.index', compact('daftarsemuaLatihan','daftardariPelatih'));
+      $cabor = Cabor::all();
+      return view('latihan.index', compact('daftarsemuaLatihan','daftardariPelatih', 'cabor'));
     }
 
     public function detail($id){
@@ -24,7 +27,7 @@ class LatihanController extends Controller
        $kategoriLatihan=$masuk->cateogryLatihan;
        $deskripsiLatihan=$masuk->deskripsi_latihan;
        // $linkVideo=$masuk->video_Latihan;
-       $caborLatihan=$masuk->cabor_id;
+       // $caborLatihan=$masuk->cabor_id;
       // $caborLatihan=intval(round($caborLatihan));
 
       $tambahLatihan = new List_latihan;
@@ -33,12 +36,11 @@ class LatihanController extends Controller
       $tambahLatihan->deskripsi=$deskripsiLatihan;
       // $tambahLatihan->video=$linkVideo;
       $tambahLatihan->pelatih_id='1';
-      $tambahLatihan->cabor_id=1;
+      $tambahLatihan->cabor_id=$masuk->cabor_id;
       $tambahLatihan->save();
-      return redirect()->back()->with([
-          'alert'=>'item berhasil ditambahkan',
-          'tipe'=>'success'
-      ]);
+      Session::flash("flash_message", "Berhasil menambahkan latihan");
+      Session::flash("flash_status", "success");
+      return redirect()->back();
       // return redirect()->back()->with('sukses_tambah_latihan', $tambahLatihan->nama=$namaLatihan);
     }
 
