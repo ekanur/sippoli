@@ -26,48 +26,32 @@
           </div>
           <div class="card-content">
             <table class="table">
+              <thead>
+                <tr>
+                    <th align="center">#</th>
+                    <th align="center">Nama Makanan</th>
+                    <th align="center">Kategori</th>
+                    <th align="center">Kalori</th>
+                </tr>
+              </thead>
               <tbody>
+                @php
+                  $i=1;
+                @endphp
+                @forelse($list_makanan as $list_makanan)
+                  <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $list_makanan->nama }}</td>
+                    <td>{{ $list_makanan->kategori }}</td>
+                    <td>{{ $list_makanan->kalori }}</td>
+                  </tr>
+                @empty
                 <tr>
-                    <th align="center" rowspan="2">No.</th>
-                    <th align="center" rowspan="2">Nama Makanan</th>
-                    <th align="center" rowspan="2">Kategori</th>
-                    <th align="center" colspan="6" >Informasi Nilai Gizi </th>
+                  <td colspan="4">
+                    <h4 class="text-center text-muted">Makanan tidak tersedia.</h4>
+                  </td>
                 </tr>
-                <tr>
-                  <th align="center">Kalori(g)</th>
-                  <th align="center">Lemak(g)</th>
-                  <th align="center">Protein(g)</th>
-                  <th align="center">Karbohidrat(g)</th>
-                  <th align="center">Kalsium(g)</th>
-                  <th align="center">Natrium(g)</th>
-                </tr>
-
-
-                <tr>
-                  <td align="center">1</td>
-                  <td align="center">Apel</td>
-                  <td align="center">Buah - buahan</td>
-                  <td align="center">10</td>
-                  <td align="center">10</td>
-                  <td align="center">10</td>
-                  <td align="center">80</td>
-                  <td align="center">10</td>
-                  <td align="center">10</td>
-                </tr>
-
-                <tr>
-                  <td align="center">2</td>
-                  <td align="center">Nasi</td>
-                  <td align="center">Karbohidrat</td>
-                  <td align="center">10</td>
-                  <td align="center">30</td>
-                  <td align="center">80</td>
-                  <td align="center">90</td>
-                  <td align="center">10</td>
-                  <td align="center">10</td>
-                </tr>
-
-
+                @endforelse
 
 
               </tbody>
@@ -83,55 +67,27 @@
             <!-- <p class="category">Lorem ipsum dolor sit amet</p> -->
           </div>
           <div class="card-content">
-            <form action="/list_makanan/tambah" method="post">
+            <form action="/makanan/simpan" method="post">
+              {{ csrf_field() }}
               <div class="form-group label-floating">
                 <label class="control-label">Nama Makanan</label>
-                <input class="form-control" type="text" name="name" value="" required>
+                <input class="form-control" type="text" name="nama" value="" required>
               </div>
               <div class="form-group label-floating">
                 <label class="control-label">Kategori Makanan</label>
-                <select class="form-control" name="cateogry">
-                  <option value="Karbohidrat">Karbohidrat</option>
-                  <option value="Protein">Protein</option>
-                  <option value="Sayur-sayuran">Sayur-sayuran</option>
-                  <option value="Buah-buahan">Buah-buahan</option>
-                  <option value="Buah-buahan">Susu</option>
+                <select class="form-control" name="kategori">
+                  <option value="karbohidrat">Karbohidrat</option>
+                  <option value="protein">Protein</option>
+                  <option value="lemak">Lemak</option>
+                  <option value="vitamin">Vitamin</option>
+                  <option value="mineral">Mineral</option>
+                  <option value="air">Air</option>
                 </select>
               </div>
-
-              <h4>Informasi Nilai Gizi</h4>
               <div class="form-group label-floating">
                 <label class="control-label">Kalori</label>
-                <input class="form-control" type="text" name="name" value="" required>
+                <input class="form-control" type="number" name="kalori" value="" min=1 required>
               </div>
-
-              <div class="form-group label-floating">
-                <label class="control-label">Lemak</label>
-                <input class="form-control" type="text" name="name" value="" required>
-              </div>
-
-              <div class="form-group label-floating">
-                <label class="control-label">protein</label>
-                <input class="form-control" type="text" name="name" value="" required>
-              </div>
-
-              <div class="form-group label-floating">
-                <label class="control-label">karbohidrat</label>
-                <input class="form-control" type="text" name="name" value="" required>
-              </div>
-
-              <div class="form-group label-floating">
-                <label class="control-label">Kalsium</label>
-                <input class="form-control" type="text" name="name" value="" required>
-              </div>
-
-              <div class="form-group label-floating">
-                <label class="control-label">Natrium</label>
-                <input class="form-control" type="text" name="name" value="" required>
-              </div>
-
-
-
               <div class="text-right">
                 <button class="btn btn-success btn-sm" type="submit">Tambah</button>
               </div>

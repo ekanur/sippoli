@@ -64,7 +64,7 @@ Route::post("/pilih-atlet", "ProgramController@simpanAtlet");
 
 Route::get('/olahraga', 'CaborController@index');
 Route::get('/pelatih', 'PelatihController@index');
-Route::get('/list_makanan','ListMakananController@index');
+Route::get('/makanan','ListMakananController@index');
 Route::get('/latihan', 'LatihanController@index');
 Route::post('/latihan/tambah','LatihanController@save');
 
@@ -74,3 +74,5 @@ Route::get('/latihan/hapus/{id_latihan}','LatihanController@hapus');
 Route::get('/latihan/{id}/edit', 'LatihanController@edit');
 Route::post('/latihan/update', 'LatihanController@update');
 Route::get('/evaluasi', 'EvaluasiController@index');
+
+Route::post("/makanan/simpan", "ListMakananController@simpan");

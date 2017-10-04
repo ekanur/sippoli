@@ -9,6 +9,7 @@ use App\Siklus_mikro ;
 use App\Sesi_latihan;
 use App\Atlet;
 use App\Program_atlet;
+use App\Kebutuhan_energi;
 use DateTime;
 use Session;
 
@@ -152,7 +153,9 @@ class ProgramController extends Controller
 
     public function programMakanan($id_program){
     	// $program = Program::findOrFail($id_program);
-    	return view("program.makanan", compact('id_program'));
+        $kebutuhan_energi = Kebutuhan_energi::where("program_id", $id_program)->first();
+        // dd(intval(json_decode($kebutuhan_energi->json_kebutuhan_per_siklus_makro)->persiapan_umum));
+    	return view("program.makanan", compact('id_program', 'kebutuhan_energi'));
     }
 
 

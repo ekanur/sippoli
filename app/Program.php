@@ -22,4 +22,8 @@ class Program extends Model
     public function sesi_latihan(){
     	return $this->hasMany("App\Sesi_latihan");
     }
+
+    public function program(){
+        return $this->hasMany("App\Kebutuhan_energi");
+    }
 }

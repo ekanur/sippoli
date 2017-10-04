@@ -35,11 +35,11 @@
                 <li @if (Request::is('program/*/makanan') || Request::is('program/*/makanan/*')) class="active"  @endif>
                     @if (isset($id_program)) 
                       <a href="{{ url('/program/'.$id_program.'/makanan') }}" role="tab">
-                        <i class="material-icons">restaurant</i>Program Makan
+                        <i class="material-icons">flash_on</i>Kebutuhan Energi
                       </a>
                     @else
                     <a href="{{ url('/program/baru') }}" role="tab">
-                        <i class="material-icons">restaurant</i>Program Makan
+                        <i class="material-icons">flash_on</i>Kebutuhan Energi
                     </a>
                     @endif                  
                 </li>

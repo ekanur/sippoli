@@ -281,16 +281,6 @@
   </div>
 
 @endsection
-  @if (null !== session("flash_message"))
-      @component("components.notifikasi")
-          @slot("pesan")
-              {{session("flash_message")}}
-          @endslot
-          @slot("status")
-              {{session("flash_status")}}
-          @endslot
-      @endcomponent
-  @endif
 
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">

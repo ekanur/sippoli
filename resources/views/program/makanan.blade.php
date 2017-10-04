@@ -21,47 +21,47 @@
             <div class="tab-pane active" id="deskripsi">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="card-title">Program Makanan</h4>
-                        <p class="category">Pengaturan Program Makanan</p>
+                        <h4 class="card-title">Kebutuhan Energi</h4>
+                        <p class="category">Besar energi (kalori) yang dibutuhkan pada tiap siklus.</p>
                     </div>
                     <div class="card-content">
                     {{--  --}}
-                    <form action="{{ url('/program/program-makan/simpan') }}" method="post">
-                        <input type="hidden" name="id_program" value="{{ $id_program }}">
+                    <form @if (isset($kebutuhan_energi)) action="{{ url('/program/program-makan/update') }}" @else action="{{ url('/program/program-makan/simpan') }}" @endif method="post">
+                        <input type="hidden" name="program_id" value="{{ $id_program }}">
                         {{ csrf_field() }}
                         <div class="row">
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Umum</label>
-                                  <input id="persiapan_umum" class="form-control" name="persiapan_umum" type="number" min="1" required="">
+                                  <input id="persiapan_umum" class="form-control" name="persiapan_umum" type="number" min="1" required="" @isset ($kebutuhan_energi) value="{{ json_decode($kebutuhan_energi->json_kebutuhan_per_siklus_makro)->persiapan_umum }}" @endisset>
                                   <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
                               <span class="material-input"></span></div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Persiapan Khusus</label>
-                                  <input id="persiapan_khusus" class="form-control" name="persiapan_khusus" type="number" required="" min="1">
+                                  <input id="persiapan_khusus" class="form-control" name="persiapan_khusus" type="number" required="" min="1" @isset ($kebutuhan_energi) value="{{ json_decode($kebutuhan_energi->json_kebutuhan_per_siklus_makro)->persiapan_khusus }}" @endisset>
                                   <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
                               <span class="material-input"></span></div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Pra Kompetisi</label>
-                                  <input id="pra_kompetisi" class="form-control" required="" name="pra_kompetisi" type="number" min="1">
+                                  <input id="pra_kompetisi" class="form-control" required="" name="pra_kompetisi" type="number" min="1"  @isset ($kebutuhan_energi) value="{{ json_decode($kebutuhan_energi->json_kebutuhan_per_siklus_makro)->pra_kompetisi }}" @endisset>
                                   <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
                               <span class="material-input"></span></div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Kompetisi</label>
-                                  <input id="kompetisi" class="form-control" required="" name="kompetisi" type="number" min="1">
+                                  <input id="kompetisi" class="form-control" required="" name="kompetisi" type="number" min="1"  @isset ($kebutuhan_energi) value="{{ json_decode($kebutuhan_energi->json_kebutuhan_per_siklus_makro)->kompetisi }}" @endisset>
                                   <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
                               <span class="material-input"></span></div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Transisi</label>
-                                  <input class="form-control" required="" name="transisi" type="number" min="1">
+                                  <input class="form-control" required="" name="transisi" type="number" min="1"  @isset ($kebutuhan_energi) value="{{ json_decode($kebutuhan_energi->json_kebutuhan_per_siklus_makro)->transisi }}" @endisset>
                                   <small class="help-block">Energi yang dibutuhkan (Kalori)</small>
                               <span class="material-input"></span></div>
                           </div>

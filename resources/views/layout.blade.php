@@ -95,6 +95,12 @@
 	                			<p>Latihan</p>
 	                	</a>
 	                </li>
+	                <li @if (Request::is("makanan") || Request::is("makanan/*")) class="active" @endif>
+	                	<a href='{{ url('/makanan') }}'>
+	                			<i class="material-icons">restaurant</i>
+	                			<p>Makanan</p>
+	                	</a>
+	                </li>
 	            </ul>
 	    	</div>
 		</div>
@@ -127,6 +133,16 @@
 
 	        <div class="content">
 				@yield("content")
+				@if (null !== session("flash_message"))
+			      @component("components.notifikasi")
+			          @slot("pesan")
+			              {{session("flash_message")}}
+			          @endslot
+			          @slot("status")
+			              {{session("flash_status")}}
+			          @endslot
+			      @endcomponent
+			 	@endif
 	    	</div>
 
 			<footer class="footer">
@@ -191,16 +207,7 @@
 	<script src="{{ asset('js/jquery.confirm.js') }}"></script>
   @stack("script")
 
-  @if (null !== session("flash_message"))
-	    @component("components.notifikasi")
-	        @slot("pesan")
-	            {{session("flash_message")}}
-	        @endslot
-	        @slot("status")
-	            {{session("flash_status")}}
-	        @endslot
-	    @endcomponent
-	@endif
+
 
 	@if (session('alert'))
 		<script type="text/javascript">

@@ -260,15 +260,6 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 </div>
 @endpush
 
-@if (null !== session("flash_message"))
-  @component("components.notifikasi")
-      @slot("pesan")
-          {{session("flash_message")}}
-      @endslot
-      @slot("status")
-          {{session("flash_status")}}
-      @endslot
-  @endcomponent
-@endif
+ 
 
 
