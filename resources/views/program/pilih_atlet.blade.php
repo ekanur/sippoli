@@ -57,8 +57,8 @@
                                             <i class="material-icons">more_vert</i>
                                           </button>
                                           <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                            <li><a href="">Asessment</a></li>
-                                            <li><a href="">Program Makan</a></li>
+                                            <li><a href="{{ url('/program/'.$id_program.'/assessment/'.$program_atlet->id) }}">Assessment</a></li>
+                                            <li><a href="{{ url('/program/'.$id_program.'/program-makan/'.$program_atlet->id) }}">Program Makan</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="{{ url('/program/'.$id_program.'/hapus-atlet/'.$program_atlet->id) }}">Remove</a></li>
                                           </ul>

@@ -54,12 +54,14 @@ Route::prefix("program")->group(function(){
 
 	Route::post('/{id_program}/mikro/simpan', 'SiklusMikroController@savesiklusMikro');
 	Route::post('/sesi-latihan/simpan', 'SesiLatihanController@simpanSesiLatihan');
-	Route::post('/program-makan/simpan', 'ProgramMakan@simpan');
-	// Route::post("/menu-latihan/simpan", 'ProgramLatihanController@simpan');
+
+	Route::get("/{id_program}/program-makan/{atlet_id}", "ProgramMakan@index");
+	Route::get("/{id_program}/assessment/{atlet_id}", "AssessmentAtlet@index");
 });
 // Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');
 // Route::post('/program/mikro/save', 'ProgramController@savesiklusMikro');
-
+Route::post('/kebutuhan-energi/simpan', 'KebutuhanEnergi@simpan');
+Route::post('/kebutuhan-energi/update', 'KebutuhanEnergi@update');
 Route::post("/pilih-atlet", "ProgramController@simpanAtlet");
 
 Route::get('/olahraga', 'CaborController@index');

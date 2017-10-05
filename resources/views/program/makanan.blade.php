@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-content">
                     {{--  --}}
-                    <form @if (isset($kebutuhan_energi)) action="{{ url('/program/program-makan/update') }}" @else action="{{ url('/program/program-makan/simpan') }}" @endif method="post">
+                    <form @if (isset($kebutuhan_energi)) action="{{ url('/kebutuhan-energi/update') }}" @else action="{{ url('/kebutuhan-energi/simpan') }}" @endif method="post">
                         <input type="hidden" name="program_id" value="{{ $id_program }}">
                         {{ csrf_field() }}
                         <div class="row">
