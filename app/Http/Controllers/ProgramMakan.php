@@ -11,6 +11,7 @@ use App\Atlet;
 class ProgramMakan extends Controller
 {
    public function index($id_program, $atlet_id){
+   	// $program = Program_makanan::with("program")->findOrFail($id_program);
     return view("atlet.menumakan");
    }
 }

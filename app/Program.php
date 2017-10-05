@@ -23,7 +23,7 @@ class Program extends Model
     	return $this->hasMany("App\Sesi_latihan");
     }
 
-    public function program(){
+    public function kebutuhan_energi(){
         return $this->hasMany("App\Kebutuhan_energi");
     }
 }

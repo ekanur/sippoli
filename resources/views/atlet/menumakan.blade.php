@@ -4,6 +4,7 @@
 	.label.label-default{
 		background-color: #7b7b7b !important;
 	}
+    .label a{color:white;}
 </style>
 @endpush
 @section("content")
@@ -60,9 +61,20 @@
                                                 <td>
                                                 	<ul class="list-inline">
                                                 		<li><a href=""><span class="label label-default">Lemper 4gr</span></a></li>
-                                                		<li><a href=""><span class="label label-info">Krupuk 6gr</span></a></li>
-                                                		<li><a href=""><span class="label label-success">Nasi Goreng 6gr</span></a></li>
-                                                		<li class="pull-right"><a href="" class="">
+                                                		<li>
+                                                            <span class="label label-info">
+                                                                <a href="">Krupuk 6gr</a>
+                                                            <a href=""><i class="material-icons" style="font-size:1.25em">mode_edit</i></a> 
+                                                            <a href=""><i class="material-icons" style="font-size:1.25em">clear</i></a>
+                                                            </span> 
+
+                                                        </li>
+                                                		<li><span class="label label-success"><a href="">Nasi Goreng 6gr</a>
+                                                            <a href=""><i class="material-icons" style="font-size:1.25em">mode_edit</i></a> 
+                                                            <a href=""><i class="material-icons" style="font-size:1.25em">clear</i></a> 
+                                                            
+                                                        </span></li>
+                                                		<li class="pull-left" style="margin-top:10px"><a href="" class="">
                                                 		<i class="material-icons" style="font-size:1.25em">add</i> Tambah
                                                 	</a></li>
                                                 	</ul>
