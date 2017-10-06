@@ -27,4 +27,10 @@ class ListMakananController extends Controller
 
     	return redirect()->back();
     }
+
+    public function getFromKategori($kategori){
+        $list_makanan = List_makanan::where("kategori", $kategori)->get();
+
+        return response()->json($list_makanan);
+    }
 }

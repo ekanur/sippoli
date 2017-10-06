@@ -13,12 +13,16 @@ class TableProgramMakanan extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('program_makanan');
         Schema::create('program_makanan', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('program_id');
-            $table->integer('list_makanan_id');
             $table->date('tanggal');
-            $table->string('waktu',15);
+            $table->enum('waktu', ['pagi', 'siang', 'malam']);
+            $table->integer('program_id');
+            $table->integer('atlet_id');
+            $table->integer('list_makanan_id');
+            $table->float('qty');
+            $table->float('total_kalori');
             $table->softDeletes();
             $table->timestamps();
         });
