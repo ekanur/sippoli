@@ -11,239 +11,59 @@
 @section("content")
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header" data-background-color="purple">
-						<h4 class="card-title">Program Makan - Sesi Persiapan Umum</h4>
-                    	<p class="category">{{ $date_range["persiapan_umum"][0] }} s.d {{ $date_range["persiapan_umum"][sizeof($date_range["persiapan_umum"])-1] }}</p>
-                </div>
                 <div class="card-content">
-                    <table class="table">
-                        <thead>
-                            <tr style="font-weight: bolder">
-                            	<th width="2%">#</th>
-                            	<th width="10%">Tanggal</th>
-                            	<th width="20%">Pagi</th>
-                            	<th width="20%">Siang</th>
-                            	<th width="20%">Malam</th>
-                            	<th width="10%">Kalori</th>
-                        	</tr>
-                        </thead>
-                        <tbody>
-                        	@php
-                        		$i=1;
-                                $x=0;
-                                
-                        	@endphp
-                        	@foreach ($date_range["persiapan_umum"] as $persiapan_umum)
-                                
-                        	<tr>
-                                <td>{{$i++}}</td>
-                                <td>{{ $persiapan_umum }}</td>
-                                <td>
-                                    @php
-                                    $total_kalori_pagi = 0;
-                                    @endphp
-                                    @if(isset($data_program_makan[$persiapan_umum][$x]) && $data_program_makan[$persiapan_umum][$x]->waktu == 'pagi')
-                                    <ul class="list-inline">
-
-                                        @foreach($data_program_makan[$persiapan_umum] as $menu_persiapan_umum)
-                                            <li>
-                                                @component('components.label_makan')
-                                                    @slot('id')
-                                                    {{ $menu_persiapan_umum->id }}
-                                                    @endslot
-                                                    
-                                                    @slot('kategori')
-                                                    {{ $menu_persiapan_umum->list_makanan->kategori }}
-                                                    @endslot
-
-                                                    @slot('nama')
-                                                    {{ $menu_persiapan_umum->list_makanan->nama }}
-                                                    @endslot
-
-                                                    @slot('kalori')
-                                                    {{ $menu_persiapan_umum->list_makanan->kalori }}
-                                                    @endslot
-
-                                                    @slot('qty')
-                                                    {{ $menu_persiapan_umum->qty }}
-                                                    @endslot
-
-                                                    @slot('total_kalori')
-                                                    {{ $menu_persiapan_umum->total_kalori }}
-                                                    @endslot
-                                                    @slot('kategori_makanan')
-                                                        {{ $label_kategori[$menu_persiapan_umum->list_makanan->kategori] }}
-                                                    @endslot
-                                                    {{ $menu_persiapan_umum->list_makanan->nama }} {{ $menu_persiapan_umum->qty }}
-                                                    @if($menu_persiapan_umum->list_makanan->kategori == 'mineral' || $menu_persiapan_umum->list_makanan->kategori == 'air') liter
-                                                    @else 
-                                                        gram
-                                                    @endif
-                                                @endcomponent 
-
-                                            </li>
-                                            @php
-                                            $total_kalori_pagi = $total_kalori_pagi + $menu_persiapan_umum->total_kalori;
-                                            $x++;
-                                            @endphp
-                                        @endforeach
-                                            <li class="pull-left" style="margin-top:10px">
-                                                <a href="" class="" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}" data-waktu="pagi"><i class="material-icons" style="font-size:1.25em">add</i> Tambah</a>
-                                            </li>
-                                    </ul>
-                                       
-                                    @else
-                                        <a href="#" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}" data-waktu="pagi">Pilih menu</a>
-                                    @endif
-                                	
-                                </td>
-                                <td>
-                                            @php
-                                            $total_kalori_siang = 0;
-                                            $x=0;
-                                            @endphp
-                                    @if(isset($data_program_makan[$persiapan_umum][$x]) && $data_program_makan[$persiapan_umum][$x]->waktu == 'siang')
-                                        <ul class="list-inline">
-                                            @foreach($data_program_makan[$persiapan_umum] as $menu_persiapan_umum)
-                                                <li>
-                                                    @component('components.label_makan')
-                                                        @slot('id')
-                                                        {{ $menu_persiapan_umum->id }}
-                                                        @endslot
-                                                        
-                                                        @slot('kategori')
-                                                        {{ $menu_persiapan_umum->list_makanan->kategori }}
-                                                        @endslot
-
-                                                        @slot('nama')
-                                                        {{ $menu_persiapan_umum->list_makanan->nama }}
-                                                        @endslot
-
-                                                        @slot('kalori')
-                                                        {{ $menu_persiapan_umum->list_makanan->kalori }}
-                                                        @endslot
-
-                                                        @slot('qty')
-                                                        {{ $menu_persiapan_umum->qty }}
-                                                        @endslot
-
-                                                        @slot('total_kalori')
-                                                        {{ $menu_persiapan_umum->total_kalori }}
-                                                        @endslot
-
-                                                        @slot('kategori_makanan')
-                                                            {{ $label_kategori[$menu_persiapan_umum->list_makanan->kategori] }}
-                                                        @endslot
-                                                        {{ $menu_persiapan_umum->list_makanan->nama }} {{ $menu_persiapan_umum->qty }}
-                                                        @if($menu_persiapan_umum->list_makanan->kategori == 'mineral' || $menu_persiapan_umum->list_makanan->kategori == 'air') liter
-                                                        @else 
-                                                            gram
-                                                        @endif
-                                                    @endcomponent 
-
-                                                </li>
-                                            @php
-                                            $total_kalori_siang = $total_kalori_siang + $menu_persiapan_umum->total_kalori;
-                                            $x++;
-                                            @endphp
-                                            @endforeach
-                                                <li class="pull-left" style="margin-top:10px">
-                                                    <a href="" class="" data-toggle="modal" data-target="#pilihMenu"  data-tanggal="{{ $persiapan_umum }}" data-waktu="siang"><i class="material-icons" style="font-size:1.25em">add</i> Tambah</a>
-                                                </li>
-                                        </ul>
-                                    @else
-                                        <a href="#" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}" data-waktu="siang">Pilih menu</a>
-                                    @endif
-                                	
-                                </td>
-                                <td>
-                                            @php
-                                            $total_kalori_malam = 0;
-                                            $x=0;
-                                            @endphp
-                                    @if(isset($data_program_makan[$persiapan_umum][$x]) && $data_program_makan[$persiapan_umum][$x]->waktu == 'malam')
-                                        <ul class="list-inline">
-                                            @foreach($data_program_makan[$persiapan_umum] as $menu_persiapan_umum)
-                                                <li>
-                                                    @component('components.label_makan')
-                                                        @slot('id')
-                                                        {{ $menu_persiapan_umum->id }}
-                                                        @endslot
-                                                        
-                                                        @slot('kategori')
-                                                        {{ $menu_persiapan_umum->list_makanan->kategori }}
-                                                        @endslot
-
-                                                        @slot('nama')
-                                                        {{ $menu_persiapan_umum->list_makanan->nama }}
-                                                        @endslot
-
-                                                        @slot('kalori')
-                                                        {{ $menu_persiapan_umum->list_makanan->kalori }}
-                                                        @endslot
-
-                                                        @slot('qty')
-                                                        {{ $menu_persiapan_umum->qty }}
-                                                        @endslot
-
-                                                        @slot('total_kalori')
-                                                        {{ $menu_persiapan_umum->total_kalori }}
-                                                        @endslot
-                                                        @slot('kategori_makanan')
-                                                            {{ $label_kategori[$menu_persiapan_umum->list_makanan->kategori] }}
-                                                        @endslot
-                                                        {{ $menu_persiapan_umum->list_makanan->nama }} {{ $menu_persiapan_umum->qty }}
-                                                        @if($menu_persiapan_umum->list_makanan->kategori == 'mineral' || $menu_persiapan_umum->list_makanan->kategori == 'air') liter
-                                                        @else 
-                                                            gram
-                                                        @endif
-                                                    @endcomponent 
-
-                                                </li>
-                                            @php
-                                            $total_kalori_malam = $total_kalori_malam + $menu_persiapan_umum->total_kalori;
-                                            $x++;
-                                            @endphp
-                                            @endforeach
-                                                <li class="pull-left" style="margin-top:10px">
-                                                    <a href="" class="" data-toggle="modal" data-target="#pilihMenu"  data-tanggal="{{ $persiapan_umum }}" data-waktu="malam"><i class="material-icons" style="font-size:1.25em">add</i> Tambah</a>
-                                                </li>
-                                        </ul>
-                                    @else
-                                        <a href="#" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}"  data-waktu="malam">Pilih menu</a>
-                                    @endif
-                                	
-                                </td>
-                                <td>{{ $total_kalori_pagi + $total_kalori_siang + $total_kalori_malam }}</td>
-                            </tr>
-{{--                             @php
-                            $x++;
-                            @endphp --}}
-                        	@endforeach
-                            
-                        </tbody>
-                    </table>
+                    @include("components.program_makan_menu")
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            @if(Request::segment(5) == null)
+                @include("atlet.program_makan.persiapan-umum")
+            @else
+                @include("atlet.program_makan.".Request::segment(5))
+            @endif
+        </div>
         <div class="col-md-3">
-            <div class="card card-profile" style="margin-top: 50px">
+            <div class="card card-profile">
                 <div class="card-avatar">
-                    <a href="#pablo">
-                        <img class="img" src="/img/faces/taufik.jpg">
-                    </a>
+                  <a href="#pablo">
+                    <img class="img" src="/img/faces/taufik.jpg">
+                  </a>
                 </div>
+
                 <div class="content">
-                    <h6 class="category text-gray">CEO / Co-Founder</h6>
-                    <h4 class="card-title">Alec Thompson</h4>
-                    <p class="card-content">
-                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </p>
-                    <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                  <h6 class="category text-gray">{{ $atlet->cabor->nama }}</h6>
+                  <h4 class="card-title">{{ $atlet->nama }}</h4>
+                  <!-- <p class="card-content">
+
+                  </p>
+                  <a href="#pablo" class="btn btn-primary btn-round">Detail</a> -->
                 </div>
-            </div>
+                <hr>
+                <div class="text-center">
+                  <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-1">
+                            <h5>19<br><small>Usia</small></h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>55<br><small>Berat</small></h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 style="text-align:right">Male<br><small>Gender</small></h5>
+                        </div>
+                    </div>
+                  </div>
+                  
+                  <a href="{{ url("/atlet/".$atlet_id) }}" class="btn btn-primary btn-round">Detail</a>
+                
+                </div>
+              </div>
+            
         </div>
     </div>
 </div>

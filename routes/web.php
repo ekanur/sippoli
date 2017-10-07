@@ -19,6 +19,9 @@ Route::get('/', 'PageController@index');
 // Route::get('/program/tambah', 'ProgramController@add');
 // Route::post('/program/tambah', 'ProgramController@store');
 Route::get('/atlet', 'AtletController@index');
+Route::get('/atlet/{id}', function(){
+	return "Dalam proses perancangan. Silakan kembali ke <a href='".url('/')."'>Halaman utama</a>";
+});
 Route::get('/atlet/tambah', 'AtletController@create');
 Route::post('/atlet/save', 'AtletController@save');
 
@@ -56,6 +59,11 @@ Route::prefix("program")->group(function(){
 	Route::post('/sesi-latihan/simpan', 'SesiLatihanController@simpanSesiLatihan');
 
 	Route::get("/{id_program}/program-makan/{atlet_id}", "ProgramMakanController@index");
+	Route::get("/{id_program}/program-makan/{atlet_id}/persiapan-khusus", "ProgramMakanController@persiapanKhusus");
+	Route::get("/{id_program}/program-makan/{atlet_id}/pra-kompetisi", "ProgramMakanController@praKompetisi");
+	Route::get("/{id_program}/program-makan/{atlet_id}/kompetisi", "ProgramMakanController@kompetisi");
+	Route::get("/{id_program}/program-makan/{atlet_id}/transisi", "ProgramMakanController@transisi");
+
 	Route::get("/{id_program}/assessment/{atlet_id}", "AssessmentAtletController@index");
 });
 // Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');
