@@ -19,10 +19,10 @@ Route::get('/', 'PageController@index');
 // Route::get('/program/tambah', 'ProgramController@add');
 // Route::post('/program/tambah', 'ProgramController@store');
 Route::get('/atlet', 'AtletController@index');
+Route::get('/atlet/tambah', 'AtletController@create');
 Route::get('/atlet/{id}', function(){
 	return "Dalam proses perancangan. Silakan kembali ke <a href='".url('/')."'>Halaman utama</a>";
 });
-Route::get('/atlet/tambah', 'AtletController@create');
 Route::post('/atlet/save', 'AtletController@save');
 
 Route::prefix("program")->group(function(){
