@@ -1,5 +1,5 @@
 <span class="label label-{{ $kategori_makanan }}">
-	<a href="{{ $url_item_makanan }}">{{ $slot }}</a>
-	<a href="{{ $url_edit_item }}"><i class="material-icons" style="font-size:1.25em">mode_edit</i></a>
-	<a href="{{ $url_hapus_item }}"><i class="material-icons" style="font-size:1.25em">clear</i></a> 
+	<a href="#" data-toggle="modal" data-id='{{ $id }}' data-kategori='{{ $kategori }}' data-nama='{{ $nama }}' data-kalori='{{ $kalori }}' data-qty='{{ $qty }}' data-total_kalori='{{ $total_kalori }}' data-target="#modalDetail">{{ $slot }}</a>
+	<a href="#" data-toggle="modal" data-id='{{ $id }}' data-kategori='{{ $kategori }}' data-nama='{{ $nama }}' data-kalori='{{ $kalori }}' data-qty='{{ $qty }}' data-total_kalori='{{ $total_kalori }}' data-target="#modalEdit"><i class="material-icons" style="font-size:1.25em">mode_edit</i></a>
+	<a href="{{ url("/program-makan/hapus") }}/{{ $id }}" class="del_confirm_menu_makan" data-text="Apakah anda yakin akan menghapus program makan ini?"><i class="material-icons" style="font-size:1.25em">clear</i></a> 
 </span>

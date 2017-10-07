@@ -16,9 +16,9 @@ class TableListMakanan extends Migration
         Schema::create('list_makanan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',45);
-            $table->string('kandungan_gizi',550);
-            $table->integer('kategori');
+            $table->enum('kategori', ['karbohidrat', 'protein', 'vitamin', 'mineral', 'air']);
             $table->integer('pelatih_id');
+            $table->float('kalori');
             $table->softDeletes();
             $table->timestamps();
         });

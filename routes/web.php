@@ -81,3 +81,6 @@ Route::post("/makanan/simpan", "ListMakananController@simpan");
 Route::get('/makanan/{kategori}', "ListMakananController@getFromKategori");
 
 Route::post('/program-makan/simpan', "ProgramMakanController@simpan");
+Route::post('/program-makan/edit', "ProgramMakanController@update");
+
+Route::get("program-makan/hapus/{id}", "ProgramMakanController@hapus");

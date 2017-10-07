@@ -10,6 +10,7 @@ use App\Program;
 use App\Atlet;
 use DateTime;
 use DateInterval;
+use Session;
 
 class ProgramMakanController extends Controller
 {
@@ -35,13 +36,25 @@ class ProgramMakanController extends Controller
     $date_range["kompetisi"] = dateRange($mulai_kompetisi->format("Y/m/d"), intval(json_decode($program->siklus_makro)->kompetisi)*7);
     $date_range["transisi"] = dateRange($mulai_transisi->format("Y/m/d"), intval(json_decode($program->siklus_makro)->transisi)*7);
 
-    // dd($date_range);
-    
-    return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id'));
+    $program_makan = Program_makanan::where([["program_id", $id_program], ["atlet_id", $atlet_id]])->get();
+    $data_program_makan=array();
+    foreach ($program_makan as $makan) {
+        $data_program_makan[date("Y/m/d", strtotime($makan->tanggal))][] = $makan;
+    }
+    $label_kategori = array(
+        "karbohidrat"=>'default',
+        "protein"=>'primary',
+        "lemak"=>'success',
+        "vitamin"=>'info',
+        "mineral"=>'warning',
+        "air"=>'danger',
+    );
+    // dd($data_program_makan);
+    return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori'));
    }
 
 
-   public function simpan(Request $request){
+    public function simpan(Request $request){
         $list_makanan = List_makanan::select("kalori")->findOrFail($request->list_makanan);
 
         $program_makanan = new Program_makanan;
@@ -60,4 +73,31 @@ class ProgramMakanController extends Controller
 
         return redirect()->back();
    }
+
+   public function hapus($id){
+        $program_makanan = Program_makanan::findOrFail($id);
+
+        $program_makanan->delete();
+
+        Session::flash('flash_message', 'Berhasil menghapus menu makanan.');
+        Session::flash('flash_status', 'success');
+
+        return redirect()->back();
+   
+   }
+
+   public function update(Request $request){
+    $program_makanan = Program_makanan::findOrFail($request->id);
+
+    $program_makanan->qty = $request->qty_edit;
+    $program_makanan->total_kalori = $request->qty_edit * $request->kalori_edit;
+
+    $program_makanan->save();
+
+    Session::flash("flash_message", "Berhasil memperbarui menu makanan.");
+    Session::flash("flash_status", "success");
+
+    return redirect()->back();
+   }
+
 }
