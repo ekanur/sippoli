@@ -424,7 +424,7 @@
 				
 				$.each(data, function(key, value){
 					$("#list_makan option").remove();
-					$("#list_makan").append("<option value='"+ value.id +"'>"+ value.nama +"</option>");
+					$("#list_makan").append("<option value='"+ value.id +"'>"+ value.nama +" - "+ value.kalori +" kal</option>");
 				});
 			});
 
@@ -453,7 +453,7 @@
 				
 				$.each(data, function(key, value){
 					
-					$("#list_makan").append("<option value='"+ value.id +"'>"+ value.nama +"</option>");
+					$("#list_makan").append("<option value='"+ value.id +"'>"+ value.nama +" - "+ value.kalori +" kal</option>");
 				});
 			});
 		});
