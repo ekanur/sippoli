@@ -95,7 +95,7 @@
                           </button> -->
 
                          <!-- <div style="cursor:pointer"><i class="material-icons" onclick="return konfirmasi()">delete</i></div> -->
-                            <a data-toggle="modal" href="{{url('#EditLatihan')}}"><i class="material-icons">mode_edit</i></a>
+                            <a data-toggle="modal" href="{{url('/latihan/'.$daftarsemuaLatihan->id.'/edit')}}"><i class="material-icons">mode_edit</i></a>
                            <a href="{{ url('/latihan/hapus/'.$daftardariPelatih->id) }}" class="del-confrim_list_latihan" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a>
                           <!-- Delete Modal content konfirmasi Hapus-->
                           <!-- <div class="modal fade" id="delete_confirmation_modal" role="dialog" style="display: none;" data-backdrop="false">
