@@ -36,8 +36,8 @@
                 </div>
 
                 <div class="content">
-                  <h6 class="category text-gray">{{ $atlet->cabor->nama }}</h6>
-                  <h4 class="card-title">{{ $atlet->nama }}</h4>
+                  <h6 class="category text-gray">{{ $program->atlet[0]->cabor->nama }}</h6>
+                  <h4 class="card-title">{{ $program->atlet[0]->nama }}</h4>
                   <!-- <p class="card-content">
 
                   </p>

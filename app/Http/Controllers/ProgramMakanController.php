@@ -24,21 +24,27 @@ class ProgramMakanController extends Controller
     );
 
     public function index($id_program, $atlet_id){
-        $program = Program::findOrFail($id_program);
-        $atlet = Atlet::findOrFail($atlet_id);
-
+        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+            $query->where('atlet_id', $atlet_id);
+            $query->with("cabor");
+        }])->findOrFail($id_program);
+        // $atlet = $program->atlet()->where('atlet_id', $atlet_id)->get();
+        // // dd($program->atlet[0]->cabor->nama);
+        // dd($atlet);
         $date_range = $this->getDateRange($program, 'persiapan_umum');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
         $label_kategori = $this->label_kategori;
         
         // dd($label_kategori);
         
-        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'atlet', 'atlet'));
+        return view("atlet.menumakan", compact('program', 'date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori'));
     }
 
     public function persiapanKhusus($id_program, $atlet_id){
-        $program = Program::findOrFail($id_program);
-        $atlet = Atlet::findOrFail($atlet_id);
+        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+            $query->where('atlet_id', $atlet_id);
+            $query->with("cabor");
+        }])->findOrFail($id_program);;
 
         $date_range = $this->getDateRange($program, 'persiapan_khusus');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
@@ -46,12 +52,14 @@ class ProgramMakanController extends Controller
         
         // dd($label_kategori);
         
-        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'atlet'));
+        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
     public function praKompetisi($id_program, $atlet_id){
-        $program = Program::findOrFail($id_program);
-        $atlet = Atlet::findOrFail($atlet_id);
+        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+            $query->where('atlet_id', $atlet_id);
+            $query->with("cabor");
+        }])->findOrFail($id_program);
 
         $date_range = $this->getDateRange($program, 'pra_kompetisi');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
@@ -59,12 +67,14 @@ class ProgramMakanController extends Controller
         
         // dd($label_kategori);
         
-        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'atlet'));
+        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
     public function kompetisi($id_program, $atlet_id){
-        $program = Program::findOrFail($id_program);
-        $atlet = Atlet::findOrFail($atlet_id);
+        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+            $query->where('atlet_id', $atlet_id);
+            $query->with("cabor");
+        }])->findOrFail($id_program);
 
         $date_range = $this->getDateRange($program, 'kompetisi');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
@@ -72,12 +82,14 @@ class ProgramMakanController extends Controller
         
         // dd($label_kategori);
         
-        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'atlet'));
+        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
     public function transisi($id_program, $atlet_id){
-        $program = Program::findOrFail($id_program);
-        $atlet = Atlet::findOrFail($atlet_id);
+        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+            $query->where('atlet_id', $atlet_id);
+            $query->with("cabor");
+        }])->findOrFail($id_program);
 
         $date_range = $this->getDateRange($program, 'transisi');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
@@ -85,7 +97,7 @@ class ProgramMakanController extends Controller
         
         // dd($label_kategori);
         
-        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'atlet'));
+        return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
 

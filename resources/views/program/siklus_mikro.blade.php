@@ -39,7 +39,7 @@
                                     <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Bulan, Pekan</th>
+                                            <th>Pekan (tanggal)</th>
                                             <th>Intensitas</th>
                                             <th>Volume</th>
                                             <th>Peaking</th>

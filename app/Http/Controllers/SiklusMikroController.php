@@ -7,21 +7,34 @@ use App\Program;
 use App\Siklus_mikro;
 use App\Sesi_latihan;
 use DateTime;
+use DateInterval;
 
 class SiklusMikroController extends Controller
 {
   public function index($id_program){
     $program = Program::findOrFail($id_program);
     $dataMikro=Siklus_mikro::where('program_id',$id_program)->orderBy('pekan_ke', 'asc')->get();
-    $mulai_program = new DateTime(date('Y-m-d', strtotime($program->mulai_program)));
-    $berakhir_program = new DateTime(date('Y-m-d', strtotime($program->berakhir_program)));
-    $jmlpekan = intval(round($mulai_program->diff($berakhir_program)->days / 7));
-     $array_siklus_mikro = array();
+    $mulai_program = new DateTime(date('Y/m/d', strtotime($program->mulai_program)));
+    $berakhir_program = new DateTime(date('Y/m/d', strtotime($program->berakhir_program)));
+    $jmlpekan = array_sum(json_decode($program->siklus_makro, TRUE));
+
+    $data_pekan = array();
+    $tanggal_mulai = $mulai_program;
+    for($x=0; $x<($jmlpekan*7); $x=$x+7){
+      $tanggal_mulai = $tanggal_mulai->add(new DateInterval("P".($x+7)."D"));
+      $data_pekan[$x]=array(
+        "tanggal" => dateRange( $tanggal_mulai->format("Y/m/d"), 7),
+      );
+    }
+
+    dd($data_pekan);
+
+    $array_siklus_mikro = array();
         foreach ($dataMikro as $mikro) {
             $array_siklus_mikro[]=array($mikro->pekan_ke, intval(json_decode($mikro->json_volume_intensitas)->volume) , intval(json_decode($mikro->json_volume_intensitas)->intensitas), intval(json_decode($mikro->json_volume_intensitas)->peaking));
         }
     // dd($dataMikro->all());
-    return view("program.siklus_mikro" ,compact('dataMikro', 'jmlpekan', 'id_program', 'array_siklus_mikro'));
+    return view("program.siklus_mikro" ,compact('dataMikro', 'id_program', 'array_siklus_mikro'));
   }
 
     public function detail($id_program, $id_siklus_mikro){

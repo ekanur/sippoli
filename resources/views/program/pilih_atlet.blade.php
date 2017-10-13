@@ -197,13 +197,36 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
         });
     });
 
+    $("input[name='pilih_atlet']").change(function(){    
+        var count = $("input[name='pilih_atlet']:checked").length;
+        if(count > 0){
+            $("button[name='tambah_atlet']").attr('disabled', false);
+            $("#count").text("("+ count +" atlet)");
+        }else{
+            $("button[name='tambah_atlet']").attr('disabled', true);
+            $("#count").text("");
+        }
+    });
+
+    $("button[name='tambah_atlet']").click(function(){
+        var atlet = $(".check_atlet:checkbox:checked").map(function(){
+            return this.value;
+        }).get();
+
+        $.post("{{ url('pilih-atlet') }}", {id:atlet, program_id:"{{ $id_program }}"})
+            .done(function(data){
+                // console.log(data);
+                window.location.replace("{{ url('/program/'.$id_program.'/atlet') }}");
+            });
+    });
+
     $("button[rel='tooltip']").click(function(){
-    var id = $(this).data("id");
-    $.post("{{ url('/pilih-atlet') }}", {id:id, program_id:"{{ $id_program }}"})
-        .done(function(data){
-            // console.log(data);                
-            window.location.replace("{{ url('/program/'.$id_program.'/atlet') }}");
-        });
+        var id = $(this).data("id");
+        $.post("{{ url('/pilih-atlet') }}", {id:id, program_id:"{{ $id_program }}"})
+            .done(function(data){
+                // console.log(data);                
+                window.location.replace("{{ url('/program/'.$id_program.'/atlet') }}");
+            });
     });
 </script>
 @endpush
@@ -231,7 +254,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
                         <td width="8%">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="pilih_atlet" value="{{ $atlet->id }}">
+                                    <input type="checkbox" class="check_atlet" name="pilih_atlet" value="{{ $atlet->id }}">
                                     
                                 </label>
                             </div>
@@ -253,7 +276,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-        <button type="button" class="btn btn-primary" disabled="">Tambah</button>
+        <button type="submit" name="tambah_atlet" class="btn btn-primary" disabled="">Tambah <span id="count"></span></button>
       </div>
     </div>
   </div>
