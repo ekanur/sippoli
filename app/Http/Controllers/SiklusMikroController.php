@@ -13,18 +13,21 @@ class SiklusMikroController extends Controller
 {
   public function index($id_program){
     $program = Program::findOrFail($id_program);
-    $dataMikro=Siklus_mikro::where('program_id',$id_program)->orderBy('pekan_ke', 'asc')->get();
+    $dataMikro = Siklus_mikro::where('program_id',$id_program)->orderBy('pekan_ke', 'asc')->get();
     $mulai_program = new DateTime(date('Y/m/d', strtotime($program->mulai_program)));
     $berakhir_program = new DateTime(date('Y/m/d', strtotime($program->berakhir_program)));
     $jmlpekan = array_sum(json_decode($program->siklus_makro, TRUE));
 
     $data_pekan = array();
-    $tanggal_mulai = $mulai_program;
+    $pekan = 1;
+    $tanggal_mulai = $mulai_program->format("Y/m/d");
     for($x=0; $x<($jmlpekan*7); $x=$x+7){
-      $tanggal_mulai = $tanggal_mulai->add(new DateInterval("P".($x+7)."D"));
-      $data_pekan[$x]=array(
+      $tanggal_mulai = new DateTime(date('Y/m/d', strtotime($program->mulai_program)));
+      $tanggal_mulai = $tanggal_mulai->add(new DateInterval("P".($x)."D"));
+      $data_pekan[$pekan]=array(
         "tanggal" => dateRange( $tanggal_mulai->format("Y/m/d"), 7),
       );
+      $pekan++;
     }
 
     dd($data_pekan);
