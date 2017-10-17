@@ -11,7 +11,7 @@
 @endpush
 @section("content")
 <div class="row-center">
-    <div class="col-md-12 col-md-offset-0">
+    <div class="col-md-12">
 {{--         <h3 class="title text-center">PROGRAM LATIHAN DAN PROGRAM MAKAN</h3>
         <br> --}}
         <div class="nav-center">
@@ -49,24 +49,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @if (null == sizeof($dataMikro))
+{{--                                     @if (null == sizeof($siklus_mikro))
                                         <tr>
                                              <td colspan="8">
                                                 <h4 class="text-muted text-center">Siklus Mikro Belum Tersedia</h4>
                                             </td>
                                         </tr>
-                                    @endif
-                                        @foreach ($dataMikro as $mikro)
+                                    @endif --}}
+                                    {{-- {{dd($data_pekan)}} --}}
+                                        @foreach ($data_pekan as $data_pekan)
                                         <tr>
-                                            <td><a href="{{ url('program/'.$id_program.'/mikro/'.$mikro->id) }}">{{$mikro->namaBulan()}}, pekan ke {{$mikro->pekan_ke}}</a></td>
-                                            <td>{{ json_decode($mikro->json_volume_intensitas)->intensitas }}%</td>
-                                            <td>{{ json_decode($mikro->json_volume_intensitas)->volume }}%</td>
-                                            <td>{{ json_decode($mikro->json_volume_intensitas)->peaking }}%</td>
-                                            <td>{{$mikro->fase()}}</td>
+                                            <td><strong>Pekan ke {{$data_pekan['pekan']}}</strong> ({{ $data_pekan['tanggal'][0] }} s.d {{ $data_pekan['tanggal'][6] }})</td>
+                                            <td>@isset (json_decode($data_pekan['ivp'])->intensitas)
+                                                {{ json_decode($data_pekan['ivp'])->intensitas }}%
+                                            @endisset</td>
+                                            <td>@isset (json_decode($data_pekan['ivp'])->volume)
+                                                {{ json_decode($data_pekan['ivp'])->volume }}%
+                                            @endisset</td>
+                                            <td>@isset (json_decode($data_pekan['ivp'])->peaking)
+                                                {{ json_decode($data_pekan['ivp'])->peaking }}%
+                                            @endisset</td>
+                                            <td>{{ $data_pekan['fase'] }}</td>
                                             {{-- <td><a href="">Lihat</a></td> --}}
                                             <td>
-                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
-                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a>
+{{--                                                 <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
+                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a> --}}
+                                                @if (isset($data_pekan['siklus_mikro_id']))
+                                                    <a href="#" data-toggle="modal" data-target="#editModal">Edit</a>
+                                                @else
+                                                    <a href="#" data-toggle="modal" data-target="#baruModal">Edit</a>
+                                                @endif
                                             </td>
 
                                         </tr>
@@ -85,7 +97,19 @@
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Pekan</label>
                                                   <div class="input-group">
-                                                        <input class="form-control" name="pekan" type="number" min="1" readonly="" @if(isset($detail_siklus_mikro)) value="{{ $detail_siklus_mikro->pekan_ke }}"  @endif/>
+                                                    @if (isset($detail_siklus_mikro))
+                                                         <input class="form-control" name="pekan" type="number" min="1" readonly="" @if(isset($detail_siklus_mikro)) value="{{ $detail_siklus_mikro->pekan_ke }}"  @endif/>
+                                                    @else
+                                                        <select name="pekan" class="form-control">
+                                                       {{-- <optgroup label="Agustus"> --}}
+
+                                                           @for ($i = 1; $i <= $jmlpekan; $i++)
+                                                             <option value="{{$i}}">{{$i}}</option>
+                                                           @endfor
+
+                                                        </select>
+                                                    @endif
+                                                       
                                                         <div class="input-group-addon">
                                                             <i>%</i>
                                                         </div>
@@ -146,7 +170,7 @@
                     </div>
                       <div class="card-content">
                         <div id="chart" style="width:100%; height: 550px">
-                          @if (null == sizeof($dataMikro))
+                          @if (null == sizeof($array_siklus_mikro))
                               <h4 class="text-center text-muted">Diagram Periodisasi Belum Tersedia</h4>
                           @endif
 
@@ -177,7 +201,7 @@
     </script>
 @endpush
 
-@if (0 !== sizeof($dataMikro))
+@if (0 !== sizeof($array_siklus_mikro))
     @push('script')
       <script type="text/javascript" src="{{ url('/js/googlechart.loader.js') }}"></script>
       <script type="text/javascript">

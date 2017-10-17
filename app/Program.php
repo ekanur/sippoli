@@ -26,4 +26,8 @@ class Program extends Model
     public function kebutuhan_energi(){
         return $this->hasMany("App\Kebutuhan_energi");
     }
+
+    public function siklus_mikro(){
+        return $this->hasMany("App\Siklus_mikro")->orderBy("pekan_ke");
+    }
 }

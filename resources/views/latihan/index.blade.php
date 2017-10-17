@@ -11,14 +11,6 @@
 @section('content')
 
 <!--
-@if(Session::has('sukses_tambah_latihan'))
-  <div class="alert alert-success">
-    <a href="/latihan" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <span> Nama latihan <u>{{Session::get('sukses_tambah_latihan')}}</u>, berhasil di tambahkan</span>
-  </div>
-@endif -->
-
-<!--
 <script type="text/javascript" language="JavaScript">
  function konfirmasi()
  {
@@ -217,10 +209,14 @@
         </div>
       </div>
 
+    </div>
+  </div>
 
+@endsection
 
-      <!-- Modal untuk ubah latihan -->
-      <div id="EditLatihan" class="modal fade" role="dialog" data-backdrop="false">
+@push('modal')
+  <!-- Modal untuk ubah latihan -->
+      <div id="EditLatihan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
@@ -268,19 +264,7 @@
 
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-    </div>
-  </div>
-
-@endsection
+@endpush
 
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
