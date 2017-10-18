@@ -75,7 +75,7 @@
 {{--                                                 <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
                                                 <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a> --}}
                                                 @if (isset($data_pekan['siklus_mikro_id']))
-                                                    <a href="#" data-toggle="modal" data-target="#editModal">Edit</a>
+                                                    <a href="#" data-toggle="modal" data-target="#editModal" data-pekan_ke="{{ $data_pekan['pekan'] }}">Edit</a>
                                                 @else
                                                     <a href="#" data-toggle="modal" data-target="#baruModal">Edit</a>
                                                 @endif
@@ -186,6 +186,130 @@
 
 
 @endsection
+
+@push('modal')
+<div class="modal fade" id="baruModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+    <form action="{{ url('/program/'.$id_program.'/mikro/simpan') }}" method="post">
+        {{ csrf_field() }}
+        <input type="hidden" name="program_id" value="{{ $id_program }}">
+    
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Persentase Intensitas, Volume, dan Peaking</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            
+        
+        <div class="row">                          
+            <div class="col-md-2">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Intensitas</label>
+                    <div class="input-group">
+                        <input class="form-control" name="intensitas" type="number" min="1" required="">
+                        <div class="input-group-addon">
+                            <i>%</i>
+                        </div>
+                    </div>
+                <span class="material-input"></span></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Volume</label>
+                    <div class="input-group">
+                        <input class="form-control" name="volume" type="number" min="1" required="">
+                        <div class="input-group-addon">
+                            <i>%</i>
+                        </div>
+                    </div>
+                <span class="material-input"></span></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Peaking</label>
+                    <div class="input-group">
+                        <input class="form-control" name="peaking" type="number" min="1" required="">
+                        <div class="input-group-addon">
+                            <i>%</i>
+                        </div>
+                    </div>
+                <span class="material-input"></span></div>
+            </div>
+        </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <form action="{{ url('/program/'.$id_program.'/mikro/update') }}" method="post">
+        {{ csrf_field() }}
+        
+        <input type="hidden" name="program_id" value="{{ $id_program }}">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Persentase Intensitas, Volume, dan Peaking</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            
+        
+        <div class="row">                          
+            <div class="col-md-2">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Intensitas</label>
+                    <div class="input-group">
+                        <input class="form-control" name="intensitas" type="number" min="1" required="">
+                        <div class="input-group-addon">
+                            <i>%</i>
+                        </div>
+                    </div>
+                <span class="material-input"></span></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Volume</label>
+                    <div class="input-group">
+                        <input class="form-control" name="volume" type="number" min="1" required="">
+                        <div class="input-group-addon">
+                            <i>%</i>
+                        </div>
+                    </div>
+                <span class="material-input"></span></div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Peaking</label>
+                    <div class="input-group">
+                        <input class="form-control" name="peaking" type="number" min="1" required="">
+                        <div class="input-group-addon">
+                            <i>%</i>
+                        </div>
+                    </div>
+                <span class="material-input"></span></div>
+            </div>
+        </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+@endpush
 
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
