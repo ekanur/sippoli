@@ -17,7 +17,6 @@ class SiklusMikro extends Migration
             $table->increments('id');
             $table->integer('program_id');
             $table->string('json_volume_intensitas');
-            $table->integer('bulan');
             $table->integer('pekan_ke');
             $table->timestamps();
             $table->softDeletes();

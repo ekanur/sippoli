@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Siklus_mikro extends Model
 {
     protected $table ="siklus_mikro";
+    protected $fillable = ["json_volume_intensitas", "pekan_ke"];
 
     public function sesi_latihan(){
       return $this->hasMany("App\Sesi_latihan");

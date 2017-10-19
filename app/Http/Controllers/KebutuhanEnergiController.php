@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Kebutuhan_energi;
 
 
-class KebutuhanEnergi extends Controller
+class KebutuhanEnergiController extends Controller
 {
      public function simpan(Request $request){
     	$json_kebutuhan = json_encode(array(

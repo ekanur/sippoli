@@ -279,7 +279,7 @@
 		});
 
         $('#modalDetail').on('show.bs.modal', function (event) {
-            $(".label-floating").removeClass("is-empty");
+          $(".label-floating").removeClass("is-empty");
           var button = $(event.relatedTarget); // Button that triggered the modal
           var id = button.data('id');
           var kategori = button.data('kategori');

@@ -59,7 +59,14 @@
                                     {{-- {{dd($data_pekan)}} --}}
                                         @foreach ($data_pekan as $data_pekan)
                                         <tr>
-                                            <td><strong>Pekan ke {{$data_pekan['pekan']}}</strong> ({{ $data_pekan['tanggal'][0] }} s.d {{ $data_pekan['tanggal'][6] }})</td>
+                                            <td>
+                                                @if (isset($data_pekan['siklus_mikro_id']))
+                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$data_pekan['siklus_mikro_id']) }}"><strong>Pekan ke {{$data_pekan['pekan']}}</strong></a> ({{ $data_pekan['tanggal'][0] }} s.d {{ $data_pekan['tanggal'][6] }})
+                                                @else
+
+                                                Pekan ke {{$data_pekan['pekan']}} ({{ $data_pekan['tanggal'][0] }} s.d {{ $data_pekan['tanggal'][6] }})
+                                                @endif
+                                            </td>
                                             <td>@isset (json_decode($data_pekan['ivp'])->intensitas)
                                                 {{ json_decode($data_pekan['ivp'])->intensitas }}%
                                             @endisset</td>
@@ -75,9 +82,9 @@
 {{--                                                 <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
                                                 <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a> --}}
                                                 @if (isset($data_pekan['siklus_mikro_id']))
-                                                    <a href="#" data-toggle="modal" data-target="#editModal" data-pekan_ke="{{ $data_pekan['pekan'] }}">Edit</a>
+                                                    <a href="#" data-toggle="modal" data-target="#editModal" data-pekan_ke="{{ $data_pekan['pekan'] }}" data-siklus_mikro_id={{ $data_pekan['siklus_mikro_id'] }} data-intensitas={{ json_decode($data_pekan['ivp'])->intensitas }}  data-volume={{ json_decode($data_pekan['ivp'])->volume }} data-peaking={{ json_decode($data_pekan['ivp'])->peaking }} data-pekan_ke={{ $data_pekan['pekan'] }}>Edit</a>
                                                 @else
-                                                    <a href="#" data-toggle="modal" data-target="#baruModal">Edit</a>
+                                                    <a href="#" data-toggle="modal" data-target="#baruModal" data-pekan_ke={{ $data_pekan['pekan'] }}>Edit</a>
                                                 @endif
                                             </td>
 
@@ -87,77 +94,6 @@
                                 </table>
                                 </div>
                                 </div>
-
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <form @if(isset($detail_siklus_mikro)) action="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/ubah') }}"  @else action="{{ url('program/'.$id_program.'/mikro/simpan') }}" @endif method="post">
-                                        {{csrf_field()}}
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Pekan</label>
-                                                  <div class="input-group">
-                                                    @if (isset($detail_siklus_mikro))
-                                                         <input class="form-control" name="pekan" type="number" min="1" readonly="" @if(isset($detail_siklus_mikro)) value="{{ $detail_siklus_mikro->pekan_ke }}"  @endif/>
-                                                    @else
-                                                        <select name="pekan" class="form-control">
-                                                       {{-- <optgroup label="Agustus"> --}}
-
-                                                           @for ($i = 1; $i <= $jmlpekan; $i++)
-                                                             <option value="{{$i}}">{{$i}}</option>
-                                                           @endfor
-
-                                                        </select>
-                                                    @endif
-                                                       
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Intensitas</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="intensitas" type="number" min="1" required="" @if(isset($detail_siklus_mikro)) value="{{ json_decode($detail_siklus_mikro->json_volume_intensitas)->intensitas }}"  @endif/>
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Volume</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="volume" type="number" min="1" required="" @if(isset($detail_siklus_mikro)) value="{{ json_decode($detail_siklus_mikro->json_volume_intensitas)->volume }}"  @endif />
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Peaking</label>
-                                                    <div class="input-group">
-                                                        <input class="form-control" name="peaking" type="number" min="1" required="" @if(isset($detail_siklus_mikro)) value="{{ json_decode($detail_siklus_mikro->json_volume_intensitas)->peaking }}"  @endif />
-                                                        <div class="input-group-addon">
-                                                            <i>%</i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 text-center">
-                                                <button class="text-center btn btn-info" type="submit">Simpan</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    </div>
-                                </div>
-
 
                             </div>
                         </div>
@@ -194,10 +130,11 @@
     <form action="{{ url('/program/'.$id_program.'/mikro/simpan') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="program_id" value="{{ $id_program }}">
+        <input type="hidden" name="pekan_ke">
     
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Persentase Intensitas, Volume, dan Peaking</h4>
+        <h4 class="modal-title" id="myModalLabel">Pekan ke <span id="pekan_ke"></span> <small>(Intensitas, Volume, dan Peaking)</small></h4>
       </div>
       <div class="modal-body">
         <div class="container">
@@ -208,7 +145,7 @@
                 <div class="form-group label-floating is-empty">
                     <label class="control-label">Intensitas</label>
                     <div class="input-group">
-                        <input class="form-control" name="intensitas" type="number" min="1" required="">
+                        <input class="form-control" name="intensitas_baru" type="number" min="1" required="">
                         <div class="input-group-addon">
                             <i>%</i>
                         </div>
@@ -219,7 +156,7 @@
                 <div class="form-group label-floating is-empty">
                     <label class="control-label">Volume</label>
                     <div class="input-group">
-                        <input class="form-control" name="volume" type="number" min="1" required="">
+                        <input class="form-control" name="volume_baru" type="number" min="1" required="">
                         <div class="input-group-addon">
                             <i>%</i>
                         </div>
@@ -230,7 +167,7 @@
                 <div class="form-group label-floating is-empty">
                     <label class="control-label">Peaking</label>
                     <div class="input-group">
-                        <input class="form-control" name="peaking" type="number" min="1" required="">
+                        <input class="form-control" name="peaking_baru" type="number" min="1" required="">
                         <div class="input-group-addon">
                             <i>%</i>
                         </div>
@@ -256,9 +193,10 @@
         {{ csrf_field() }}
         
         <input type="hidden" name="program_id" value="{{ $id_program }}">
+        <input type="hidden" name="siklus_mikro_id">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Persentase Intensitas, Volume, dan Peaking</h4>
+        <h4 class="modal-title" id="myModalLabel">Pekan ke <span class="pekan_ke"></span> <small>(Intensitas, Volume, dan Peaking)</small></h4>
       </div>
       <div class="modal-body">
         <div class="container">
@@ -321,6 +259,41 @@
         $(document).ready(function(){
             $('#mulai').datepicker();
             $('.del-confrim').confirm();
+
+
+            $('#editModal').on('show.bs.modal', function (event) {
+              $(".label-floating").removeClass("is-empty");
+              var button = $(event.relatedTarget); // Button that triggered the modal
+              var siklus_mikro_id = button.data('siklus_mikro_id');
+              var intensitas = button.data('intensitas');
+              var volume = button.data('volume');
+              var peaking = button.data('peaking');
+              var pekan_ke = button.data("pekan_ke");
+
+
+               // Extract info from data-* attributes
+              // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+              // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+              // var modal = $(this);
+              $("input[name='siklus_mikro_id']").val(siklus_mikro_id);
+              $("input[name='intensitas']").val(intensitas);
+              $("input[name='volume']").val(volume);
+              $("input[name='peaking']").val(peaking);
+              $(".pekan_ke").text(pekan_ke);
+
+            });
+
+            $('#baruModal').on('show.bs.modal', function (event) {
+              $(".label-floating").removeClass("is-empty");
+              var button = $(event.relatedTarget); // Button that triggered the modal
+              var pekan_ke = button.data("pekan_ke");
+               // Extract info from data-* attributes
+              // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+              // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+              $("input[name='pekan_ke']").val(pekan_ke);
+              $("#pekan_ke").text(pekan_ke);
+
+            });
         });
     </script>
 @endpush

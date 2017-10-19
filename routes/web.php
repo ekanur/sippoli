@@ -38,9 +38,10 @@ Route::prefix("program")->group(function(){
 
 
 	Route::get('/{id_program}/mikro', 'SiklusMikroController@index');
+	Route::post('/{id_program}/mikro/simpan', 'SiklusMikroController@savesiklusMikro');
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}', 'SiklusMikroController@detail');
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}/edit', 'SiklusMikroController@edit');
-	Route::post('/{id_program}/mikro/{id_siklus_mikro}/ubah', 'SiklusMikroController@ubah');
+	Route::post('/{id_program}/mikro/update', 'SiklusMikroController@ubah');
 	Route::get('/{id_program}/mikro/{id_siklus_mikro}/hapus', 'SiklusMikroController@hapus'); //perlu diubah ke route::delete
 	// Route::post('/{id_program}/sesi-latihan/{id_siklus_mikro}/tambah_program_latihan', 'ProgramLatihanController@simpanProgramLatihan');
 	// Route::get("/{id_program}/mikro/{id_sesi_latihan}", 'ProgramLatihanController@index');
@@ -55,7 +56,7 @@ Route::prefix("program")->group(function(){
 	Route::delete('/{id_program}/mikro/{id_siklus_mikro}/sesi-latihan/{id_sesi_latihan}/menu-latihan/{program_latihan_id}/hapus', 'ProgramLatihanController@hapus');
 	Route::post('/menu-latihan/{program_latihan_id}/ubah', 'ProgramLatihanController@ubah');
 
-	Route::post('/{id_program}/mikro/simpan', 'SiklusMikroController@savesiklusMikro');
+
 	Route::post('/sesi-latihan/simpan', 'SesiLatihanController@simpanSesiLatihan');
 
 	Route::get("/{id_program}/hapus-atlet/{atlet_id}", "ProgramController@hapusAtlet");
@@ -69,8 +70,8 @@ Route::prefix("program")->group(function(){
 });
 // Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');
 // Route::post('/program/mikro/save', 'ProgramController@savesiklusMikro');
-Route::post('/kebutuhan-energi/simpan', 'KebutuhanEnergi@simpan');
-Route::post('/kebutuhan-energi/update', 'KebutuhanEnergi@update');
+Route::post('/kebutuhan-energi/simpan', 'KebutuhanEnergiController@simpan');
+Route::post('/kebutuhan-energi/update', 'KebutuhanEnergiController@update');
 Route::post("/pilih-atlet", "ProgramController@simpanAtlet");
 
 Route::get('/olahraga', 'CaborController@index');

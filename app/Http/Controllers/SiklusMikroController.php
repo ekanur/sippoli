@@ -51,9 +51,6 @@ class SiklusMikroController extends Controller
         "fase" => $fase
       );
 
-
-
-
       $pekan++;
     }
 
@@ -65,40 +62,24 @@ class SiklusMikroController extends Controller
     public function detail($id_program, $id_siklus_mikro){
     	$program = Program::findOrFail($id_program);
       $siklus_mikro = Siklus_mikro::with('sesi_latihan')->findOrFail($id_siklus_mikro);
-      // dd($sesi_latihan->sesi_latihan);
+      // dd($siklus_mikro);
     	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'siklus_mikro', 'program'));
     }
 
     public function savesiklusMikro(Request $masuk, $id_program){
-      try {
-        // dd("masuk ke savesiklusMikro (proses simpan)");
-        $pekanLatihan = $masuk->pekan;
-        $json_volume_intensitas = array("volume"=>$masuk->volume,"intensitas"=>$masuk->intensitas, "peaking"=>$masuk->peaking);
-        // $intensitasLatihan = $masuk->intensitas;
-        // $volumeLatihan = $masuk->volume;
+        $json_volume_intensitas = array("volume"=>$masuk->volume_baru,"intensitas"=>$masuk->intensitas_baru, "peaking"=>$masuk->peaking_baru);
 
         $program = Program::findOrFail($id_program);
-
-        $bulan_pekan = date("Y-m-d", strtotime($program->mulai_program . "+ ". $pekanLatihan ." week"));
-
-        $RencanaLatihan = new Siklus_mikro;
-        $RencanaLatihan ->program_id=$id_program;
-        $RencanaLatihan ->json_volume_intensitas=json_encode($json_volume_intensitas);
-        $RencanaLatihan ->bulan=date('m', strtotime($bulan_pekan));
-        $RencanaLatihan ->pekan_ke=$pekanLatihan;
-        $RencanaLatihan ->save();
-
-        return redirect()->back()->with([
-          'alert' => 'Item berhasil di simpan',
-          'tipe' => 'success'
+        $siklus_mikro = new Siklus_mikro([
+          "json_volume_intensitas" => json_encode($json_volume_intensitas),
+          "pekan_ke" => $masuk->pekan_ke
         ]);
-      } catch (Exception $e) {
-        return redirect()->back()->with([
-          'alert' => $e->getMessage,
-          'tipe' => 'danger'
-        ]);
-      }
 
+        $program->siklus_mikro()->save($siklus_mikro);
+        $masuk->session()->flash('flash_message', "Berhasil menambahkan siklus makro.");
+        $masuk->session()->flash('flash_status', "success");
+
+        return redirect()->back();
     }
 
     public function edit($id_program, $id_siklus_mikro){
@@ -117,36 +98,24 @@ class SiklusMikroController extends Controller
       return view("program.siklus_mikro", compact('id_program', 'dataMikro', 'id_siklus_mikro', 'detail_siklus_mikro', 'jmlpekan', 'array_siklus_mikro'));
     }
 
-    public function ubah($id_program, $id_siklus_mikro, Request $request){
-      try {
-        $pekanLatihan = $request->pekan;
+    public function ubah($id_program, Request $request){
+        // $pekanLatihan = $request->pekan;
         $json_volume_intensitas = array("volume"=>$request->volume, "intensitas"=>$request->intensitas, "peaking"=>$request->peaking);
 
-        $program = Program::findOrFail($id_program);
-
-        $bulan_pekan = date("Y-m-d", strtotime($program->mulai_program . "+ ". $pekanLatihan ." week"));
-
-        $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
-        $siklus_mikro->pekan_ke = $request->pekan;
-        $siklus_mikro->bulan=date('m', strtotime($bulan_pekan));
-        $siklus_mikro->json_volume_intensitas = json_encode($json_volume_intensitas);
-        $siklus_mikro->save();
-
-        return redirect("/program/".$id_program."/mikro/")->with([
-          'alert' => 'Item berhasil di perbaharui',
-          'tipe' => 'success'
+        $program = Program::findOrFail($request->program_id);
+        
+        $program->siklus_mikro()->where("id", $request->siklus_mikro_id)->update([
+          "json_volume_intensitas" => json_encode($json_volume_intensitas)
         ]);
-      } catch (Exception $e) {
-        return redirect("/program/".$id_program."/mikro/")->with([
-          'alert' => $e->getMessage,
-          'tipe' => 'danger'
-        ]);
-      }
 
+        $request->session()->flash('flash_message', "Berhasil memperbarui siklus makro");
+        $request->session()->flash('flash_status', "success");
+
+        return redirect()->back();
     }
 
     public function hapus($id_program, $id_siklus_mikro, Request $request){
-      dd($id_siklus_mikro);
+      // dd($id_siklus_mikro);
       // try {
       //   $siklus_mikro = Siklus_mikro::findOrFail($id_siklus_mikro);
       //   $siklus_mikro->delete();
