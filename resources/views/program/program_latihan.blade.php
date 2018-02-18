@@ -34,7 +34,7 @@
                                 <div class="panel-heading">
                                     <ol class="breadcrumb">
                                       <li><a href="#">Siklus Mikro</a></li>
-                                      <li><a href="/program/{{$siklus_mikro->program_id}}/mikro/{{$siklus_mikro->id}}">{{$siklus_mikro->namaBulan()}}, pekan ke {{$siklus_mikro->pekan_ke}}</a></li>
+                                      <li><a href="/program/{{$siklus_mikro->program_id}}/mikro/{{$siklus_mikro->id}}">{{-- {{$siklus_mikro->namaBulan()}}, --}} Pekan ke {{$siklus_mikro->pekan_ke}}</a></li>
                                       <li>{{ date('D m-d-Y', strtotime($sesi_latihan->tanggal)) }}</li>
                                     </ol>
                                 </div>

@@ -21,6 +21,8 @@ class Siklus_mikro extends Model
     public function namaBulan(){
     	$nama_bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
+        // dd($this->bulan);
+
     	return $nama_bulan[$this->bulan-1];
     }
 

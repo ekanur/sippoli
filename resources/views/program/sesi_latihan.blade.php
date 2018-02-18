@@ -51,6 +51,12 @@
                                                         <strong>{{ json_decode($siklus_mikro->json_volume_intensitas)->volume }}%</strong>
                                                 </div>
                                             </div>
+                                            <div class="col-md-1 col-xs-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Peaking</label>
+                                                        <strong>{{ json_decode($siklus_mikro->json_volume_intensitas)->peaking }}%</strong>
+                                                </div>
+                                            </div>
                                             <div class="col-md-2 col-xs-6">
                                                 <div class="form-group label-floating">
                                                   <label class="control-label">Fase</label>
