@@ -35,7 +35,7 @@ class ProgramMakanController extends Controller
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
         $label_kategori = $this->label_kategori;
         
-        // dd($label_kategori);
+        // dd($data_program_makan);
         
         return view("atlet.menumakan", compact('program', 'date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori'));
     }
