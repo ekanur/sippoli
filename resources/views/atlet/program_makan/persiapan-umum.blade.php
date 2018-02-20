@@ -39,13 +39,12 @@
                         @php
                         $total_kalori_pagi = 0;
                         @endphp
-                        
-                        {{--  {{ dd($data_program_makan[$persiapan_umum][$x]->waktu) }}  --}}
-                        @if(isset($data_program_makan[$persiapan_umum][$x]->waktu))
-                            @if($data_program_makan[$persiapan_umum][$x]->waktu == 'pagi')
+
+                        @if(isset($data_program_makan[$persiapan_umum]))
                             <ul class="list-inline">
 
                             @foreach($data_program_makan[$persiapan_umum] as $menu_persiapan_umum)
+                            @if($menu_persiapan_umum->waktu == 'pagi')
                                 <li>
                                 
                                     @component('components.label_makan')
@@ -87,12 +86,13 @@
                                 $total_kalori_pagi = $total_kalori_pagi + $menu_persiapan_umum->total_kalori;
                                 $x++;
                                 @endphp
+                                @endif
                             @endforeach
                                 <li class="pull-left" style="margin-top:10px">
                                     <a href="" class="" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}" data-waktu="pagi"><i class="material-icons" style="font-size:1.25em">add</i> Tambah</a>
                                 </li>
                         </ul>
-                            @endif
+                           
 
                         @else
                             <a href="#" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}" data-waktu="pagi">Pilih menu</a>
@@ -105,10 +105,11 @@
                                 $x=0;
                                 @endphp
                         @if(isset($data_program_makan[$persiapan_umum][$x]->waktu))
-                            @if($data_program_makan[$persiapan_umum][$x]->waktu == 'siang')
+                            
                             <ul class="list-inline">
                                     @foreach($data_program_makan[$persiapan_umum] as $menu_persiapan_umum)
-                                        <li>
+                                    @if($menu_persiapan_umum->waktu == 'siang')    
+                                    <li>
                                             @component('components.label_makan')
                                                 @slot('id')
                                                 {{ $menu_persiapan_umum->id }}
@@ -149,12 +150,13 @@
                                     $total_kalori_siang = $total_kalori_siang + $menu_persiapan_umum->total_kalori;
                                     $x++;
                                     @endphp
+                                    @endif
                                     @endforeach
                                         <li class="pull-left" style="margin-top:10px">
                                             <a href="" class="" data-toggle="modal" data-target="#pilihMenu"  data-tanggal="{{ $persiapan_umum }}" data-waktu="siang"><i class="material-icons" style="font-size:1.25em">add</i> Tambah</a>
                                         </li>
                                 </ul>
-                            @endif    
+                                
                         
                         @else
                             <a href="#" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}" data-waktu="siang">Pilih menu</a>
@@ -167,11 +169,12 @@
                                 $x=0;
                                 @endphp
 
-                                {{ sizeof($data_program_makan) }}
-                        @if(isset($data_program_makan[$persiapan_umum][$x]->waktu))
-                            @if($data_program_makan[$persiapan_umum][$x]->waktu == 'malam')
+                                
+                        @if(isset($data_program_makan[$persiapan_umum]))
+                           
                                 <ul class="list-inline">
                                         @foreach($data_program_makan[$persiapan_umum] as $menu_persiapan_umum)
+                                        @if($menu_persiapan_umum->waktu == 'malam')
                                             <li>
                                                 @component('components.label_makan')
                                                     @slot('id')
@@ -212,12 +215,13 @@
                                         $total_kalori_malam = $total_kalori_malam + $menu_persiapan_umum->total_kalori;
                                         $x++;
                                         @endphp
+                                        @endif
                                         @endforeach
                                             <li class="pull-left" style="margin-top:10px">
                                                 <a href="" class="" data-toggle="modal" data-target="#pilihMenu"  data-tanggal="{{ $persiapan_umum }}" data-waktu="malam"><i class="material-icons" style="font-size:1.25em">add</i> Tambah</a>
                                             </li>
                                     </ul>
-                            @endif
+
                         @else
                             <a href="#" data-toggle="modal" data-target="#pilihMenu" data-tanggal="{{ $persiapan_umum }}"  data-waktu="malam">Pilih menu</a>
                         @endif
