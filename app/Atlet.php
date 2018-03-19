@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Atlet extends Model
 {
@@ -24,5 +25,9 @@ class Atlet extends Model
 
     public function cabor(){
     	return $this->belongsTo("App\Cabor");
+    }
+
+    public function umur(){
+      return Carbon::createFromFormat('Y-m-d', $this->tgl_lahir)->age;
     }
 }

@@ -110,7 +110,7 @@
                           <div class="col-md-2">
                               <div class="form-group label-floating">
                                   <label class="control-label">Transisi (Pekan)</label>
-                                  <input class="form-control" required="" name="transisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->transisi }}" @endisset/>
+                                  <input id="transisi" class="form-control" required="" name="transisi" type="number" min="1"  @isset ($program) value="{{ json_decode($program->siklus_makro)->transisi }}" @endisset/>
                                   <small class="help-block">transisi dalam satuan pekan</small>
                               </div>
                           </div>
@@ -172,17 +172,26 @@
             var persiapan_khusus = parseInt($("#persiapan_khusus").val());
             var pra_kompetisi = parseInt($("#pra_kompetisi").val());
             var kompetisi = parseInt($("#kompetisi").val());
+            var transisi = parseInt($("#transisi").val());
             var jangka_durasi = parseInt($("#jangka_durasi").val()) * 4;
+            var total_pekan = persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi + transisi;
 
-            if (jangka_durasi > (persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi)) {
-              $("#alert-msg").html("Durasi pekan <b>kurang</b> dari jangka program!")
+            // if (jangka_durasi > (persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi)) {
+            //   $("#alert-msg").html("Durasi pekan <b>kurang</b> dari jangka program!")
+            //   $("#alert").show();
+            // }else if (jangka_durasi < (persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi)) {
+            //   $("#alert-msg").html("Durasi pekan <b>lebih</b> dari jangka program!")
+            //   $("#alert").show();
+            // }else{
+            //   $("#alert").hide();
+            // }
+
+            if (jangka_durasi != total_pekan) {
+              $("#alert-msg").html("Durasi pekan ("+total_pekan+") tidak sesuai dengan jangka program ("+jangka_durasi+")!")
               $("#alert").show();
-            }else if (jangka_durasi < (persiapan_umum + persiapan_khusus + pra_kompetisi + kompetisi)) {
-              $("#alert-msg").html("Durasi pekan <b>lebih</b> dari jangka program!")
-              $("#alert").show();
+            }else{
+              $("#alert").hide();
             }
         });
     </script>
 @endpush
-
-

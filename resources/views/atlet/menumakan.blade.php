@@ -8,6 +8,17 @@
     .label a{color:white;}
 </style>
 @endpush
+@push('style')
+  <style media="screen">
+    ul {
+      list-style-type: none;
+      padding: 0px;
+    }
+    table tr td {
+      word-wrap: break-word;
+    }
+  </style>
+@endpush
 @section("content")
 <div class="container-fluid">
     <div class="row">
@@ -58,12 +69,12 @@
                         </div>
                     </div>
                   </div>
-                  
+
                   <a href="{{ url("/atlet/".$atlet_id) }}" class="btn btn-primary btn-round">Detail</a>
-                
+
                 </div>
               </div>
-            
+
         </div>
     </div>
 </div>
@@ -102,7 +113,7 @@
               <div class="form-group label-floating" id="label-makan">
                 <label class="control-label">Makanan</label>
                 <select name="list_makanan" id="list_makan" required="" class="form-control">
-                	
+
                 </select>
                 <span class="material-input"></span>
               </div>
@@ -114,7 +125,7 @@
                 <span class="material-input"></span>
               <span class="material-input"></span></div>
             </div>
-	       
+
 	      </div>
 	      		<div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -169,7 +180,7 @@
                     <span class="material-input"></span>
                 </div>
             </div>
-           
+
           </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
@@ -225,7 +236,7 @@
                     <span class="material-input"></span>
                 </div>
             </div>
-           
+
           </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
@@ -241,7 +252,7 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$.get("{{ url('makanan/karbohidrat') }}", function(data){
-				
+
 				$.each(data, function(key, value){
 					$("#list_makan option").remove();
 					$("#list_makan").append("<option value='"+ value.id +"'>"+ value.nama +" - "+ value.kalori +" kal</option>");
@@ -270,9 +281,9 @@
 			$("#list_makan option").remove();
 			var kategori = $(this).val();
 			$.get("{{ url('makanan') }}/"+kategori, function(data){
-				
+
 				$.each(data, function(key, value){
-					
+
 					$("#list_makan").append("<option value='"+ value.id +"'>"+ value.nama +" - "+ value.kalori +" kal</option>");
 				});
 			});
