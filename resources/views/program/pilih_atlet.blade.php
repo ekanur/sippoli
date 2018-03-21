@@ -40,7 +40,7 @@
                         </h3>
                       </div>
                       <div class="panel-body">
-                        
+
                         @if (sizeof($program_atlet) === 0)
                             <h4 class="text-center text-muted">Belum Memilih Atlet</h4>
                         @else
@@ -50,7 +50,7 @@
                                     <li style=" border:1px solid #ddd">
                                         <img src="{{ url('/uploads/sample-'.rand(1,3).".jpg") }}" alt="nama atlet" style="width: 74px;height: 76px; border:1.5px solid #bcbcbc" class="img-circle pull-left">
                                         <span class="pull-left" style="margin: 5px 10px;">
-                                            <p>{{$program_atlet->nama}}</p>                             
+                                            <p>{{$program_atlet->nama}}</p>
                                         </span>
                                         <div class="dropdown pull-right">
                                           <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-success btn-simple btn-xs">
@@ -59,18 +59,18 @@
                                           <ul class="dropdown-menu" aria-labelledby="dLabel">
                                             {{-- <li><a href="{{ url('/program/'.$id_program.'/assessment/'.$program_atlet->id) }}">Assessment</a></li> --}}
                                             <li><a href="{{ url('/program/'.$id_program.'/program-makan/'.$program_atlet->id) }}">Program Makan</a></li>
-                                            <li><a href="{{ url('/program/'.$id_program.'/cetak/'.$program_atlet->id) }}">Print</a></li>
+                                            <li><a href="{{ url('/program/'.$id_program.'/program-makan/'.$program_atlet->id.'/cetak') }}">Print Program Makan</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="{{ url('/program/'.$id_program.'/hapus-atlet/'.$program_atlet->id) }}">Remove</a></li>
                                           </ul>
                                         </div>
 
-                                        
+
                                     </li>
                                 @endforeach
                             </ul>
                         @endif
-                        
+
                       </div>
                       <div class="panel-footer">
                         <ul class="list-inline">
@@ -78,16 +78,16 @@
                             <li> <small>Avg. Berat Badan : </small></li>
                             <li> <small>Avg. Berat Badan : </small></li>
                         </ul>
-                       
+
                       </div>
                     </div>
-                    
-                    
+
+
                   </div>
                 </div>
             </div>
-            
-            
+
+
         </div>
     </div>
 </div>
@@ -157,7 +157,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .dataTables_filter{
     float:right;
-    width: 100%;    
+    width: 100%;
 }
 .dataTables_filter label{
     display:block;
@@ -198,7 +198,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
         });
     });
 
-    $("input[name='pilih_atlet']").change(function(){    
+    $("input[name='pilih_atlet']").change(function(){
         var count = $("input[name='pilih_atlet']:checked").length;
         if(count > 0){
             $("button[name='tambah_atlet']").attr('disabled', false);
@@ -225,7 +225,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
         var id = $(this).data("id");
         $.post("{{ url('/pilih-atlet') }}", {id:id, program_id:"{{ $id_program }}"})
             .done(function(data){
-                // console.log(data);                
+                // console.log(data);
                 window.location.replace("{{ url('/program/'.$id_program.'/atlet') }}");
             });
     });
@@ -256,7 +256,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" class="check_atlet" name="pilih_atlet" value="{{ $atlet->id }}">
-                                    
+
                                 </label>
                             </div>
                         </td>
@@ -268,7 +268,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
                             <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Pilih {{ ucwords($atlet->nama) }}" data-id="{{ $atlet->id }}">
                                 <i class="material-icons">person_add</i>
                             </button>
-                            
+
                         </td>
                     </tr>
                 @endforeach
@@ -283,7 +283,3 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   </div>
 </div>
 @endpush
-
- 
-
-

@@ -67,7 +67,7 @@ Route::prefix("program")->group(function(){
 	Route::get("/{id_program}/program-makan/{atlet_id}/transisi", "ProgramMakanController@transisi");
 
 	Route::get("/{id_program}/assessment/{atlet_id}", "AssessmentAtletController@index");
-	Route::get("/{id_program}/cetak-atlet/{atlet_id}", "CetakProgramController@perAtlet");
+	Route::get("/{id_program}/program-makan/{atlet_id}/cetak", "ProgramMakanController@cetakProgramMakan");
 	Route::get("/{id_program}/cetak", "CetakProgramController@index");
 });
 // Route::get('program/1/mikro/1/hapus/{id}','ProgramController@deleteSiklusMikro');

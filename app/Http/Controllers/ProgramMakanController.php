@@ -23,8 +23,9 @@ class ProgramMakanController extends Controller
         "air"           => 'danger',
     );
 
-    public function index($id_program, $atlet_id){
-        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+    public function index($id_program, $atlet_id)
+    {
+        $program = Program::with(["atlet" => function ($query) use ($atlet_id) {
             $query->where('atlet_id', $atlet_id);
             $query->with("cabor");
         }])->findOrFail($id_program);
@@ -34,29 +35,32 @@ class ProgramMakanController extends Controller
         $date_range = $this->getDateRange($program, 'persiapan_umum');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
         $label_kategori = $this->label_kategori;
-        
+
         // dd($data_program_makan);
-        
+
         return view("atlet.menumakan", compact('program', 'date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori'));
     }
 
-    public function persiapanKhusus($id_program, $atlet_id){
-        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+    public function persiapanKhusus($id_program, $atlet_id)
+    {
+        $program = Program::with(["atlet" => function ($query) use ($atlet_id) {
             $query->where('atlet_id', $atlet_id);
             $query->with("cabor");
-        }])->findOrFail($id_program);;
+        }])->findOrFail($id_program);
+        ;
 
         $date_range = $this->getDateRange($program, 'persiapan_khusus');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
         $label_kategori = $this->label_kategori;
-        
+
         // dd($label_kategori);
-        
+
         return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
-    public function praKompetisi($id_program, $atlet_id){
-        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+    public function praKompetisi($id_program, $atlet_id)
+    {
+        $program = Program::with(["atlet" => function ($query) use ($atlet_id) {
             $query->where('atlet_id', $atlet_id);
             $query->with("cabor");
         }])->findOrFail($id_program);
@@ -64,14 +68,15 @@ class ProgramMakanController extends Controller
         $date_range = $this->getDateRange($program, 'pra_kompetisi');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
         $label_kategori = $this->label_kategori;
-        
+
         // dd($label_kategori);
-        
+
         return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
-    public function kompetisi($id_program, $atlet_id){
-        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+    public function kompetisi($id_program, $atlet_id)
+    {
+        $program = Program::with(["atlet" => function ($query) use ($atlet_id) {
             $query->where('atlet_id', $atlet_id);
             $query->with("cabor");
         }])->findOrFail($id_program);
@@ -79,14 +84,15 @@ class ProgramMakanController extends Controller
         $date_range = $this->getDateRange($program, 'kompetisi');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
         $label_kategori = $this->label_kategori;
-        
+
         // dd($label_kategori);
-        
+
         return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
-    public function transisi($id_program, $atlet_id){
-        $program = Program::with(["atlet" => function($query) use ($atlet_id){
+    public function transisi($id_program, $atlet_id)
+    {
+        $program = Program::with(["atlet" => function ($query) use ($atlet_id) {
             $query->where('atlet_id', $atlet_id);
             $query->with("cabor");
         }])->findOrFail($id_program);
@@ -94,14 +100,15 @@ class ProgramMakanController extends Controller
         $date_range = $this->getDateRange($program, 'transisi');
         $data_program_makan = $this->getProgramMakanan($id_program, $atlet_id);
         $label_kategori = $this->label_kategori;
-        
+
         // dd($label_kategori);
-        
+
         return view("atlet.menumakan", compact('date_range', 'id_program', 'atlet_id', 'data_program_makan', 'label_kategori', 'program'));
     }
 
 
-    public function simpan(Request $request){
+    public function simpan(Request $request)
+    {
         $list_makanan = List_makanan::select("kalori")->findOrFail($request->list_makanan);
 
         $program_makanan = new Program_makanan;
@@ -119,9 +126,10 @@ class ProgramMakanController extends Controller
         $request->session()->flash('flash_status', 'success');
 
         return redirect()->back();
-   }
+    }
 
-    public function getProgramMakanan($id_program, $atlet_id){
+    public function getProgramMakanan($id_program, $atlet_id)
+    {
         $program_makan = Program_makanan::where([["program_id", $id_program], ["atlet_id", $atlet_id]])->get();
         $data_program_makan=array();
         foreach ($program_makan as $makan) {
@@ -131,9 +139,9 @@ class ProgramMakanController extends Controller
         return $data_program_makan;
     }
 
-    public function getDateRange(Program $program, $sesi){
-
-        if($sesi != 'persiapan_umum' && $sesi != 'persiapan_khusus' && $sesi != 'pra_kompetisi' && $sesi != 'kompetisi' && $sesi != 'transisi' ){
+    public function getDateRange(Program $program, $sesi)
+    {
+        if ($sesi != 'persiapan_umum' && $sesi != 'persiapan_khusus' && $sesi != 'pra_kompetisi' && $sesi != 'kompetisi' && $sesi != 'transisi') {
             return null;
         }
 
@@ -156,10 +164,10 @@ class ProgramMakanController extends Controller
         $date_range["transisi"] = dateRange($mulai_transisi->format("Y/m/d"), intval(json_decode($program->siklus_makro)->transisi)*7);
 
         return $date_range[$sesi];
-        
     }
 
-   public function hapus($id){
+    public function hapus($id)
+    {
         $program_makanan = Program_makanan::findOrFail($id);
 
         $program_makanan->delete();
@@ -168,21 +176,46 @@ class ProgramMakanController extends Controller
         Session::flash('flash_status', 'success');
 
         return redirect()->back();
-   
-   }
+    }
 
-   public function update(Request $request){
-    $program_makanan = Program_makanan::findOrFail($request->id);
+    public function update(Request $request)
+    {
+        $program_makanan = Program_makanan::findOrFail($request->id);
 
-    $program_makanan->qty = $request->qty_edit;
-    $program_makanan->total_kalori = $request->qty_edit * $request->kalori_edit;
+        $program_makanan->qty = $request->qty_edit;
+        $program_makanan->total_kalori = $request->qty_edit * $request->kalori_edit;
 
-    $program_makanan->save();
+        $program_makanan->save();
 
-    Session::flash("flash_message", "Berhasil memperbarui menu makanan.");
-    Session::flash("flash_status", "success");
+        Session::flash("flash_message", "Berhasil memperbarui menu makanan.");
+        Session::flash("flash_status", "success");
 
-    return redirect()->back();
-   }
+        return redirect()->back();
+    }
 
+    public function cetakProgramMakan($id_program, $atlet_id)
+    {
+        $program = Program::findOrFail($id_program);
+        $atlet = Atlet::findOrFail($atlet_id);
+
+        $data_program_makan = $this->getProgramMakanan($program->id, $atlet->id);
+        $date_range_persiapan_umum = $this->getDateRange($program, 'persiapan_umum');
+        $date_range_persiapan_khusus = $this->getDateRange($program, 'persiapan_khusus');
+        $date_range_pra_kompetisi = $this->getDateRange($program, 'pra_kompetisi');
+        $date_range_kompetisi = $this->getDateRange($program, 'kompetisi');
+        $date_range_transisi = $this->getDateRange($program, 'transisi');
+
+        // dd($data_program_makan['2017/08/28']);
+
+        return view('atlet.program_makan.print_layout', compact(
+          'program',
+          'atlet',
+          'data_program_makan',
+          'date_range_persiapan_umum',
+          'date_range_persiapan_khusus',
+          'date_range_pra_kompetisi',
+          'date_range_kompetisi',
+          'date_range_transisi'
+        ));
+    }
 }

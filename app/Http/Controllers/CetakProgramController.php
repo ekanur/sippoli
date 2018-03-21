@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Program;
+use App\Atlet;
 use PDF;
 use Faker;
 
@@ -18,7 +19,7 @@ class CetakProgramController extends Controller
       return view('program.print_layout', compact('program'));
     }
 
-    public function perAtlet($id_program, $atlet_id){
-
+    public function cetakProgramMakan($id_program, $atlet_id){
+      dd(Program::find($id_program)->atlet);
     }
 }
