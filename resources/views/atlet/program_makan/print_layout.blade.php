@@ -81,15 +81,15 @@
             <table class="table">
               <tr>
                 <th>Persiapan Umum</th>
-                <td>{{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->persiapan_umum}}</td>
+                <td>@unless(count($program->kebutuhan_energi)==0){{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->persiapan_umum}}@endunless</td>
               </tr>
               <tr>
                 <th>Persiapan Khusus</th>
-                <td>{{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->persiapan_khusus}}</td>
+                <td>@unless(count($program->kebutuhan_energi)==0){{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->persiapan_khusus}}@endunless</td>
               </tr>
               <tr>
                 <th>Pra Kompetisi</th>
-                <td>{{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->pra_kompetisi}}</td>
+                <td>@unless(count($program->kebutuhan_energi)==0){{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->pra_kompetisi}}@endunless</td>
               </tr>
             </table>
           </div>
@@ -97,11 +97,11 @@
             <table class="table">
               <tr>
                 <th>Kompetisi</th>
-                <td>{{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->kompetisi}}</td>
+                <td>@unless(count($program->kebutuhan_energi)==0){{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->kompetisi}}@endunless</td>
               </tr>
               <tr>
                 <th>Transisi</th>
-                <td>{{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->transisi}}</td>
+                <td>@unless(count($program->kebutuhan_energi)==0){{json_decode($program->kebutuhan_energi->first()->json_kebutuhan_per_siklus_makro)->transisi}}@endunless</td>
               </tr>
             </table>
           </div>

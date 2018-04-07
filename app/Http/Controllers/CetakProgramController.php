@@ -19,7 +19,7 @@ class CetakProgramController extends Controller
       return view('program.print_layout', compact('program'));
     }
 
-    public function cetakProgramMakan($id_program, $atlet_id){
-      dd(Program::find($id_program)->atlet);
-    }
+    // public function cetakProgramMakan($id_program, $atlet_id){
+    //   dd(Program::find($id_program)->atlet);
+    // }
 }

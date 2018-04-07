@@ -206,7 +206,7 @@ class ProgramMakanController extends Controller
         $date_range_transisi = $this->getDateRange($program, 'transisi');
 
         // dd($data_program_makan['2017/08/28']);
-
+        // dd(count($program->kebutuhan_energi));
         return view('atlet.program_makan.print_layout', compact(
           'program',
           'atlet',
