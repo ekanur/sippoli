@@ -61,20 +61,9 @@
                   <tbody>
                       @foreach($daftarsemuaLatihan as $daftarsemuaLatihan)
                       <tr>
-                        <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftarsemuaLatihan->nama}}</a></td>
+                      <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftarsemuaLatihan->nama}}</a> <small class="text-muted">{{ $daftarsemuaLatihan->kategori }} - {{ ucwords($daftarsemuaLatihan->cabor->nama) }}</small></td>
                       </tr>
                       @endforeach
-                    <!-- @for ($i=0; $i < 10; $i++)
-                      <tr>
-                        <td>
-                          <a href="/latihan/id">{{Faker\Factory::create()->sentence(2, 4)}}</a><br>
-    {{--                       <small class="material-icons">bookmark <i>@php
-                            $kategori = array('Latihan Fisik', 'Latihan Cabor');
-                            echo $kategori[array_rand($kategori)];
-                          @endphp</i></small>&emsp;|&emsp;<small>oleh: <i>{{Faker\Factory::create()->name}}</i></small> &nbsp; |  --}}
-                        </td>
-                      </tr>
-                    @endfor -->
                   </tbody>
                 </table>
               </div>
@@ -82,11 +71,17 @@
 
               <div class="tab-pane" id="dari_saya">
                 <table class="table">
+                  <thead>
+                    <tr>
+                      <th width="90%"></th>
+                      <th width="10%"></th>
+                    </tr>
+                  </thead>
                   <tbody>
 
                     @foreach($daftardariPelatih as $daftardariPelatih)
                     <tr>
-                      <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftardariPelatih->nama}}</a></td>
+                      <td><a href="{{ url('/latihan/'.$daftardariPelatih->id) }}">{{$daftardariPelatih->nama}}</a> <small class="text-muted">{{ $daftardariPelatih->kategori }} - {{ ucwords($daftardariPelatih->cabor->nama) }}</small></td>
 
                       <td>
                           <!-- <a href="{{url('/latihan')}}"><i class="material-icons" onclick="return konfirmasi()">delete</i> </a> -->
@@ -95,8 +90,8 @@
                           </button> -->
 
                          <!-- <div style="cursor:pointer"><i class="material-icons" onclick="return konfirmasi()">delete</i></div> -->
-                            <a data-toggle="modal" href="{{url('/latihan/'.$daftarsemuaLatihan->id.'/edit')}}"><i class="material-icons">mode_edit</i></a>
-                           <a href="{{ url('/latihan/hapus/'.$daftardariPelatih->id) }}" class="del-confrim_list_latihan" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a>
+                            <a href="{{url('/latihan/'.$daftardariPelatih->id.'/edit')}}"><small class="material-icons">mode_edit</small></a>
+                           <a href="{{ url('/latihan/hapus/'.$daftardariPelatih->id) }}" class="del-confrim_list_latihan" data-text="Apakah anda yakin ingin menghapus item tersebut?"><small class="material-icons">delete</small></a>
                           <!-- Delete Modal content konfirmasi Hapus-->
                           <!-- <div class="modal fade" id="delete_confirmation_modal" role="dialog" style="display: none;">
                               <div class="modal-dialog" style="margin-top: 260.5px;">
@@ -119,26 +114,6 @@
                       </td>
                     </tr>
                     @endforeach
-
-                    <!-- @for ($i=0; $i < 3; $i++)
-                      <tr>
-                        <td>
-                          <a href="/latihan/id">{{Faker\Factory::create()->sentence(2, 4)}}</a><br>
-    {{--                       <small class="material-icons">bookmark <i>@php
-                            $kategori = array('Latihan Fisik', 'Latihan Cabor');
-                            echo $kategori[array_rand($kategori)];
-                          @endphp</i></small>&emsp;|&emsp;<small>oleh: <i>{{Faker\Factory::create()->name}}</i></small> &nbsp; |  --}}
-                        </td>
-                        {{-- <td class="action-td">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs action-btn">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs action-btn">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td> --}}
-                      </tr>
-                    @endfor -->
                   </tbody>
                 </table>
               </div>

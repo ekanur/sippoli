@@ -26,11 +26,19 @@
                     <label class="control-label">Nama Latihan</label>
                     <input class="form-control" type="text" name="nameLatihan" value="{{ $latihan->nama }}" required>
                   </div>
-                  <div class="form-group label-floating col-md-4">
+                  <div class="form-group label-floating col-md-2">
                     <label class="control-label">Kategori Latihan</label>
                     <select class="form-control" name="cateogryLatihan">
                       <option value="Latihan Fisik" @if($latihan->kategori == 'Latihan Fisik') selected="" @endif>Latihan Fisik</option>
                       <option value="Latihan Cabor" @if($latihan->kategori == 'Latihan Cabor') selected="" @endif>Latihan Cabor</option>
+                    </select>
+                  </div>
+                  <div class="form-group label-floating col-md-2">
+                    <label for="" class="control-label">Cabor</label>
+                    <select class="form-control" name="cabor_id">
+                      @foreach($cabor as $cabor)
+                        <option value="{{ $cabor->id }}" @if($cabor->id == $latihan->cabor_id) selected="" @endif>{{ ucwords($cabor->nama) }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>

@@ -14,4 +14,8 @@ class List_latihan extends Model
     public function pelatih(){
     	return $this->belongsTo("App\Pelatih");
     }
+
+    public function cabor(){
+      return $this->belongsTo("App\Cabor");
+    }
 }
