@@ -1,6 +1,7 @@
 @extends('layout')
 
 @push('style')
+  <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
   <style media="screen">
   .tab-pane td a{
     text-transform: capitalize;
@@ -18,50 +19,50 @@
   </div>
 @endif -->
 
-<!--
-<script type="text/javascript" language="JavaScript">
- function konfirmasi()
- {
-  // tanya = confirm("Anda yakin akan menghapus data ini?");
- $("#delete_item_id").val( $('p').get(0).id );
- $('#delete_confirmation_modal').modal('show');
- // if (tanya == true) return true;
- // else return false;
- }
- </script> -->
-
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card card-nav-tabs">
           <div class="card-header" data-background-color="purple">
-                  <div class="nav-tabs-navigation">
-                    <div class="nav-tabs-wrapper">
-                      <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="active">
-                          <a href="#semua" data-toggle="tab" aria-expanded="false">
-                            <i class="material-icons">public</i>
-                            Semua
-                          <div class="ripple-container"></div></a>
-                        </li>
-                        <li class="">
-                          <a href="#dari_saya" data-toggle="tab" aria-expanded="true">
-                            <i class="material-icons">local_library</i>
-                            Dari saya
-                          <div class="ripple-container"></div></a>
-                        </li>
-                      </ul>
-                    </div>
+            <div class="pull-left">
+                <div class="nav-tabs-navigation">
+                  <div class="nav-tabs-wrapper">
+                    <ul class="nav nav-tabs" data-tabs="tabs">
+                      <li class="active">
+                        <a href="#semua" data-toggle="tab" aria-expanded="false">
+                          <i class="material-icons">public</i>
+                          Semua
+                        <div class="ripple-container"></div></a>
+                      </li>
+                      <li class="">
+                        <a href="#dari_saya" data-toggle="tab" aria-expanded="true">
+                          <i class="material-icons">local_library</i>
+                          Dari saya
+                        <div class="ripple-container"></div></a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
+            </div>
+            <div class="pull-right">
+                <a href="#" data-toggle="modal" data-target="#tambahLatihan"><i class="material-icons">add_circle</i></a>
+            </div>
+            <div class="clearfix"></div>
+            
+          </div>
           <div class="card-content">
             <div class="tab-content">
               <div class="tab-pane active" id="semua">
                 <table class="table">
+                    <thead>
+                      <tr>
+                        <th width="100%">Nama</th>
+                      </tr>
+                    </thead>
                   <tbody>
                       @foreach($daftarsemuaLatihan as $daftarsemuaLatihan)
                       <tr>
-                      <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftarsemuaLatihan->nama}}</a> <small class="text-muted">{{ $daftarsemuaLatihan->kategori }} - {{ ucwords($daftarsemuaLatihan->cabor->nama) }}</small></td>
+                        <td><a href="{{ url('/latihan/'.$daftarsemuaLatihan->id) }}">{{$daftarsemuaLatihan->nama}}</a> <small class="text-muted">{{ $daftarsemuaLatihan->kategori }} - {{ ucwords($daftarsemuaLatihan->cabor->nama) }}</small></td>
                       </tr>
                       @endforeach
                   </tbody>
@@ -73,8 +74,8 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th width="90%"></th>
-                      <th width="10%"></th>
+                      <th width="95%">Nama</th>
+                      <th width="5%">Opsi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -84,33 +85,8 @@
                       <td><a href="{{ url('/latihan/'.$daftardariPelatih->id) }}">{{$daftardariPelatih->nama}}</a> <small class="text-muted">{{ $daftardariPelatih->kategori }} - {{ ucwords($daftardariPelatih->cabor->nama) }}</small></td>
 
                       <td>
-                          <!-- <a href="{{url('/latihan')}}"><i class="material-icons" onclick="return konfirmasi()">delete</i> </a> -->
-                          <!-- <a href="{{url('/latihan')}}"><i class="material-icons" onclick="konfirmasi()">delete</i></a> -->
-                          <!-- <button  class="btn btn-link" onclick="konfirmasi()">delete
-                          </button> -->
-
-                         <!-- <div style="cursor:pointer"><i class="material-icons" onclick="return konfirmasi()">delete</i></div> -->
-                            <a href="{{url('/latihan/'.$daftardariPelatih->id.'/edit')}}"><small class="material-icons">mode_edit</small></a>
-                           <a href="{{ url('/latihan/hapus/'.$daftardariPelatih->id) }}" class="del-confrim_list_latihan" data-text="Apakah anda yakin ingin menghapus item tersebut?"><small class="material-icons">delete</small></a>
-                          <!-- Delete Modal content konfirmasi Hapus-->
-                          <!-- <div class="modal fade" id="delete_confirmation_modal" role="dialog" style="display: none;">
-                              <div class="modal-dialog" style="margin-top: 260.5px;">
-                                          <div class="modal-content">
-                                      <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal">x</button>
-                                          <h4 class="modal-title">Apakah daftar latihan akan dihapus ?</h4>
-                                      </div>
-                                      <form role="form" method="post" action="#" id="delete_data">
-                                          <input type="hidden" id="delete_item_id" name="id" value="12">
-                                          <div class="modal-footer">
-                                              <button type="submit" class="btn btn-danger">Iya</button>
-                                              <button type="button" class="btn btn btn-success" data-dismiss="modal">Tidak</button>
-                                          </div>
-                                      </form>
-                                  </div>
-
-                              </div>
-                          </div> -->
+                          <a href="{{url('/latihan/'.$daftardariPelatih->id.'/edit')}}"><small class="material-icons">mode_edit</small></a>
+                          <a href="{{ url('/latihan/hapus/'.$daftardariPelatih->id) }}" class="del-confrim_list_latihan" data-text="Apakah anda yakin ingin menghapus item tersebut?"><small class="material-icons">delete</small></a>
                       </td>
                     </tr>
                     @endforeach
@@ -121,26 +97,6 @@
 
           </div>
         </div>
-      </div>
-
-      <div class="col-md-4">
-      	<div class="card">
-          <div class="card-header" data-background-color="purple">
-            <h4 class="title">Tambah Latihan</h4>
-          </div>
-          <div class="card-content">
-<!--             <div class="form-group label-floating">
-              <label class="control-label">Kategori Latihan</label>
-              <select class="form-control" name="cateogry">
-                <option value="Metode Latihan Fisik">Latihan Fisik</option>
-                <option value="Metode Latihan Cabor Or">Latihan Cabor</option>
-              </select>
-            </div> -->
-            <div class="text-center">
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#tambahLatihan">Tambah</button>
-            </div>
-          </div>
-      	</div>
       </div>
 
       <!-- Modal -->
@@ -268,6 +224,7 @@
 @push('script')
   <script type="text/javascript" src="{{ url('/js/tinymce/jquery.tinymce.min.js') }}"></script>
   <script type="text/javascript" src="{{ url('/js/tinymce/tinymce.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url('/js/datatables.min.js') }}"></script>
   <script type="text/javascript">
     tinymce.init({
       selector: 'textarea',
@@ -279,6 +236,10 @@
       content_css: [
         '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
         '//www.tinymce.com/css/codepen.min.css']
+    });
+
+    $(document).ready(function(){
+      $(".table").DataTable();
     });
   </script>
 @endpush

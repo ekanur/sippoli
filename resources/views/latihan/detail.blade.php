@@ -17,7 +17,7 @@
           <div class="card-header" data-background-color="purple">
             <h4 class="title">{{ $latihan->nama }} @if($latihan->pelatih_id == 1) <small class="material-icons pull-right"><a class="" href="{{ url('/latihan/'.$latihan->id."/edit") }}">mode_edit</a></small> @endif</h4>
             <p class="category">
-              {{ $latihan->kategori }}
+              {{ $latihan->kategori }} - {{ ucwords($latihan->cabor->nama) }}
             </p>
           </div>
           <div class="card-content">
