@@ -16,7 +16,7 @@ class TableCabor extends Migration
         Schema::create('cabor', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama',45);
-            $table->string('kategori',45);
+            $table->enum('kategori', ["permainan", "atletik", "bela diri", "senam", "lainnya"]);
             $table->timestamps();
             $table->softDeletes();
         });

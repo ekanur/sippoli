@@ -141,6 +141,14 @@ class ProgramController extends Controller
         return response()->json("success");
     }
 
+    public function hapusAtlet($id_program, $atlet_id){
+        $program_atlet = Program::findOrFail($id_program)->atlet()->detach($atlet_id);
+
+        Session::flash("flash_message", "Berhasil menghapus atlet dari program latihan.");
+        Session::flash("flash_status", "success");
+        return redirect()->back();
+    }
+
 
     public function deleteSiklusMikro($id){
         $id_mikro =Siklus_mikro::findOrFail($id);

@@ -98,7 +98,7 @@
                             <a data-toggle="modal" href="{{url('/latihan/'.$daftarsemuaLatihan->id.'/edit')}}"><i class="material-icons">mode_edit</i></a>
                            <a href="{{ url('/latihan/hapus/'.$daftardariPelatih->id) }}" class="del-confrim_list_latihan" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a>
                           <!-- Delete Modal content konfirmasi Hapus-->
-                          <!-- <div class="modal fade" id="delete_confirmation_modal" role="dialog" style="display: none;" data-backdrop="false">
+                          <!-- <div class="modal fade" id="delete_confirmation_modal" role="dialog" style="display: none;">
                               <div class="modal-dialog" style="margin-top: 260.5px;">
                                           <div class="modal-content">
                                       <div class="modal-header">
@@ -169,7 +169,14 @@
       </div>
 
       <!-- Modal -->
-      <div id="tambahLatihan" class="modal fade" role="dialog" data-backdrop="false">
+      
+    </div>
+  </div>
+
+@endsection
+
+@push('modal')
+  <div id="tambahLatihan" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
@@ -217,10 +224,8 @@
         </div>
       </div>
 
-
-
       <!-- Modal untuk ubah latihan -->
-      <div id="EditLatihan" class="modal fade" role="dialog" data-backdrop="false">
+      <div id="EditLatihan" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
@@ -268,19 +273,7 @@
 
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-    </div>
-  </div>
-
-@endsection
+@endpush
 
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">

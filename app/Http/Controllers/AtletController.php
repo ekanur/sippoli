@@ -16,6 +16,7 @@ class AtletController extends Controller
      */
     public function index()
     {
+        // echo "hei";
         $atlet = Atlet::with('cabor')->orderBy("id", "desc")->get();
         // dd($atlet);
         return view('atlet.profilatlet', compact('atlet'));

@@ -13,22 +13,22 @@
                 <li @if (Request::is('program/*/atlet') || Request::is('program/*/atlet/*')) class="active"  @endif>
                     @if (isset($id_program)) 
                       <a href="{{ url('/program/'.$id_program.'/atlet') }}" role="tab">
-                        <i class="material-icons">search</i>Pilih Atlet
+                        <i class="material-icons">directions_run</i>Pilih Atlet
                       </a>
                     @else
                     <a href="{{ url('/program/baru') }}" role="tab">
-                        <i class="material-icons">search</i>Pilih Atlet
+                        <i class="material-icons">directions_run</i>Pilih Atlet
                     </a>
                     @endif                    
                 </li>
                 <li @if (Request::is('program/*/mikro') || Request::is('program/*/mikro/*') || Request::is('program/*/sesi-latihan/*')) class="active"  @endif>
                     @if (isset($id_program)) 
                       <a href="{{ url('/program/'.$id_program.'/mikro') }}" role="tab">
-                        <i class="material-icons">directions_run</i>Program Latihan
+                        <i class="material-icons">fitness_center</i>Program Latihan
                       </a>
                     @else
                     <a href="{{ url('/program/baru') }}" role="tab">
-                        <i class="material-icons">directions_run</i>Program Latihan
+                        <i class="material-icons">fitness_center</i>Program Latihan
                     </a>
                     @endif                    
                 </li>

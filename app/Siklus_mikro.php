@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Siklus_mikro extends Model
 {
     protected $table ="siklus_mikro";
+    protected $fillable = ["json_volume_intensitas", "pekan_ke"];
 
     public function sesi_latihan(){
       return $this->hasMany("App\Sesi_latihan");
@@ -19,6 +20,8 @@ class Siklus_mikro extends Model
 
     public function namaBulan(){
     	$nama_bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+        // dd($this->bulan);
 
     	return $nama_bulan[$this->bulan-1];
     }

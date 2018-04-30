@@ -55,7 +55,7 @@
                           <td>{{ $program->jangka_durasi }} bulan</td>
                           <td>{{ $program->mulai_program }} s.d {{ $program->berakhir_program }}</td>
                           <td>
-                            <a href="{{ url('') }}"><i class="material-icons">print</i></a>
+                            <a href="{{ url('/program/'.$program->id.'/cetak') }}"><i class="material-icons">print</i></a>
                             <a data-toggle="modal" href="{{url('#UbahProgram')}}"><i class="material-icons">mode_edit</i></a>
                             <a href="{{ url('/program/hapus/'.$program->id) }}"  class="del-confrim_program" data-text="Apakah anda yakin ingin menghapus program latihan {{$program->nama}}"><i  class="material-icons">delete</i></a>
                           </td>

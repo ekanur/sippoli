@@ -34,7 +34,7 @@
                                 <div class="panel-heading">
                                     <ol class="breadcrumb">
                                       <li><a href="{{ url('/program/'.$id_program.'/mikro') }}">Siklus Mikro</a></li>
-                                      <li>{{ $siklus_mikro->namaBulan() }}, pekan ke {{ $siklus_mikro->pekan_ke }}</li>
+                                      <li>Pekan ke {{ $siklus_mikro->pekan_ke }}</li>
                                     </ol>
                                 </div>
                                 <div class="panel-body">
@@ -49,6 +49,12 @@
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume</label>
                                                         <strong>{{ json_decode($siklus_mikro->json_volume_intensitas)->volume }}%</strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 col-xs-2">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Peaking</label>
+                                                        <strong>{{ json_decode($siklus_mikro->json_volume_intensitas)->peaking }}%</strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-2 col-xs-6">
