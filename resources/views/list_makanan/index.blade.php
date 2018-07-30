@@ -1,6 +1,7 @@
 @extends('layout')
 
 @push('style')
+ <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
   <style media="screen">
     .action-td {
       text-align: right;
@@ -99,3 +100,13 @@
   </div>
 
 @endsection
+
+@push('script')
+  <script type="text/javascript" src="{{ url('/js/datatables.min.js') }}"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+      $(".table").DataTable();
+    });
+  </script>
+@endpush

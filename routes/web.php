@@ -97,3 +97,4 @@ Route::post('/program-makan/edit', "ProgramMakanController@update");
 
 Route::get("program-makan/hapus/{id}", "ProgramMakanController@hapus");
 Route::get("tes", "TesController@index");
+Route::get("tes/{id}", "TesController@detail");

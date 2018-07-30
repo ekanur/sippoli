@@ -315,13 +315,13 @@
 
           var options = {
             hAxis: {title: 'Pekan',  titleTextStyle: {color: '#333'}},
-            vAxis: {minValue: 0},
-            colors: ['blue', 'red', 'black'],
+            vAxis: {title:'Persentase', minValue: 0},
+            curveType: 'function',
             chartArea: {width: '95%', height: '85%'},
-            legend: {position: 'in'},
+            legend: { position: 'bottom' },
           };
 
-          var chart = new google.visualization.AreaChart(document.getElementById('chart'));
+          var chart = new google.visualization.LineChart(document.getElementById('chart'));
           chart.draw(data, options);
         }
       </script>

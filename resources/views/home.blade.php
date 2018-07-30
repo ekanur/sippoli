@@ -10,18 +10,19 @@
   <div class="container-fluid">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header" data-background-color="red">
-          <div class="pull-left">
-            <h4 class="title">Daftar Program Berlangsung</h4>
-            <p class="category">Berikut adalah daftar Program anda yang sedang berlangsung</p>
-          </div>
-          <div class="pull-right">
+        <div class="card-header" data-background-color="purple">
+          {{-- <div class="pull-left"> --}}
+            <h4 class="title">Sistem Informasi Pengelolaan Pelatihan Olahraga</h4>
+            {{-- <p class="category">Berikut adalah daftar Program anda yang sedang berlangsung</p> --}}
+          {{-- </div> --}}
+          {{-- <div class="pull-right">
             <a href="/program/baru"><i class="material-icons">add_circle</i></a>
-          </div>
-          <div class="clearfix"></div>
+          </div> --}}
+          {{-- <div class="clearfix"></div> --}}
         </div>
         <div class="card-content">
-          <table class="table table-hover">
+          <h3><em>"Kontribusi kami untuk kejayaan olahraga Indonesia"</em></h3>
+          {{-- <table class="table table-hover">
             <thead class="text-danger">
               <tr>
                 <th>Program</th>
@@ -38,7 +39,7 @@
                 </tr>
               @endfor
             </tbody>
-          </table>
+          </table> --}}
         </div>
       </div>
     </div>
@@ -47,16 +48,17 @@
       <div class="card card-profile" id="profil_pelatih">
         <div class="card-avatar">
           <a href="#pablo">
-            <img class="img" src="/uploads/sample-{{random_int(1, 3)}}.jpg" style="min-height: 130px; min-width: 130px;"/>
+            <img class="img" src="{{ asset("/img/logo_um.png") }}" style="min-height: 130px; min-width: 130px;"/>
           </a>
         </div>
 
         <div class="content">
-          <h4 class="card-title">{{Faker\Factory::create()->name}}</h4>
+          <h4 class="card-title">Dra. Sulistyorini, M.Pd</h4>
           <p class="card-content">
-            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+            Ketua Jurusan Pendidikan Kepelatihan Olahraga, Fakultas Ilmu Olahraga.<br/>
+            <strong>Universitas Negeri Malang</strong>
           </p>
-          <a href="/pelatih" class="btn btn-primary btn-round">Ubah</a>
+          {{-- <a href="/pelatih" class="btn btn-primary btn-round">Ubah</a> --}}
         </div>
       </div>
     </div>
