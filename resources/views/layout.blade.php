@@ -50,7 +50,7 @@
 <body>
 
 	<div class="wrapper">
-	    <div class="sidebar" data-color="purple" data-image="{{ asset('img/sidebar-1.jpg') }}">
+	    <div class="sidebar" data-color="orange" data-image="{{ asset('img/timnas2.jpg') }}">
 			<!--
 		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -101,35 +101,18 @@
 	                			<p>Makanan</p>
 	                	</a>
 	                </li>
+	                <li @if (Request::is("tes") || Request::is("tes/*")) class="active" @endif>
+	                	<a href='{{ url('/tes') }}'>
+	                			<i class="material-icons">assessment</i>
+	                			<p>Tes Atlet</p>
+	                	</a>
+	                </li>
 	            </ul>
 	    	</div>
 		</div>
 
 	    <div class="main-panel">
-			<nav class="navbar navbar-transparent navbar-absolute">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<form class="navbar-form">
-							<div class="row">
-								<div class="col-md-6">
-						        		<input type="text" class="form-control" placeholder="Mencari atlet, latihan, dan program latihan">
-
-						        </div>
-							</div>
-
-					        {{-- <button type="submit" class="btn btn-default"><i class="material-icons">search</i></button> --}}
-					    </form>
-					</div>
-				</div>
-			</nav>
+			
 
 	        <div class="content">
 				@yield("content")

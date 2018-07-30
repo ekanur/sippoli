@@ -15,4 +15,7 @@
     <li @if(Request::segment(5) === 'transisi') class="active" @endif>
         <a href="{{ url("/program/".$id_program."/program-makan/".$atlet_id."/transisi/") }}">Transisi</a>
     </li>
+    <li class="pull-right">
+        <a href="{{ url("/program/".$id_program."/program-makan/".$atlet_id."/cetak") }}" target="_blank"><small class="material-icons">print</small></a>
+    </li>
 </ul>

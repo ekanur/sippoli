@@ -10,9 +10,10 @@ use Session;
 class LatihanController extends Controller
 {
     public function index(){
-      $daftardariPelatih=List_latihan::where('pelatih_id',1)->get();
-      $daftarsemuaLatihan=List_latihan::all();
-      $cabor = Cabor::all();
+      $daftardariPelatih=List_latihan::where('pelatih_id',1)->orderBy("id", "desc")->get();
+      // dd($daftardariPelatih);
+      $daftarsemuaLatihan=List_latihan::orderBy("id", "desc")->get();
+      $cabor = Cabor::orderBy("nama", "asc")->get();
       return view('latihan.index', compact('daftarsemuaLatihan','daftardariPelatih', 'cabor'));
     }
 
@@ -64,14 +65,15 @@ class LatihanController extends Controller
 
     public function edit($id){
       $latihan=List_latihan::where([['id',$id], ['pelatih_id', 1]])->firstOrFail();
-
-      return view("latihan.edit", compact('latihan'));
+      $cabor = Cabor::orderBy("nama", "asc")->get();
+      return view("latihan.edit", compact('latihan', 'cabor'));
     }
 
     public function update(Request $request){
       $latihan = List_latihan::findOrFail($request->id);
       $latihan->nama = $request->nameLatihan;
       $latihan->kategori = $request->cateogryLatihan;
+      $latihan->cabor_id = $request->cabor_id;
       $latihan->deskripsi = $request->deskripsi_latihan;
       $latihan->save();
 

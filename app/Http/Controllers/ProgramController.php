@@ -16,7 +16,7 @@ use Session;
 class ProgramController extends Controller
 {
     public function index(){
-        $program = Program::with('atlet')->where("pelatih_id", 1)->get();
+        $program = Program::with('atlet')->where("pelatih_id", 1)->orderBy("id", "desc")->get();
         // dd($program[0]->atlet);
         // dd($program);
         return view("program.index", compact('program'));
@@ -116,8 +116,8 @@ class ProgramController extends Controller
     }
 
     public function pilihAtlet($id_program){
-    	// $program = Program::findOrFail($id_program);
-        $atlet = Atlet::doesntHave("program")->get();
+        // $atlet = Atlet::doesntHave("program")->get();
+        $atlet = Atlet::all();
         $program_atlet = Program::findOrFail($id_program);
         // dd($atlet);
     	return view("program.pilih_atlet", compact('atlet', "id_program", "program_atlet"));

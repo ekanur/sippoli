@@ -15,10 +15,10 @@ class TableListLatihan extends Migration
     {
         Schema::create('list_latihan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama',45);
+            $table->string('nama',100);
             $table->string('kategori',45);
-            $table->string('deskripsi',100);
-            $table->string('video', 75);
+            $table->longText('deskripsi',10000);
+            // $table->string('video', 75);
             $table->integer('pelatih_id');
             $table->integer('cabor_id');
             $table->softDeletes();

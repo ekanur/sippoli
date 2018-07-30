@@ -67,6 +67,7 @@ class SiklusMikroController extends Controller
     }
 
     public function savesiklusMikro(Request $masuk, $id_program){
+        $masuk->peaking_baru = ($masuk->peaking_baru == '')? 0 : $masuk->peaking_baru;
         $json_volume_intensitas = array("volume"=>$masuk->volume_baru,"intensitas"=>$masuk->intensitas_baru, "peaking"=>$masuk->peaking_baru);
 
         $program = Program::findOrFail($id_program);
