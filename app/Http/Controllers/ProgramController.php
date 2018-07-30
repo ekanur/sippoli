@@ -116,8 +116,10 @@ class ProgramController extends Controller
     }
 
     public function pilihAtlet($id_program){
-        // $atlet = Atlet::doesntHave("program")->get();
-        $atlet = Atlet::all();
+        $atlet = Atlet::whereDoesntHave("program", function($query) use($id_program){
+            $query->where("program.id", $id_program);
+        })->get();
+        // $atlet = Atlet::all();
         $program_atlet = Program::findOrFail($id_program);
         // dd($atlet);
     	return view("program.pilih_atlet", compact('atlet', "id_program", "program_atlet"));
