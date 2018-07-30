@@ -16,7 +16,7 @@ use Session;
 class ProgramController extends Controller
 {
     public function index(){
-        $program = Program::with('atlet')->where("pelatih_id", 1)->get();
+        $program = Program::with('atlet')->where("pelatih_id", 1)->orderBy("id", "desc")->get();
         // dd($program[0]->atlet);
         // dd($program);
         return view("program.index", compact('program'));
