@@ -53,7 +53,7 @@
           <div class="card-content">
             <div class="tab-content">
               <div class="tab-pane active" id="semua">
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                       <tr>
                         <th width="100%">Nama</th>
@@ -71,7 +71,7 @@
 
 
               <div class="tab-pane" id="dari_saya">
-                <table class="table">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th width="95%">Nama</th>

@@ -51,9 +51,9 @@
                         <tr>
                           <td>{{ $key+1 }}</td>
                           <td><a href="{{ url('/program/') }}/{{ $program->id }}/deskripsi">{{$program->nama}}</a></td>
-                          <td>@if(null == sizeof($program->atlet)) <p class="help-block">Kosong</p> @else <a href="#">Nama Atlet</a> @endif</td>
+                          <td>@if(null == sizeof($program->atlet)) <p class="help-block">-</p> @else <a href="{{ url("/program/".$program->id."/atlet") }}">{{ sizeof($program->atlet) }} Atlet</a> @endif</td>
                           <td>{{ $program->jangka_durasi }} bulan</td>
-                          <td>{{ $program->mulai_program }} s.d {{ $program->berakhir_program }}</td>
+                          <td><strong>{{ $program->mulai_program }}</strong> s.d <strong>{{ $program->berakhir_program }}</strong></td>
                           <td>
                             <a href="{{ url('/program/'.$program->id.'/cetak') }}"><i class="material-icons">print</i></a>
                             <a data-toggle="modal" href="{{url('#UbahProgram')}}"><i class="material-icons">mode_edit</i></a>

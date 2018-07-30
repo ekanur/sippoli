@@ -167,7 +167,7 @@
                 <div class="form-group label-floating is-empty">
                     <label class="control-label">Peaking</label>
                     <div class="input-group">
-                        <input class="form-control" name="peaking_baru" type="number" min="1" required="">
+                        <input class="form-control" name="peaking_baru" type="number" min="0" >
                         <div class="input-group-addon">
                             <i>%</i>
                         </div>

@@ -10,9 +10,9 @@ use Session;
 class LatihanController extends Controller
 {
     public function index(){
-      $daftardariPelatih=List_latihan::where('pelatih_id',1)->get();
+      $daftardariPelatih=List_latihan::where('pelatih_id',1)->orderBy("id", "desc")->get();
       // dd($daftardariPelatih);
-      $daftarsemuaLatihan=List_latihan::all();
+      $daftarsemuaLatihan=List_latihan::orderBy("id", "desc")->get();
       $cabor = Cabor::orderBy("nama", "asc")->get();
       return view('latihan.index', compact('daftarsemuaLatihan','daftardariPelatih', 'cabor'));
     }
