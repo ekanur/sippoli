@@ -317,7 +317,7 @@
             hAxis: {title: 'Pekan',  titleTextStyle: {color: '#333'}},
             vAxis: {title:'Persentase', minValue: 0},
             curveType: 'function',
-            chartArea: {width: '95%', height: '80%'},
+            chartArea: {width: '90%', height: '80%'},
             legend: { position: 'bottom' },
           };
 
