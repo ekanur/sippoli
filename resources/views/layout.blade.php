@@ -101,6 +101,12 @@
 	                			<p>Makanan</p>
 	                	</a>
 	                </li>
+	                <li @if (Request::is("tes") || Request::is("tes/*")) class="active" @endif>
+	                	<a href='{{ url('/tes') }}'>
+	                			<i class="material-icons">assessment</i>
+	                			<p>Tes Atlet</p>
+	                	</a>
+	                </li>
 	            </ul>
 	    	</div>
 		</div>
