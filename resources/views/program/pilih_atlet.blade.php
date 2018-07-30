@@ -60,6 +60,7 @@
                                             {{-- <li><a href="{{ url('/program/'.$id_program.'/assessment/'.$program_atlet->id) }}">Assessment</a></li> --}}
                                             <li><a href="{{ url('/program/'.$id_program.'/program-makan/'.$program_atlet->id) }}">Program Makan</a></li>
                                             <li><a href="{{ url('/program/'.$id_program.'/program-makan/'.$program_atlet->id.'/cetak') }}">Print Program Makan</a></li>
+                                            <li><a href="{{ url('/program/'.$id_program.'/assessment/'.$program_atlet->id) }}">Assessment</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="{{ url('/program/'.$id_program.'/hapus-atlet/'.$program_atlet->id) }}">Remove</a></li>
                                           </ul>
