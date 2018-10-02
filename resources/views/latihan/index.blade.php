@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-nav-tabs">
-          <div class="card-header" data-background-color="purple">
+          <div class="card-header" data-background-color="blue">
             <div class="pull-left">
                 <div class="nav-tabs-navigation">
                   <div class="nav-tabs-wrapper">

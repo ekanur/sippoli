@@ -20,7 +20,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="prolat">
                 <div class="card">
-                    <div class="card-header" data-background-color="purple">
+                    <div class="card-header" data-background-color="blue">
                             <h4 class="card-title">Rancangan Program Latihan</h4> 
                             <p class="category">
                                 Penyusunan siklus mikro dan sesi latihan tiap hari.

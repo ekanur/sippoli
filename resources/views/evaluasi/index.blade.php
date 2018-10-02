@@ -10,7 +10,7 @@
   <div class="row">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header" data-background-color="purple">
+          <div class="card-header" data-background-color="blue">
             <h4 class="title">Data Atlet</h4>
             <!-- <p class="category">Complete your profile</p> -->
           </div>
@@ -73,7 +73,7 @@
       			<p class="card-content">
       				Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
       			</p>
-      			<a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+      			<a href="#pablo" class="btn btn-success">Follow</a>
       		</div>
       	</div>
       </div>
@@ -84,7 +84,7 @@
     <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header" data-background-color="purple">
+            <div class="card-header" data-background-color="blue">
               <h4 class="title">Kondisi Akhir Atlet</h4>
               <!-- <p class="category">Complete your profile</p> -->
             </div>

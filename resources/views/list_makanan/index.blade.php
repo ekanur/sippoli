@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="card">
-          <div class="card-header" data-background-color="purple">
+          <div class="card-header" data-background-color="blue">
             <h4 class="title">Daftar Makanan</h4>
             <!-- <p class="category">Lorem ipsum dolor sit amet</p> -->
           </div>
@@ -63,7 +63,7 @@
 
       <div class="col-md-3">
       	<div class="card">
-          <div class="card-header" data-background-color="purple">
+          <div class="card-header" data-background-color="blue">
             <h4 class="title">Tambah Makanan</h4>
             <!-- <p class="category">Lorem ipsum dolor sit amet</p> -->
           </div>

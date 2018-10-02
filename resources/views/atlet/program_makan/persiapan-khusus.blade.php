@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header" data-background-color="purple">
+    <div class="card-header" data-background-color="blue">
 			<h4 class="card-title">Program Makan - Sesi Persiapan Khusus</h4>
         	<p class="category">{{ $date_range[0] }} s.d {{ $date_range[sizeof($date_range)-1] }}</p>
     </div>

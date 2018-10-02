@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/login', 'LoginController@index');
-Route::post('/login', 'LoginController@login');
-Route::post('/register', 'RegistrationController@register');
-Route::get('/', 'PageController@index');
+// Route::get('/login', 'LoginController@index');
+// Route::post('/login', 'LoginController@login');
+// Route::post('/register', 'RegistrationController@register');
+Route::get('/', 'PageController@index')->middleware("auth");
 // Route::get('/program', 'ProgramController@index');
 // Route::get('/program/tambah', 'ProgramController@add');
 // Route::post('/program/tambah', 'ProgramController@store');
@@ -98,3 +98,7 @@ Route::post('/program-makan/edit', "ProgramMakanController@update");
 Route::get("program-makan/hapus/{id}", "ProgramMakanController@hapus");
 Route::get("tes", "TesController@index");
 Route::get("tes/{id}", "TesController@detail");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -20,7 +20,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="deskripsi">
                 <div class="card">
-                    <div class="card-header" data-background-color="purple">
+                    <div class="card-header" data-background-color="blue">
                         <div class="pull-left">
                             <h4 class="card-title">Pilih Atlet</h4>
                             <p class="category">Atlet yang akan mengikuti program latihan</p>

@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header" data-background-color="purple">
+          <div class="card-header" data-background-color="blue">
             <h4 class="title">Daftar Olahraga</h4>
             <p class="category">Lorem ipsum dolor sit amet</p>
           </div>
@@ -54,7 +54,7 @@
 
       <div class="col-md-4">
       	<div class="card">
-          <div class="card-header" data-background-color="purple">
+          <div class="card-header" data-background-color="blue">
             <h4 class="title">Tambah Olahraga</h4>
             <p class="category">Lorem ipsum dolor sit amet</p>
           </div>

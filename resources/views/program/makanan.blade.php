@@ -20,7 +20,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="deskripsi">
                 <div class="card">
-                    <div class="card-header" data-background-color="purple">
+                    <div class="card-header" data-background-color="blue">
                         <h4 class="card-title">Kebutuhan Energi</h4>
                         <p class="category">Besar energi (kalori) yang dibutuhkan pada tiap siklus.</p>
                     </div>
@@ -77,7 +77,7 @@
             </div>
             <div class="tab-pane" id="pilihatlet">
                 <div class="card">
-                    <div class="card-header" data-background-color="purple">
+                    <div class="card-header" data-background-color="blue">
                         <h4 class="card-title">Pilih Atlet</h4>
                         <p class="category">
                             More information here
@@ -92,7 +92,7 @@
             </div>
             <div class="tab-pane" id="prolat">
                 <div class="card">
-                    <div class="card-header" data-background-color="purple">
+                    <div class="card-header" data-background-color="blue">
                         <div class="pull-left">   
                             <h4 class="title">Rancangan Program Latihan</h4> 
                             <p class="category">
@@ -386,7 +386,7 @@
             </div>
             <div class="tab-pane" id="promak">
                 <div class="card">
-                    <div class="card-header" data-background-color="purple">
+                    <div class="card-header" data-background-color="blue">
                         <h4 class="card-title">Rancangan Program Makan</h4>
                         <p class="category">
                             More information here

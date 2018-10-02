@@ -1482,7 +1482,7 @@ blockquote p {
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.5em;
 }
 
@@ -1502,10 +1502,11 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 
 a {
-  color: #9c27b0;
+  color: #337ab7;
 }
 a:hover, a:focus {
-  color: #89229b;
+  /*color: #89229b;*/
+  color: #23527c;
   text-decoration: none;
 }
 a.text-info:hover, a.text-info:focus {
@@ -3529,7 +3530,7 @@ footer .btn {
   margin: 25px 0;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   border-radius: 3px;
-  color: rgba(0,0,0, 0.87);
+  color: rgba(0,0,0, 1);
   background: #fff;
 }
 .card .card-height-indicator {

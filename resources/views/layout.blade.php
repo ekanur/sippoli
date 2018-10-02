@@ -27,22 +27,10 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <style>
     	.content{
-    		margin-top: 30px !important;
+    		margin-top: 50px !important;
     	}
 
-    	.panel-heading .breadcrumb{
-            padding:0px;
-            margin-bottom: 0px;
-            background-color: transparent;
-            border-radius: 0px;
-        }
-        .navbar .navbar-form .form-group .form-control, .navbar .navbar-form .form-control, .navbar .navbar-form .form-group{
-        	width: 100%;
-        }
-        .navbar.navbar-transparent{
-        	box-shadow: 0px 1px 15px -5px  rgba(0,0,0,0.55);
-        	background-color: #F1F3F5; border-radius: 0px
-        }
+   
     </style>
 
 </head>
@@ -112,7 +100,40 @@
 		</div>
 
 	    <div class="main-panel">
-			
+
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						{{-- <a class="navbar-brand" href="#">Material Dashboard</a> --}}
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							
+							<li>
+								 <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+	 							   <i class="material-icons">exit_to_app</i>
+	 							   <p class="hidden-lg hidden-md">Logout</p>
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+							</li>
+						</ul>
+
+						
+					</div>
+				</div>
+			</nav>
 
 	        <div class="content">
 				@yield("content")

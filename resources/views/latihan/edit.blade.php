@@ -17,7 +17,7 @@
           <form action="{{ url('/latihan/update') }}" method="post">
           {{csrf_field()}}
           <input type="hidden" name="id" value="{{ $latihan->id }}">
-            <div class="card-header" data-background-color="purple">
+            <div class="card-header" data-background-color="blue">
               <h4 class="title">Edit Latihan</h4>
             </div>
             <div class="card-content">

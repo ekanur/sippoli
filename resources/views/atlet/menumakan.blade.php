@@ -52,7 +52,7 @@
                   <!-- <p class="card-content">
 
                   </p>
-                  <a href="#pablo" class="btn btn-primary btn-round">Detail</a> -->
+                  <a href="#pablo" class="btn btn-success">Detail</a> -->
                 </div>
                 <hr>
                 <div class="text-center">
@@ -70,7 +70,7 @@
                     </div>
                   </div>
 
-                  <a href="{{ url("/atlet/".$atlet_id) }}" class="btn btn-primary btn-round">Detail</a>
+                  <a href="{{ url("/atlet/".$atlet_id) }}" class="btn btn-success">Detail</a>
 
                 </div>
               </div>
