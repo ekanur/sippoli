@@ -78,40 +78,22 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if (null == sizeof($siklus_mikro->sesi_latihan))
+                                                        @foreach($data_pekan["tanggal"] as $tanggal)
                                                             <tr>
-                                                                <td colspan="7">
-                                                                    <h4 class="text-muted text-center">Sesi Latihan Belum Tersedia</h4>
-                                                                </td>
-                                                            </tr>
-                                                        @endif
-                                                            
-                                                        @foreach ($siklus_mikro->sesi_latihan as $sesi_latihan_perhari)
-                                                            <tr>
-                                                                <td><a href="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/sesi-latihan/'.$sesi_latihan_perhari->id) }}">{{ date('D m-d-Y', strtotime($sesi_latihan_perhari->tanggal)) }}</a></td>
+                                                               <tr>
+                                                                <td>{{ $tanggal }}</td>
                                                                 {{-- <td>{{$sesi_latihan->tahapan}}</td> --}}
-                                                                <td>{{implode(',', json_decode($sesi_latihan_perhari->json_materi_latihan))}}</td>
-                                                                <td>{{implode(',', json_decode($sesi_latihan_perhari->json_intensitas_max))}}</td>
-                                                                <td>{{implode(',', json_decode($sesi_latihan_perhari->json_volume_max))}}</td>
-                                                                <td><span class="label label-success">{{$sesi_latihan_perhari->kriteria_volume_intensitas}}</span></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span class="label label-success"></span>
+                                                                </td>
                                                                 <td>
-                                                                <ul class="list-inline">
-                                                                    <li>
-                                                                        <a style="color:#9932B1" class="btn btn-just-icon btn-simple" href="{{ url('/program/'.$id_program.'/mikro/'.$id_siklus_mikro.'/sesi-latihan/'.$sesi_latihan_perhari->id.'/edit') }}"><i class="material-icons">mode_edit</i></a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <form action="/program/{{$id_program}}/mikro/{{$id_siklus_mikro}}/sesi-latihan/{{$sesi_latihan_perhari->id}}/hapus" method="post">
-                                                                            {{csrf_field()}}
-                                                                            {{method_field('DELETE')}}
-                                                                            <button type="submit" name="hapus" class="btn btn-just-icon btn-simple"><i style="color:#9932B1" class="material-icons">delete</i></button>
-                                                                        </form>
-                                                                    </li>
-                                                                    <li></li>
-                                                                </ul>
-                                                                     
+                                                                <a href="">Atur</a>   
                                                                 </td>
                                                             </tr>
                                                         @endforeach
+                                                        
 {{-- {{ dd($sesi_latihan->sesi_latihan) }} --}}
                                                     </tbody>
                                                 </table>

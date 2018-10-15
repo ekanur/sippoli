@@ -306,12 +306,20 @@
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-          var data = google.visualization.arrayToDataTable([
-            ['Pekan', 'Volume', 'Intensitas', 'Peaking'],
-            @foreach ($array_siklus_mikro as $siklus_mikro)
-              {{ json_encode($siklus_mikro) }},
-            @endforeach
-          ]);
+          var data = new google.visualization.DataTable();
+          data.addColumn("number", "Pekan");
+          data.addColumn("number", "Volume");
+          data.addColumn({ type: 'number', role: 'annotation' });
+          data.addColumn("number", "Intensitas");
+          data.addColumn({ type: 'number', role: 'annotation' });
+          data.addColumn("number", "Peaking");
+          data.addColumn({ type: 'number', role: 'annotation' });
+
+          data.addRows([
+              @foreach ($array_siklus_mikro as $siklus_mikro)
+                {{ json_encode($siklus_mikro) }},
+              @endforeach
+            ]);
 
           var options = {
             hAxis: {title: 'Pekan',  titleTextStyle: {color: '#333'}},
