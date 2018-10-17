@@ -24,7 +24,7 @@ class SiklusMikroController extends Controller
       $this->siklus = $this->bacaSiklus();
 
       // dd($this->siklus);
-      $this->tanggal_mulai = new DateTime(date('Y/m/d', strtotime($this->program->mulai_program)));
+      $this->tanggal_mulai = new DateTime(date('Y-m-d', strtotime($this->program->mulai_program)));
       return $next($request);
     });
   }
@@ -32,8 +32,8 @@ class SiklusMikroController extends Controller
   public function index($id_program){
     $program = $this->program;
     // $dataMikro = Siklus_mikro::where('program_id',$id_program)->orderBy('pekan_ke', 'asc')->get();
-    $mulai_program = new DateTime(date('Y/m/d', strtotime($program->mulai_program)));
-    $berakhir_program = new DateTime(date('Y/m/d', strtotime($program->berakhir_program)));
+    $mulai_program = new DateTime(date('Y-m-d', strtotime($program->mulai_program)));
+    $berakhir_program = new DateTime(date('Y-m-d', strtotime($program->berakhir_program)));
     $jmlpekan = array_sum(json_decode($program->siklus_makro, TRUE));
     $siklus_mikro = array();
     $array_siklus_mikro = array();
@@ -96,18 +96,28 @@ class SiklusMikroController extends Controller
 
   function setTanggal($i){
 
-    $tanggal_mulai = new DateTime(date('Y/m/d', strtotime($this->program->mulai_program)));
+    $tanggal_mulai = new DateTime(date('Y-m-d', strtotime($this->program->mulai_program)));
     $tanggal_mulai = $tanggal_mulai->add(new DateInterval("P".($i*7)."D"));
 
-    return dateRange($tanggal_mulai->format("Y/m/d"), 7);
+    return dateRange($tanggal_mulai->format("Y-m-d"), 7);
   }
 
     public function detail($id_program, $id_siklus_mikro){
     	$program = $this->program;
       $siklus_mikro = Siklus_mikro::with('sesi_latihan', 'program')->findOrFail($id_siklus_mikro);
-      $data_pekan = $this->siklus[$siklus_mikro->pekan_ke];
-      // dd($this->program->);
-    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'siklus_mikro', 'program', 'data_pekan'));
+
+      foreach($this->siklus[$siklus_mikro->pekan_ke]["tanggal"] as $key => $tanggal)
+      {
+        $data_tanggal[$tanggal] = $siklus_mikro->sesi_latihan->filter(function($value, $key) use($tanggal){
+            if($tanggal == $value->tanggal){
+              return (array) $value;
+            }
+        });
+        
+      }
+
+      dd($data_tanggal);
+    	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'siklus_mikro', 'program', 'data_tanggal'));
     }
 
     public function savesiklusMikro(Request $masuk, $id_program){

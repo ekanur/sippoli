@@ -14,7 +14,7 @@ function dateRange($start_date=null, $duration){
 	$periode = new DatePeriod($start_date, $interval, $end_date);
 
 	foreach ($periode as $each_date) {
-		$date_range[] = $each_date->format("Y/m/d");
+		$date_range[] = $each_date->format("Y-m-d");
 	}
 
 	return $date_range;

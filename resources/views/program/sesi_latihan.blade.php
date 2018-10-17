@@ -78,10 +78,10 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach($data_pekan["tanggal"] as $tanggal)
+                                                        @foreach($data_tanggal as $key => $value)
                                                             <tr>
                                                                <tr>
-                                                                <td>{{ $tanggal }}</td>
+                                                                <td>{{ $key }}</td>
                                                                 {{-- <td>{{$sesi_latihan->tahapan}}</td> --}}
                                                                 <td></td>
                                                                 <td></td>

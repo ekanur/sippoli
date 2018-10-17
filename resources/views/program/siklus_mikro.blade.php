@@ -77,10 +77,7 @@
                                                 {{ json_decode($data_pekan['ivp'])->peaking }}%
                                             @endisset</td>
                                             <td>{{ $data_pekan['fase'] }}</td>
-                                            {{-- <td><a href="">Lihat</a></td> --}}
                                             <td>
-{{--                                                 <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/edit/') }}"><i class="material-icons">mode_edit</i></a>
-                                                <a href="{{ url('/program/'.$id_program.'/mikro/'.$mikro->id.'/hapus/') }}" class="del-confrim" data-text="Apakah anda yakin ingin menghapus item tersebut?"><i class="material-icons">delete</i></a> --}}
                                                 @if (isset($data_pekan['siklus_mikro_id']))
                                                     <a href="#" data-toggle="modal" data-target="#editModal" data-pekan_ke="{{ $data_pekan['pekan'] }}" data-siklus_mikro_id={{ $data_pekan['siklus_mikro_id'] }} data-intensitas={{ json_decode($data_pekan['ivp'])->intensitas }}  data-volume={{ json_decode($data_pekan['ivp'])->volume }} data-peaking={{ json_decode($data_pekan['ivp'])->peaking }} data-pekan_ke={{ $data_pekan['pekan'] }}>Edit</a>
                                                 @else
