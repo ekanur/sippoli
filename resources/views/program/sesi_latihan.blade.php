@@ -83,11 +83,26 @@
                                                                <tr>
                                                                 <td>{{ $key }}</td>
                                                                 {{-- <td>{{$sesi_latihan->tahapan}}</td> --}}
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><span class="label label-success"></span>
-                                                                </td>
+                                                                
+                                                                    @if(is_integer($value))
+                                                                    <td>
+                                                                        {{ implode(",", json_decode($siklus_mikro->sesi_latihan[$value]->json_materi_latihan)) }}
+                                                                    </td>
+                                                                    <td>
+                                                                       {{ implode(",", json_decode($siklus_mikro->sesi_latihan[$value]->json_intensitas_max)) }}
+                                                                    </td>
+                                                                    <td>
+                                                                            {{ implode(",", json_decode($siklus_mikro->sesi_latihan[$value]->json_volume_max)) }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $siklus_mikro->sesi_latihan[$value]->kriteria_volume_intensitas }}
+                                                                    </td>
+                                                                    @else
+                                                                    <td><span class="text-center help-block">-</span></td>
+                                                                    <td><span class="text-center help-block">-</span></td>
+                                                                    <td><span class="text-center help-block">-</span></td>
+                                                                    <td><span class="text-center help-block">-</span></td>
+                                                                    @endif
                                                                 <td>
                                                                 <a href="">Atur</a>   
                                                                 </td>

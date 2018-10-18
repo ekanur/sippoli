@@ -108,15 +108,17 @@ class SiklusMikroController extends Controller
 
       foreach($this->siklus[$siklus_mikro->pekan_ke]["tanggal"] as $key => $tanggal)
       {
-        $data_tanggal[$tanggal] = $siklus_mikro->sesi_latihan->filter(function($value, $key) use($tanggal){
+        $data_tanggal[$tanggal] = $siklus_mikro->sesi_latihan->search(function($value, $key) use($tanggal){
             if($tanggal == $value->tanggal){
-              return (array) $value;
+              
+              return  $value;
             }
         });
         
       }
 
-      dd($data_tanggal);
+      // dd($siklus_mikro->sesi_latihan);
+      // dd($data_tanggal);
     	return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro', 'siklus_mikro', 'program', 'data_tanggal'));
     }
 
