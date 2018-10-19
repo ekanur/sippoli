@@ -47,7 +47,8 @@ class SesiLatihanController extends Controller
         return view("program.sesi_latihan", compact('id_program', 'id_siklus_mikro' ,'siklus_mikro', 'sesi_latihan', 'id_sesi_latihan'));
     }
 
-    public function ubah($id_sesi_latihan, Request $request){
+    public function ubah(Request $request){
+        $id_sesi_latihan = $request->sesi_latihan_id;
         $request->tanggal = date("Y-m-d", strtotime($request->tanggal));
         $json_materi_latihan = explode(",", $request->materi_latihan);
         $json_intensitas_max = explode(",", $request->intensitas_max);

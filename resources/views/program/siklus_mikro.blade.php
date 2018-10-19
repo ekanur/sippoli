@@ -176,7 +176,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+        <button type="submit" name="simpan" class="btn btn-info">Simpan</button>
       </div>
     </form>
     </div>
@@ -238,7 +238,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+        <button type="submit" name="simpan" class="btn btn-info">Simpan</button>
       </div>
     </form>
     </div>
