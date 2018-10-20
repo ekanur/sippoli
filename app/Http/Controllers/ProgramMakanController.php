@@ -14,6 +14,10 @@ use Session;
 
 class ProgramMakanController extends Controller
 {
+    function __construct()
+    {
+      $this->middleware("auth");
+    }
     public $label_kategori = array(
         "karbohidrat"   => 'default',
         "protein"       => 'primary',

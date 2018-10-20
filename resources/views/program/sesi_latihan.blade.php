@@ -146,7 +146,7 @@
 <div class="modal fade" id="sesi_baru" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-    <form action={{ url('/program/sesi-latihan/simpan/') }}" method="post">
+    <form action="{{ url('/program/sesi-latihan/simpan/') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="siklus_mikro_id" value="">
         <input type="hidden" name="tanggal" value="">
@@ -205,10 +205,11 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="edit_sesi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-    <form action="{{ url('/program/sesi-latihan/ubah/') }}" method="post">
+    <form action="{{ url('/program/sesi-latihan/update/') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="siklus_mikro_id" value="">
         <input type="hidden" name="sesi_latihan_id" value="">
@@ -283,9 +284,36 @@
     // new Taggle("intensitas");
     // new Taggle("volume");
     $(document).ready(function(){
-        $('#mulai').datepicker();
+        // $('#mulai').datepicker();
         $("button[name='hapus']").confirm({
             submitForm:true,
+        });
+
+        $("#sesi_baru").on("show.bs.modal", function(event){
+            var button = $(event.relatedTarget);
+            var siklus_mikro_id = button.data("siklus-mikro-id");
+            var tanggal = button.data("tanggal");
+
+            $("input[name='siklus_mikro_id']").val(siklus_mikro_id);
+            $("input[name='tanggal']").val(tanggal);
+        });
+
+        $("#edit_sesi").on("show.bs.modal", function(event){
+            $(".label-floating").removeClass("is-empty");
+            var button = $(event.relatedTarget);
+            var siklus_mikro_id = button.data("siklus-mikro-id");
+            var sesi_latihan_id = button.data("sesi-latihan-id");
+            var materi_latihan = button.data("materi-latihan");
+            var intensitas_max = button.data("intensitas-max");
+            var volume_max = button.data("volume-max");
+            var kriteria_volume_intensitas = button.data("kriteria-volume-intensitas");
+            $("input[name='siklus_mikro_id']").val(siklus_mikro_id);
+            $("input[name='sesi_latihan_id']").val(sesi_latihan_id);
+            $("select[name='kriteria_v_i']").val(kriteria_volume_intensitas);
+            $("textarea[name='materi_latihan']").val(materi_latihan);
+            $("textarea[name='intensitas_max']").val(intensitas_max);
+            $("textarea[name='volume_max']").val(volume_max);
+
         });
     });
 </script>

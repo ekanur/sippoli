@@ -7,15 +7,21 @@ use App\Tes;
 
 class TesController extends Controller
 {
-    public function index()
+    function __construct()
     {
+    	$this->middleware("auth");
+    }
+
+    function index(){
     	$tes = Tes::all();
+
     	return view("tes.index", compact('tes'));
     }
 
-    function detail($id){
-    	$tes = Tes::find($id);
+    function detail($id)
+    {
+    	$tes = Tes::findOrfail($id);
 
-    	return view("tes.detail", compact("tes"));
+    	return view("tes.detail", compact('tes'));
     }
 }

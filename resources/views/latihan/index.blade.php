@@ -146,7 +146,7 @@
                   <textarea class="form-control" name="deskripsi_latihan" rows="6" cols="80"></textarea>
                 </div>
                 <div class="text-right">
-                  <button class="btn btn-success btn-sm" type="submit">Tambah</button>
+                  <button class="btn btn-info" type="submit">Tambah</button>
                 </div>
               </form>
             </div>
@@ -196,7 +196,7 @@
                   <textarea class="form-control" name="deskripsi_latihan" rows="6" cols="80"></textarea>
                 </div>
                 <div class="text-right">
-                  <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                  <button class="btn btn-info" type="submit">Simpan</button>
                 </div>
               </form>
             </div>

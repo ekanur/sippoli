@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Atlet;
 use App\Cabor;
 use Session;
+use Auth;
 
 class AtletController extends Controller
 {
@@ -14,10 +15,14 @@ class AtletController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware("auth");
+    }
     public function index()
     {
         // echo "hei";
-        $atlet = Atlet::with('cabor')->orderBy("id", "desc")->get();
+        $atlet = Atlet::with('cabor')->where("pelatih_id", Auth::user()->id)->orderBy("id", "desc")->get();
         // dd($atlet);
         return view('atlet.profilatlet', compact('atlet'));
     }
@@ -65,9 +70,9 @@ class AtletController extends Controller
        $tambahAtlet ->nama =$namaAtlet;
        $tambahAtlet ->gender=  $genderAtlet;
        $tambahAtlet ->tgl_lahir =$tanggallahir_atlet ;
-       $tambahAtlet ->status ='1';
+       $tambahAtlet ->status = '1';
        $tambahAtlet ->cabor_id= $caborAtlet;
-       $tambahAtlet ->pelatih_id='1';
+       $tambahAtlet ->pelatih_id = Auth::user()->id;
        $tambahAtlet->save();
         Session::flash("flash_message", "Berhasil menambah atlet.");
         Session::flash("flash_status", "success");

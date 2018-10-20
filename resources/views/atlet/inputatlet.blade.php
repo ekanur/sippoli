@@ -8,7 +8,7 @@
     </div>
   </div> --}}
   <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-10 col-md-offset-1">
         <div class="card">
           <div class="card-header" data-background-color="blue">
             <h4 class="title">Edit/Tambah Data Atlet</h4>
@@ -57,7 +57,7 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+              <button type="submit" class="btn btn-info pull-right">Simpan</button>
               <div class="clearfix"></div>
             </form>
           </div>

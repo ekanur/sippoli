@@ -6,11 +6,16 @@ use Illuminate\Http\Request;
 use App\List_latihan;
 use App\Cabor;
 use Session;
+use Auth;
 
 class LatihanController extends Controller
 {
+    function __construct()
+    {
+      $this->middleware("auth");
+    }  
     public function index(){
-      $daftardariPelatih=List_latihan::where('pelatih_id',1)->orderBy("id", "desc")->get();
+      $daftardariPelatih=List_latihan::where('pelatih_id', Auth::user()->id)->orderBy("id", "desc")->get();
       // dd($daftardariPelatih);
       $daftarsemuaLatihan=List_latihan::orderBy("id", "desc")->get();
       $cabor = Cabor::orderBy("nama", "asc")->get();
@@ -36,7 +41,7 @@ class LatihanController extends Controller
       $tambahLatihan->kategori=$kategoriLatihan;
       $tambahLatihan->deskripsi=$deskripsiLatihan;
       // $tambahLatihan->video=$linkVideo;
-      $tambahLatihan->pelatih_id='1';
+      $tambahLatihan->pelatih_id=Auth::user()->id;
       $tambahLatihan->cabor_id=$masuk->cabor_id;
       $tambahLatihan->save();
       Session::flash("flash_message", "Berhasil menambahkan latihan");

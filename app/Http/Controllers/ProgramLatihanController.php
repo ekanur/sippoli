@@ -12,6 +12,10 @@ use Session;
 
 class ProgramLatihanController extends Controller
 {
+    function __construct()
+    {
+      $this->middleware("auth");
+    }
     public function index($id_program, $id_siklus_mikro, $id_sesi_latihan){
         // dd($id_sesi_latihan);
     	$program_latihan = Program_latihan::where('sesi_latihan_id', $id_sesi_latihan)->get();

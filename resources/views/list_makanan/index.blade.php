@@ -89,8 +89,8 @@
                 <label class="control-label">Kalori</label>
                 <input class="form-control" type="number" name="kalori" value="" min=1 required>
               </div>
-              <div class="text-right">
-                <button class="btn btn-success btn-sm" type="submit">Tambah</button>
+              <div class="text-center">
+                <button class="btn btn-info" type="submit">Tambah</button>
               </div>
             </form>
           </div>

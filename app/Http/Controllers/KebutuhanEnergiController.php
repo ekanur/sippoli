@@ -8,7 +8,13 @@ use App\Kebutuhan_energi;
 
 class KebutuhanEnergiController extends Controller
 {
-     public function simpan(Request $request){
+
+    function __construct()
+    {
+      $this->middleware("auth");
+    }
+
+    public function simpan(Request $request){
     	$json_kebutuhan = json_encode(array(
     		"persiapan_umum"=>$request->persiapan_umum,
     		"persiapan_khusus"=>$request->persiapan_khusus,

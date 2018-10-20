@@ -12,6 +12,12 @@ use Session;
 
 class SesiLatihanController extends Controller
 {
+    function __construct()
+    {
+      $this->middleware("auth");
+    }
+
+    
     public function index($id_program, $id_siklus_mikro, $id_sesi_latihan){
         // dd($id_sesi_latihan);
         $program_latihan = Program_latihan::with('list_latihan')->where("sesi_latihan_id", $id_sesi_latihan)->get();
@@ -49,6 +55,7 @@ class SesiLatihanController extends Controller
 
     public function ubah(Request $request){
         $id_sesi_latihan = $request->sesi_latihan_id;
+        // dd($id_sesi_latihan);
         $request->tanggal = date("Y-m-d", strtotime($request->tanggal));
         $json_materi_latihan = explode(",", $request->materi_latihan);
         $json_intensitas_max = explode(",", $request->intensitas_max);
@@ -57,7 +64,7 @@ class SesiLatihanController extends Controller
         $sesi_latihan = Sesi_latihan::findOrFail($id_sesi_latihan);
         $sesi_latihan->siklus_mikro_id = $request->siklus_mikro_id;
         // $sesi_latihan->tahapan = $request->tahapan;
-        $sesi_latihan->tanggal = $request->tanggal;
+        // $sesi_latihan->tanggal = $request->tanggal;
         $sesi_latihan->kriteria_volume_intensitas = $request->kriteria_v_i;
         $sesi_latihan->json_materi_latihan = json_encode($json_materi_latihan);
         $sesi_latihan->json_intensitas_max = json_encode($json_intensitas_max);

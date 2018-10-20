@@ -24,7 +24,7 @@
       <div class="col-md-12">
         <div class="card card-nav-tabs">
           <div class="card-header" data-background-color="blue">
-            Macam-Macam Tes
+            <h4 class="title">Macam-Macam Tes</h4>
           </div>
           <div class="card-content">
             

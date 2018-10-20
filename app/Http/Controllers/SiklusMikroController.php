@@ -18,7 +18,7 @@ class SiklusMikroController extends Controller
 
   function __construct()
   {
-    $this->middleware(function($request, $next){
+    $this->middleware(["auth" => function($request, $next){
 
       $this->program = Program::findOrFail($request->id_program);
       $this->siklus = $this->bacaSiklus();
@@ -26,7 +26,7 @@ class SiklusMikroController extends Controller
       // dd($this->siklus);
       $this->tanggal_mulai = new DateTime(date('Y-m-d', strtotime($this->program->mulai_program)));
       return $next($request);
-    });
+    }]);
   }
 
   public function index($id_program){

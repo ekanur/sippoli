@@ -47,7 +47,7 @@
                   <textarea class="form-control" name="deskripsi_latihan" rows="6" cols="80">{!! $latihan->deskripsi !!}</textarea>
                 </div>
               <center>
-                <button  type="submit" class="btn btn-success">Simpan</button>
+                <button  type="submit" class="btn btn-info">Simpan</button>
               </center>
             </div>
             </form>

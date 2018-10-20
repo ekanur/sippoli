@@ -12,11 +12,16 @@ use App\Program_atlet;
 use App\Kebutuhan_energi;
 use DateTime;
 use Session;
+use Auth;
 
 class ProgramController extends Controller
 {
+    function __construct()
+    {
+      $this->middleware("auth");
+    }
     public function index(){
-        $program = Program::with('atlet')->where("pelatih_id", 1)->orderBy("id", "desc")->get();
+        $program = Program::with('atlet')->where("pelatih_id", Auth::user()->id)->orderBy("id", "desc")->get();
         // dd($program[0]->atlet);
         // dd($program);
         return view("program.index", compact('program'));
@@ -31,15 +36,15 @@ class ProgramController extends Controller
         $request->mulai_program = date('Y-m-d', strtotime($request->mulai_program));
         $request->berakhir_program = date('Y-m-d', strtotime($request->berakhir_program));
         $siklus_makro = array(
-                                        "persiapan_umum"=>$request->persiapan_umum,
-                                        "persiapan_khusus"=>$request->persiapan_khusus,
-                                        "pra_kompetisi"=>$request->pra_kompetisi,
-                                        "kompetisi"=>$request->kompetisi,
-                                        "transisi"=>$request->transisi);
+                            "persiapan_umum"=>$request->persiapan_umum,
+                            "persiapan_khusus"=>$request->persiapan_khusus,
+                            "pra_kompetisi"=>$request->pra_kompetisi,
+                            "kompetisi"=>$request->kompetisi,
+                            "transisi"=>$request->transisi);
         $program = new Program;
         $program->nama = $request->nama;
         $program->jangka_durasi = $request->jangka_durasi;
-        $program->pelatih_id = 1;
+        $program->pelatih_id = Auth::user()->id;
         $program->mulai_program = $request->mulai_program;
         $program->berakhir_program = $request->berakhir_program;
         $program->siklus_makro = json_encode($siklus_makro);
@@ -56,7 +61,7 @@ class ProgramController extends Controller
     }
 
     public function hapus($id_program){
-      $program = Program::where("pelatih_id",$id_program)->get();
+      $program = Program::where("pelatih_id",Auth::user()->id)->get();
 
       try{
         $hapusProgram= Program::findOrFail($id_program);
@@ -79,15 +84,14 @@ class ProgramController extends Controller
         $request->mulai_program = date('Y-m-d', strtotime($request->mulai_program));
         $request->berakhir_program = date('Y-m-d', strtotime($request->berakhir_program));
         $siklus_makro = array(
-                                        "persiapan_umum"=>$request->persiapan_umum,
-                                        "persiapan_khusus"=>$request->persiapan_khusus,
-                                        "pra_kompetisi"=>$request->pra_kompetisi,
-                                        "kompetisi"=>$request->kompetisi,
-                                        "transisi"=>$request->transisi);
+                            "persiapan_umum"=>$request->persiapan_umum,
+                            "persiapan_khusus"=>$request->persiapan_khusus,
+                            "pra_kompetisi"=>$request->pra_kompetisi,
+                            "kompetisi"=>$request->kompetisi,
+                            "transisi"=>$request->transisi);
         $program = Program::findOrFail($id_program);
         $program->nama = $request->nama;
         $program->jangka_durasi = $request->jangka_durasi;
-        $program->pelatih_id = 1;
         $program->mulai_program = $request->mulai_program;
         $program->berakhir_program = $request->berakhir_program;
         $program->siklus_makro = json_encode($siklus_makro);

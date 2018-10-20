@@ -46,10 +46,10 @@
                                                           <strong>{</strong>
                                                         </div>
                                             </div> --}}
-                                            <div class="col-md-1 col-xs-4">
+                                            <div class="col-md-2 col-xs-4">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Tahapan</label>
-                                                    <strong>TPU</strong>
+                                                    <label class="control-label">Fase</label>
+                                                    <strong>{{ $siklus_mikro->fase() }}</strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-1 col-xs-4">
@@ -62,19 +62,16 @@
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Materi Latihan</label>
                                                     <strong>
-                                                      @foreach (json_decode($sesi_latihan->json_materi_latihan) as $key => $value)
-                                                        {{$value}},
-                                                      @endforeach
+                                                      {{ implode(", ", json_decode($sesi_latihan->json_materi_latihan)) }}
+                                                      
                                                     </strong>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 col-xs-12">
+                                            <div class="col-md-2 col-xs-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Intensitas Max</label>
                                                     <strong>
-                                                      @foreach (json_decode($sesi_latihan->json_intensitas_max) as $key => $value)
-                                                        {{$value}},
-                                                      @endforeach
+                                                      {{ implode(", ",json_decode($sesi_latihan->json_intensitas_max)) }}
                                                     </strong>
                                                 </div>
                                             </div>
@@ -82,9 +79,7 @@
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Volume Max</label>
                                                     <strong>
-                                                      @foreach (json_decode($sesi_latihan->json_volume_max) as $key => $value)
-                                                        {{$value}},
-                                                      @endforeach
+                                                      {{ implode(", ", json_decode($sesi_latihan->json_volume_max)) }}
                                                     </strong>
                                                 </div>
                                             </div>
